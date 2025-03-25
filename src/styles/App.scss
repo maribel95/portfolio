@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "modern-normalize/modern-normalize.css";
 
 html,
 body {
@@ -34,7 +35,7 @@ svg {
 }
 
 /* Ejemplo de media query para pantallas pequeñas */
-@media (max-width: 600px) {
+@media (max-width: $bp-mobile) {
   .app-container {
     flex-direction: column;
     justify-content: flex-start;

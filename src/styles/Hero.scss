@@ -1,6 +1,4 @@
-$primary-color: #0d0d0d;
-$secondary-color: #6c757d;
-$highlight-color: #a259ff;
+@use "./variables" as *;
 
 .hero-section {
   width: 100%;
@@ -9,7 +7,7 @@ $highlight-color: #a259ff;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: $primary-color;
+  background-color: $primary-color-hero;
   color: white;
   position: relative;
 
@@ -29,11 +27,11 @@ $highlight-color: #a259ff;
 
   .hero-title {
     font-size: 2vw; /* Ajusta el tamaño del texto al 2% del ancho del viewport */
-    color: $secondary-color; /* Ajusta el color del texto */
+    color: $secondary-color-hero; /* Ajusta el color del texto */
   }
 
   .highlight {
-    color: $highlight-color;
+    color: $highlight-color-hero;
   }
 
   .logo {

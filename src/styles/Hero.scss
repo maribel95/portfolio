@@ -1,60 +1,82 @@
-@use "./variables" as *;
+@use "./variables" as *; // Ajusta la ruta a tu archivo de variables si cambia
 
 .hero-section {
-  width: 100%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 100%;
+  min-height: 80vh;
   background-color: $primary-color-hero;
   color: white;
   position: relative;
 
+  // Contenedor del texto
   .container {
-    text-align: start;
-  }
+    flex: 1;
+    text-align: left; // Texto alineado a la izquierda
+    max-width: 50%; // Limita el ancho para que deje hueco a la imagen
 
-  .hero-greeting {
-    font-size: 2vw; /* Ajusta el tamaño del texto al 2% del ancho del viewport */
-    margin-bottom: 2rem; /* Ajusta el margen inferior */
-  }
-
-  .hero-name {
-    font-size: 4vw; /* Ajusta el tamaño del texto al 4% del ancho del viewport */
-    font-weight: bold; /* Ajusta el peso de la fuente */
-  }
-
-  .hero-title {
-    font-size: 2vw; /* Ajusta el tamaño del texto al 2% del ancho del viewport */
-    color: $secondary-color-hero; /* Ajusta el color del texto */
-  }
-
-  .highlight {
-    color: $highlight-color-hero;
-  }
-
-  .logo {
-    max-height: 70%;
-    margin-right: 5vw;
-  }
-
-  /* Ejemplo de media query para pantallas pequeñas */
-  @media (max-width: $bp-mobile) {
     .hero-greeting {
-      font-size: 4vw; /* Ajusta el tamaño del texto al 4% del ancho del viewport en pantallas pequeñas */
+      font-size: 2vw;
+      margin-bottom: 2rem;
     }
 
     .hero-name {
-      font-size: 6vw; /* Ajusta el tamaño del texto al 6% del ancho del viewport en pantallas pequeñas */
+      font-size: 4vw;
+      font-weight: bold;
+
+      // Si quieres el nombre con algún color especial, añade aquí
+      // color: $secondary-color-hero;
     }
 
+    // Texto con color morado (usando tu variable)
     .hero-title {
-      font-size: 3vw; /* Ajusta el tamaño del texto al 3% del ancho del viewport en pantallas pequeñas */
+      font-size: 2vw;
+      color: $secondary-color-hero;
+    }
+
+    // Parte resaltada en otro color (morado o el que tengas)
+    .highlight {
+      color: $highlight-color-hero;
+    }
+  }
+
+  // Imagen (la gallina) a la derecha
+  .logo {
+    flex: 1;
+    max-height: 70%; // Ajusta la altura máxima
+    margin-right: 5vw; // Espacio a la derecha (o quítalo si prefieres)
+    // Si quisieras centrar la imagen dentro de su contenedor:
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+  }
+
+  // Media query para pantallas pequeñas
+  @media (max-width: $bp-mobile) {
+    flex-direction: column; // Apila texto e imagen en columna
+    justify-content: flex-start;
+
+    .container {
+      max-width: 100%; // El texto ocupa todo el ancho
+      text-align: center; // Opcional: centrar texto en móvil
     }
 
     .logo {
-      width: 20vw; /* Ajusta el ancho del logo al 20% del ancho del viewport en pantallas pequeñas */
+      margin-right: 0; // Quita el margen derecho
+      width: 20vw; // Ajusta el ancho de la imagen en móvil
+      max-height: none;
+    }
+
+    .hero-greeting {
+      font-size: 4vw;
+    }
+    .hero-name {
+      font-size: 6vw;
+    }
+    .hero-title {
+      font-size: 3vw;
     }
   }
 }

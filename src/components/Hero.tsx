@@ -12,6 +12,7 @@ const Hero: React.FC = () => {
         <p className="hero-title">Frontend Developer</p>
       </div>
 
+      {/* Imagen a la derecha */}
       <img src="/cute-chicken.svg" alt="logo" className="logo" />
     </section>
   );

@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import ParticlesBackground from "./components/ParticlesBackground";
-import "./styles/App.scss";
+import "@styles/base.scss";
 
 function App() {
   return (

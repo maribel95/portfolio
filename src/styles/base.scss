@@ -1,6 +1,9 @@
+// 📦 Imports
 @use "./variables" as *;
+@use "modern-normalize/modern-normalize.css";
 @use "sass:color";
 
+// 🎨 Estilos globales
 :root {
   font-family: $font-family;
   line-height: 1.5;
@@ -16,28 +19,67 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: $secondary-color-hero;
-  text-decoration: inherit;
-}
-a:hover {
-  color: color.adjust($secondary-color-hero, $lightness: 10%);
+// 🧼 Reset básico
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
+// 🔗 Enlaces
+a {
+  font-weight: 500;
+  color: $secondary-color-hero;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: color.adjust($secondary-color-hero, $lightness: 10%);
+}
+
+// 🧱 Estructura principal
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.app-container {
+  width: 100%;
+  height: 100%;
+  background-color: $primary-color-app;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 🖼️ Imágenes y SVGs
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.logo {
+  width: 30vw;
+  height: auto;
+}
+
+// 🧵 Tipografía
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+// 🖱️ Botones
 button {
   border-radius: $border-radius;
   border: 1px solid transparent;
@@ -49,23 +91,40 @@ button {
   cursor: pointer;
   transition: border-color $transition-duration;
 }
+
 button:hover {
   border-color: $secondary-color-hero;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+// 🌗 Tema claro (opcional)
 @media (prefers-color-scheme: light) {
   :root {
     color: $text-color-light;
     background-color: $background-light;
   }
+
   a:hover {
     color: color.adjust($secondary-color-hero, $lightness: 10%);
   }
+
   button {
     background-color: color.adjust($background-dark, $lightness: 80%);
+  }
+}
+
+// 📱 Responsive
+@media (max-width: $bp-mobile) {
+  .app-container {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    width: 20vw;
   }
 }

@@ -1,5 +1,5 @@
 $primary-color-hero: #0d0d0d;
-$secondary-color-hero: #6c757d;
+$secondary-color-hero: #919191;
 $highlight-color-hero: #a259ff;
 
 // Colores
@@ -17,7 +17,10 @@ $font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 $border-radius: 8px;
 $transition-duration: 0.25s;
 
+// Tamaños base
+$font-base: 16px; // 1rem = 16px
+$navbar-height: 5rem; // por ejemplo
+
+// Breakpoints
 $bp-mobile: 480px;
 $bp-tablet: 768px;
-$bp-desktop: 1024px;
-$bp-large-desktop: 1200px;

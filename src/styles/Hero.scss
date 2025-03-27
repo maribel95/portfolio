@@ -1,82 +1,72 @@
-@use "./variables" as *; // Ajusta la ruta a tu archivo de variables si cambia
+@use "./variables" as *;
+@use "./mixins" as *;
 
 .hero-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 3rem;
   width: 100%;
-  min-height: 80vh;
+  min-height: calc(100vh - $navbar-height); // o usa padding-top si prefieres
   background-color: $primary-color-hero;
   color: white;
   position: relative;
 
-  // Contenedor del texto
   .container {
     flex: 1;
-    text-align: left; // Texto alineado a la izquierda
-    max-width: 50%; // Limita el ancho para que deje hueco a la imagen
+    text-align: left;
+    max-width: 50%;
 
     .hero-greeting {
-      font-size: 2vw;
-      margin-bottom: 2rem;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+
+      @include respond(mobile) {
+        font-size: 1.125rem;
+      }
     }
 
     .hero-name {
-      font-size: 4vw;
+      font-size: 2.5rem;
       font-weight: bold;
 
-      // Si quieres el nombre con algún color especial, añade aquí
-      // color: $secondary-color-hero;
+      @include respond(mobile) {
+        font-size: 2rem;
+      }
     }
 
-    // Texto con color morado (usando tu variable)
     .hero-title {
-      font-size: 2vw;
+      font-size: 1.25rem;
       color: $secondary-color-hero;
+
+      @include respond(mobile) {
+        font-size: 1.125rem;
+      }
     }
 
-    // Parte resaltada en otro color (morado o el que tengas)
     .highlight {
       color: $highlight-color-hero;
     }
   }
 
-  // Imagen (la gallina) a la derecha
-  .logo {
+  .hero-logo {
     flex: 1;
-    max-height: 70%; // Ajusta la altura máxima
-    margin-right: 5vw; // Espacio a la derecha (o quítalo si prefieres)
-    // Si quisieras centrar la imagen dentro de su contenedor:
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+    max-height: 12rem;
+    margin-right: 2rem;
+
+    @include respond(mobile) {
+      margin-right: 0;
+      max-height: 8rem;
+    }
   }
 
-  // Media query para pantallas pequeñas
-  @media (max-width: $bp-mobile) {
-    flex-direction: column; // Apila texto e imagen en columna
+  @include respond(mobile) {
+    flex-direction: column;
     justify-content: flex-start;
 
     .container {
-      max-width: 100%; // El texto ocupa todo el ancho
-      text-align: center; // Opcional: centrar texto en móvil
-    }
-
-    .logo {
-      margin-right: 0; // Quita el margen derecho
-      width: 20vw; // Ajusta el ancho de la imagen en móvil
-      max-height: none;
-    }
-
-    .hero-greeting {
-      font-size: 4vw;
-    }
-    .hero-name {
-      font-size: 6vw;
-    }
-    .hero-title {
-      font-size: 3vw;
+      max-width: 100%;
+      text-align: center;
     }
   }
 }

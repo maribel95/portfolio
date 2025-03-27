@@ -1,13 +1,11 @@
-import Header from "./components/Header";
 import Hero from "./components/Hero";
-import ParticlesBackground from "./components/ParticlesBackground";
+import Navbar from "./components/Navbar";
 import "@styles/base.scss";
 
 function App() {
   return (
     <div className="app-container">
-      <ParticlesBackground />
-      <Header />
+      <Navbar />
       <Hero />
     </div>
   );

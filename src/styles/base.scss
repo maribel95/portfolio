@@ -11,26 +11,24 @@
 
   color-scheme: light dark;
   color: $text-color-dark;
-  background-color: $primary-color-hero;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+html {
+  font-size: $font-base;
+}
 // 🧼 Reset básico
 html,
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -46,6 +44,12 @@ a:hover {
   color: color.adjust($secondary-color-hero, $lightness: 10%);
 }
 
+a:focus,
+a:focus-visible {
+  outline: 2px dashed $secondary-color-hero;
+  outline-offset: 2px;
+}
+
 // 🧱 Estructura principal
 #root {
   width: 100%;
@@ -55,7 +59,7 @@ a:hover {
 .app-container {
   width: 100%;
   height: 100%;
-  background-color: $primary-color-app;
+  background-color: $primary-color-hero;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,7 +128,7 @@ button:focus-visible {
     justify-content: flex-start;
   }
 
-  .logo {
+  .hero-logo {
     width: 20vw;
   }
 }

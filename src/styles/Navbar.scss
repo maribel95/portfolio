@@ -1,0 +1,41 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+.navbar {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #111; // o el color que tú quieras
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+.navbar-logo {
+  max-height: 5em;
+  height: auto;
+  width: auto;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: flex-end; // 👈 mueve los items a la derecha
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #a855f7; // por ejemplo, un lila bonito
+  }
+}

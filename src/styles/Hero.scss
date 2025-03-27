@@ -2,15 +2,26 @@
 @use "./mixins" as *;
 
 .hero-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 3rem;
   width: 100%;
-  min-height: calc(100vh - $navbar-height); // o usa padding-top si prefieres
+  min-height: calc(100vh - $navbar-height);
   background-color: $primary-color-hero;
   color: white;
   position: relative;
+
+  .hero-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    // NUEVO: centrado + límite de ancho
+    max-width: 1200px; // o el ancho máximo que prefieras
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1rem; // opcional: añade espacio en los bordes
+  }
 
   .container {
     flex: 1;
@@ -20,7 +31,6 @@
     .hero-greeting {
       font-size: 1.25rem;
       margin-bottom: 1.5rem;
-
       @include respond(mobile) {
         font-size: 1.125rem;
       }
@@ -29,7 +39,6 @@
     .hero-name {
       font-size: 2.5rem;
       font-weight: bold;
-
       @include respond(mobile) {
         font-size: 2rem;
       }
@@ -38,7 +47,6 @@
     .hero-title {
       font-size: 1.25rem;
       color: $secondary-color-hero;
-
       @include respond(mobile) {
         font-size: 1.125rem;
       }
@@ -50,19 +58,19 @@
   }
 
   .hero-logo {
-    flex: 1;
-    max-height: 12rem;
-    margin-right: 2rem;
-
-    @include respond(mobile) {
-      margin-right: 0;
-      max-height: 8rem;
-    }
+    flex: 0 0 auto;
+    width: 30vw;
+    max-width: 500px;
+    min-width: 120px;
+    height: auto;
+    transition: width 0.3s ease;
   }
 
   @include respond(mobile) {
-    flex-direction: column;
-    justify-content: flex-start;
+    .hero-content {
+      flex-direction: column;
+      align-items: center;
+    }
 
     .container {
       max-width: 100%;

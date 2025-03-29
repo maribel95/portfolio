@@ -19,6 +19,22 @@ const Hero: React.FC = () => {
           className="hero-logo"
         />
       </div>
+      <div className="bottom-hero-content">
+        <div className="bottom-container">
+          <h1>
+            LET ME <span className="highlight">INTRODUCE</span> MYSELF
+          </h1>
+          <p className="bottom-description">
+            I’m a passionate frontend developer with a love for clean design and
+            intuitive user experiences. I enjoy turning ideas into real,
+            interactive, and visually engaging web apps.
+          </p>
+          <p className="bottom-description">
+            When I’m not coding, you can probably find me learning new tech,
+            reading about design systems, or sketching layouts on napkins.
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

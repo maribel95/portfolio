@@ -2,7 +2,6 @@
 @use "./mixins" as *;
 .footer {
   text-align: center;
-  //padding: 2rem 1rem;
   background-color: $primary-color-hero;
   color: var(--text-color);
   width: 100%;
@@ -16,7 +15,7 @@
   &__subtitle {
     font-size: 1rem;
     margin-bottom: 1.5rem;
-    color: $accent-color;
+    color: var(--accent-color);
   }
 
   &__icons {
@@ -27,12 +26,12 @@
     margin-bottom: 1.5rem;
 
     a {
-      color: $accent-color;
+      color: var(--accent-color);
       transition: transform 0.2s ease, color 0.2s ease;
 
       &:hover {
         transform: scale(1.2);
-        color: $hover-color;
+        color: var(--hover-color);
       }
     }
   }
@@ -43,11 +42,29 @@
     background-color: $primary-color-app;
     padding: 1rem;
     margin-top: 2rem;
-    font-size: 0.85rem;
-    opacity: 0.7;
 
     p {
       margin: 0.3rem 0;
+    }
+  }
+
+  @include respond(mobile) {
+    .footer__title {
+      font-size: 1.5rem;
+    }
+
+    .footer__subtitle {
+      font-size: 0.9rem;
+    }
+
+    .footer__icons {
+      gap: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .footer__bottom {
+      font-size: 0.75rem;
+      padding: 0.5rem;
     }
   }
 }

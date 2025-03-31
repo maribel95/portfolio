@@ -29,25 +29,16 @@
     .hero-greeting {
       font-size: 1.25rem;
       margin-bottom: 1.5rem;
-      @include respond(mobile) {
-        font-size: 1.125rem;
-      }
     }
 
     .hero-name {
       font-size: 2.5rem;
       font-weight: bold;
-      @include respond(mobile) {
-        font-size: 2rem;
-      }
     }
 
     .hero-title {
       font-size: 1.25rem;
       color: $secondary-color-hero;
-      @include respond(mobile) {
-        font-size: 1.125rem;
-      }
     }
 
     .highlight {
@@ -74,15 +65,17 @@
     width: 100%;
     padding: 0 1rem; // opcional: añade espacio en los bordes
   }
+
   .bottom-container {
     flex: 1;
     text-align: center;
-    //max-width: 80%;
+
     .highlight {
       color: $highlight-color-hero;
     }
   }
 
+  // Media queries para pantallas móviles
   @include respond(mobile) {
     .hero-content {
       flex-direction: column;
@@ -92,6 +85,29 @@
     .container {
       max-width: 100%;
       text-align: center;
+
+      .hero-greeting {
+        font-size: 1rem; // Ajusta el tamaño del texto en móviles
+        margin-bottom: 1rem;
+      }
+
+      .hero-name {
+        font-size: 2rem; // Ajusta el tamaño del texto en móviles
+      }
+
+      .hero-title {
+        font-size: 1rem; // Ajusta el tamaño del texto en móviles
+      }
+    }
+
+    .hero-logo {
+      width: 50vw; // Ajusta el ancho del logo en móviles
+      max-width: 300px; // Limita el tamaño máximo en móviles
+    }
+
+    .bottom-hero-content {
+      flex-direction: column; // Cambia la dirección a columna en móviles
+      align-items: center;
     }
   }
 }

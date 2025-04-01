@@ -1,16 +1,19 @@
 import React from "react";
 import "@styles/Hero.scss";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const Hero: React.FC = () => {
+  const { t, i18n } = useTranslation();
   return (
     <section className="hero-section">
       <div className="hero-content">
         <div className="container">
-          <h2 className="hero-greeting">Hi There! 👋</h2>
+          <h2 className="hero-greeting">{t("hero.greeting")} 👋</h2>
           <h1 className="hero-name">
-            I'M <span className="highlight">MARIBEL CRESPI</span>
+            {t("hero.iam")} <span className="highlight">{t("hero.name")}</span>
           </h1>
-          <p className="hero-title">Frontend Developer</p>
+          <p className="hero-title">{t("hero.title")}</p>
         </div>
 
         <img
@@ -22,17 +25,12 @@ const Hero: React.FC = () => {
       <div className="bottom-hero-content">
         <div className="bottom-container">
           <h1>
-            LET ME <span className="highlight">INTRODUCE</span> MYSELF
+            <Trans i18nKey="hero.intro">
+              LET ME <span className="highlight">INTRODUCE</span> MYSELF
+            </Trans>
           </h1>
-          <p className="bottom-description">
-            I’m a passionate frontend developer with a love for clean design and
-            intuitive user experiences. I enjoy turning ideas into real,
-            interactive, and visually engaging web apps.
-          </p>
-          <p className="bottom-description">
-            When I’m not coding, you can probably find me learning new tech,
-            reading about design systems, or sketching layouts on napkins.
-          </p>
+          <p className="bottom-description">{t("hero.description1")}</p>
+          <p className="bottom-description">{t("hero.description2")}</p>
         </div>
       </div>
     </section>

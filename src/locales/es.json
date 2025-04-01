@@ -1,7 +1,16 @@
 {
+  "hero": {
+    "greeting": "Hola!",
+    "name": "MARIBEL CRESPI",
+    "iam": "SOY",
+    "title": "Ingeniera informática",
+    "intro": "DEJA QUE <1>ME PRESENTE</1> YO MISMA",
+    "description1": "Soy un apasionado del desarrollo frontend, apasionado por el diseño limpio y las experiencias de usuario intuitivas. Disfruto convirtiendo ideas en aplicaciones web reales, interactivas y visualmente atractivas.",
+    "description2": "Cuando no estoy codificando, probablemente me encuentres aprendiendo nuevas tecnologías, leyendo sobre sistemas de diseño o dibujando diseños en servilletas."
+  },
   "home": "Inicio",
   "about": "Bio",
   "projects": "Proyectos",
   "resume": "CV",
-  "blogs": "Blog"
+  "blogs": "Blogs"
 }

@@ -18,7 +18,28 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 }
+.navbar-lang {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0rem;
+  margin: 0rem;
+  flex-wrap: wrap;
 
+  button {
+    margin-left: 0.2rem;
+    padding: 0.1rem 0.6rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
 .navbar-content {
   display: flex;
   justify-content: space-between;

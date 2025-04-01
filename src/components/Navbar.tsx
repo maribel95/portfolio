@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "@styles/Navbar.scss";
 import { useTranslation } from "react-i18next";
+import { ThemeContext } from "@context/ThemeContext"; // usa la ruta correcta según tus alias
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const { theme, setTheme } = useContext(ThemeContext);
+
   const [currentImage, setCurrentImage] = useState("/luki-pixel.png");
 
   const imageSequence = [
@@ -22,11 +25,22 @@ const Navbar: React.FC = () => {
     const interval = setInterval(() => {
       setCurrentImage(imageSequence[index]);
       index++;
-
       if (index === imageSequence.length) {
         clearInterval(interval);
       }
-    }, 90); // cambia cada 150ms, puedes ajustar esto
+    }, 150);
+  };
+
+  // ⭐ Cambiar de tema y guardar en localStorage automáticamente
+  const toggleTheme = () => {
+    const nextTheme =
+      theme === "light" ? "dark" : theme === "dark" ? "fun" : "light";
+
+    setTheme(nextTheme);
+  };
+  const toggleLanguage = () => {
+    const nextLang = i18n.language === "en" ? "es" : "en";
+    i18n.changeLanguage(nextLang);
   };
 
   const changeLanguage = (lang: string) => {
@@ -38,11 +52,12 @@ const Navbar: React.FC = () => {
       <div className="navbar-content">
         <img
           src={currentImage}
-          alt="Logo web"
+          alt="Logo"
           className="navbar-logo"
           onClick={handleClick}
           style={{ cursor: "pointer" }}
         />
+
         <ul className="navbar-menu">
           <li>
             <a href="#home">{t("home")}</a>
@@ -60,9 +75,16 @@ const Navbar: React.FC = () => {
             <a href="#blogs">{t("blogs")}</a>
           </li>
         </ul>
+
         <div className="navbar-lang">
-          <button onClick={() => changeLanguage("en")}>🇬🇧</button>
-          <button onClick={() => changeLanguage("es")}>🇪🇸</button>
+          <button onClick={toggleLanguage}>
+            {i18n.language === "en" ? "🇬🇧" : "🇪🇸"}
+          </button>
+          <button onClick={toggleTheme}>
+            {theme === "light" && "☀️"}
+            {theme === "dark" && "🌙"}
+            {theme === "fun" && "✨"}
+          </button>
         </div>
       </div>
     </nav>

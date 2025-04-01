@@ -5,9 +5,10 @@
   padding: 3rem 3rem 0 3rem;
   width: 100%;
   min-height: calc(100vh - $navbar-height);
-  background-color: $primary-color-hero;
-  color: white;
+  background-color: var(--hero-bg);
+  color: var(--hero-text);
   position: relative;
+  transition: background-color 0.3s ease;
 
   .hero-content {
     display: flex;
@@ -38,11 +39,11 @@
 
     .hero-title {
       font-size: 1.25rem;
-      color: $secondary-color-hero;
+      color: var(--hero-secondary);
     }
 
     .highlight {
-      color: $highlight-color-hero;
+      color: var(--hero-highlight);
     }
   }
 
@@ -71,7 +72,7 @@
     text-align: center;
 
     .highlight {
-      color: $highlight-color-hero;
+      color: var(--hero-highlight);
     }
   }
 

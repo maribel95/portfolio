@@ -27,6 +27,50 @@ body {
   padding: 0;
   min-height: 100%;
 }
+// Tema base (modo oscuro por defecto)
+body.theme-dark {
+  --bg-color: #0d0d0d;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --accent-color: #a259ff;
+  --navbar-color: #111;
+  --hover-color: #a855f7;
+  --hero-bg: #0d0d0d;
+  --hero-text: rgba(255, 255, 255, 0.87);
+  --hero-secondary: #919191;
+  --hero-highlight: #a259ff;
+  --footer-bg: #0d0d0d; // reemplazo de $primary-color-hero
+  --footer-bottom-bg: #242424;
+}
+
+// Tema claro
+body.theme-light {
+  --bg-color: #ffffff;
+  --text-color: #213547;
+  --accent-color: #7b2cbf;
+  --navbar-color: #eee;
+  --hover-color: #5a189a;
+  --hero-bg: #ffffff;
+  --hero-text: #242424;
+  --hero-secondary: #666666;
+  --hero-highlight: #7b2cbf;
+  --footer-bg: #ffffff;
+  --footer-bottom-bg: #eeeeee;
+}
+
+// Tema divertido
+body.theme-fun {
+  --bg-color: #ffe0f5;
+  --text-color: #6a0dad;
+  --accent-color: #ff7eb9;
+  --navbar-color: #f0c0ff;
+  --hover-color: #ff69b4;
+  --hero-bg: #ffe0f0;
+  --hero-text: #6a0dad;
+  --hero-secondary: #cc66cc;
+  --hero-highlight: #ff7eb9;
+  --footer-bg: #ffe0f5;
+  --footer-bottom-bg: #fdd4f9;
+}
 
 body {
   min-width: 320px;

@@ -2,11 +2,13 @@
 @use "./mixins" as *;
 .footer {
   text-align: center;
-  background-color: $primary-color-hero;
+  background-color: var(--footer-bg); // ✅ actualizado
   color: var(--text-color);
   width: 100%;
   height: auto;
   margin: 0 auto;
+  transition: background-color 0.3s ease;
+
   &__title {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
@@ -39,7 +41,7 @@
   &__bottom {
     font-size: 0.9rem;
     opacity: 0.8;
-    background-color: $primary-color-app;
+    background-color: var(--footer-bottom-bg);
     padding: 1rem;
     margin-top: 2rem;
 

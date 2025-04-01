@@ -1,20 +1,32 @@
-// src/components/Navbar.tsx
 import React, { useState } from "react";
 import "@styles/Navbar.scss";
 import { useTranslation } from "react-i18next";
 
 const Navbar: React.FC = () => {
-  const [isBarking, setIsBarking] = useState(false);
   const { t, i18n } = useTranslation();
+  const [currentImage, setCurrentImage] = useState("/luki-pixel.png");
+
+  const imageSequence = [
+    "/luki-pixel.png",
+    "/luki-bark1.png",
+    "/luki-bark2.png",
+    "/luki-bark3.png",
+    "/luki-pixel.png",
+  ];
 
   const handleClick = () => {
     const barkAudio = new Audio("/dog-bark.mp3");
-    setIsBarking(true);
     barkAudio.play();
 
-    setTimeout(() => {
-      setIsBarking(false);
-    }, 1000);
+    let index = 0;
+    const interval = setInterval(() => {
+      setCurrentImage(imageSequence[index]);
+      index++;
+
+      if (index === imageSequence.length) {
+        clearInterval(interval);
+      }
+    }, 90); // cambia cada 150ms, puedes ajustar esto
   };
 
   const changeLanguage = (lang: string) => {
@@ -25,7 +37,7 @@ const Navbar: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-content">
         <img
-          src={isBarking ? "/luki-barking.png" : "/luki-pixel.png"}
+          src={currentImage}
           alt="Logo web"
           className="navbar-logo"
           onClick={handleClick}

@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
     <section className="hero-section">
       <div className="hero-flex">
         <div className="hero-text">
-          <span className="line soy">SOY</span>
+          <span className="line soy">{t("hero.iam")}</span>
           <span className="line nombre">MARIBEL</span>
           <span className="line apellido">CRESPI</span>
         </div>
@@ -17,7 +17,19 @@ const Hero: React.FC = () => {
           <div className="hero-logo">
             <img src="/yo-baskin.png" alt="Maribel" />
           </div>
-          <span className="hero-handwriting hola">¡Hola!</span>
+          <span className="hero-handwriting hola" key={t("hero.greeting")}>
+            {t("hero.greeting")
+              .split("")
+              .map((char, index) => (
+                <span
+                  className="char"
+                  key={index}
+                  style={{ animationDelay: `${1.2 + index * 0.1}s` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+          </span>
         </div>
       </div>
       <div className="bottom-hero-content">

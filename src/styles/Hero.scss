@@ -45,17 +45,26 @@
       .soy {
         color: var(--text-color);
         transform: rotate(1deg);
+        animation-delay: 3.6s;
       }
 
       .nombre {
         color: var(--hero-highlight);
         transform: rotate(1deg);
         margin-left: 5.5vw;
+        animation-delay: 4.2s;
       }
       .apellido {
         color: var(--hero-highlight);
         transform: rotate(1deg);
         margin-left: 18vw;
+        animation-delay: 5s;
+      }
+      .soy,
+      .nombre,
+      .apellido {
+        opacity: 0;
+        animation: slideInLeft 3s ease forwards;
       }
     }
 
@@ -78,6 +87,10 @@
         justify-content: center;
         overflow: hidden;
         z-index: 1;
+
+        opacity: 0;
+        animation: fadeZoomIn 1s ease-out forwards;
+        animation-delay: 0s; // primer elemento, empieza sin delay
 
         img {
           width: 100%;
@@ -113,7 +126,7 @@
         position: absolute;
         top: 3%;
         right: 80%;
-        transform: rotate(-40deg);
+        transform: rotate(-48deg);
         font-size: clamp(1rem, 2.5vw, 2rem);
         font-family: "Barlow Condensed", sans-serif;
         font-style: italic;
@@ -124,6 +137,11 @@
         user-select: none;
         z-index: 2;
         white-space: nowrap;
+        .char {
+          display: inline-block;
+          opacity: 0;
+          animation: fadeInLetter 0.4s ease-out forwards;
+        }
       }
     }
   }
@@ -173,5 +191,38 @@
       align-items: center;
       text-align: center;
     }
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInLetter {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.3em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

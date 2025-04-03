@@ -15,12 +15,9 @@ const Hero: React.FC = () => {
           </h1>
           <p className="hero-title">{t("hero.title")}</p>
         </div>
-
-        <img
-          src="/cute-chicken.svg"
-          alt="Imagen presentación"
-          className="hero-logo"
-        />
+        <div className="hero-logo-wrapper">
+          <img src="/yo-baskin.png" alt="Logo" className="hero-logo" />
+        </div>
       </div>
       <div className="bottom-hero-content">
         <div className="bottom-container">

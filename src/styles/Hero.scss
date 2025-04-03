@@ -4,28 +4,30 @@
 .hero-section {
   padding: 3rem 3rem 0 3rem;
   width: 100%;
-  min-height: calc(100vh - $navbar-height);
+  min-height: 100vh; // Asegura que ocupe toda la pantalla
+  display: flex;
+  flex-direction: column;
   background-color: var(--hero-bg);
   color: var(--hero-text);
-  position: relative;
   transition: background-color 0.3s ease;
 
   .hero-content {
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: center;
     gap: 2rem;
     flex-wrap: wrap;
-    max-width: 1200px; // o el ancho máximo que prefieras
-    margin: 0 auto;
     width: 100%;
-    padding: 0 1rem; // opcional: añade espacio en los bordes
+    padding: 0 1rem;
   }
 
   .container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: left;
-    max-width: 50%;
 
     .hero-greeting {
       font-size: 1.25rem;
@@ -47,13 +49,27 @@
     }
   }
 
+  .hero-logo-wrapper {
+    position: relative;
+    width: 42vw;
+    max-width: 520px;
+    min-width: 140px;
+    padding: 1rem;
+    border: 6px solid #333;
+    border-radius: 2rem;
+    background: linear-gradient(145deg, #222, #444); // fondo decorativo
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); // sombra para dar profundidad
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .hero-logo {
-    flex: 0 0 auto;
-    width: 30vw;
-    max-width: 500px;
-    min-width: 120px;
+    width: 100%;
     height: auto;
-    transition: width 0.3s ease;
+    border-radius: 1.5rem;
   }
 
   .bottom-hero-content {
@@ -62,9 +78,9 @@
     align-items: center;
     gap: 2rem;
     flex-wrap: wrap;
-    margin: 0 auto;
     width: 100%;
-    padding: 0 1rem; // opcional: añade espacio en los bordes
+    padding: 2rem 1rem;
+    margin-top: auto; // Empuja hacia el final de la sección
   }
 
   .bottom-container {
@@ -74,41 +90,49 @@
     .highlight {
       color: var(--hero-highlight);
     }
+
+    .bottom-description {
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
   }
 
   // Media queries para pantallas móviles
   @include respond(mobile) {
+    padding: 2rem 1rem 0 1rem;
+
     .hero-content {
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
 
     .container {
       max-width: 100%;
-      text-align: center;
 
       .hero-greeting {
-        font-size: 1rem; // Ajusta el tamaño del texto en móviles
+        font-size: 1rem;
         margin-bottom: 1rem;
       }
 
       .hero-name {
-        font-size: 2rem; // Ajusta el tamaño del texto en móviles
+        font-size: 2rem;
       }
 
       .hero-title {
-        font-size: 1rem; // Ajusta el tamaño del texto en móviles
+        font-size: 1rem;
       }
     }
 
     .hero-logo {
-      width: 50vw; // Ajusta el ancho del logo en móviles
-      max-width: 300px; // Limita el tamaño máximo en móviles
+      width: 50vw;
+      max-width: 300px;
     }
 
     .bottom-hero-content {
-      flex-direction: column; // Cambia la dirección a columna en móviles
+      flex-direction: column;
       align-items: center;
+      text-align: center;
     }
   }
 }

@@ -32,8 +32,7 @@ const Navbar: React.FC = () => {
   };
 
   const toggleTheme = () => {
-    const nextTheme =
-      theme === "light" ? "dark" : theme === "dark" ? "fun" : "light";
+    const nextTheme = theme === "light" ? "dark" : "light";
 
     setTheme(nextTheme);
   };
@@ -83,7 +82,6 @@ const Navbar: React.FC = () => {
           <button onClick={toggleTheme}>
             {theme === "light" && "☀️"}
             {theme === "dark" && "🌙"}
-            {theme === "fun" && "✨"}
           </button>
         </div>
       </div>

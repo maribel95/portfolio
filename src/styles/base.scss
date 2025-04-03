@@ -57,21 +57,6 @@ body.theme-light {
   --footer-bottom-bg: #eeeeee;
 }
 
-// Tema divertido
-body.theme-fun {
-  --bg-color: #ffe0f5;
-  --text-color: #6a0dad;
-  --accent-color: #ff7eb9;
-  --navbar-color: #f0c0ff;
-  --hover-color: #ff69b4;
-  --hero-bg: #ffe0f0;
-  --hero-text: #6a0dad;
-  --hero-secondary: #cc66cc;
-  --hero-highlight: #ff7eb9;
-  --footer-bg: #ffe0f5;
-  --footer-bottom-bg: #fdd4f9;
-}
-
 body {
   min-width: 320px;
   min-height: 100vh;

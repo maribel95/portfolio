@@ -11,119 +11,105 @@
   color: var(--hero-text);
   transition: background-color 0.3s ease;
 
-  .hero-content {
+  .hero-flex {
     display: flex;
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 0 1rem;
-  }
-
-  .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-
-    .hero-greeting {
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-name {
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-
-    .hero-title {
-      font-size: 1.25rem;
-      color: var(--hero-secondary);
-    }
-
-    .highlight {
-      color: var(--hero-highlight);
-    }
-  }
-
-  .hero-logo {
-    position: relative;
-    width: 40vw;
-    max-width: 500px;
-    min-width: 120px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    display: flex;
+    //flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    z-index: 1;
+    gap: 3rem;
+    padding: 2rem;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .line {
+        font-family: "Barlow Condensed", sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #9b59b6;
+        text-transform: uppercase;
+        font-size: clamp(2rem, 4vw, 5rem);
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .soy {
+        transform: rotate(8deg);
+      }
+
+      .nombre {
+        transform: rotate(3deg);
+      }
+    }
+
+    .hero-image-wrapper {
       position: relative;
-      z-index: 2;
-    }
+      width: clamp(250px, 40vw, 500px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      z-index: 0;
+      .hero-logo {
+        position: relative;
+        width: 40vw;
+        max-width: 500px;
+        min-width: 120px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        z-index: 1;
 
-      background: linear-gradient(to right, #a577f6, #5998f6),
-        /* degradado más oscuro */
-          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='noiseFilter'><feTurbulence type='turbulence' baseFrequency='5' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.7'/></svg>");
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          position: relative;
+          z-index: 2;
+        }
 
-      background-blend-mode: overlay;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    }
-  }
+        &::before {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          right: -10px;
+          bottom: -10px;
+          z-index: 0;
 
-  .hero-handwriting {
-    position: absolute;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 5rem;
-    font-style: italic;
-    font-weight: 700;
-    color: #9b59b6; // morado Canva
-    text-transform: uppercase;
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-    z-index: 5;
-    white-space: nowrap;
+          background: linear-gradient(to right, #a577f6, #5998f6),
+            /* degradado más oscuro */
+              url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='noiseFilter'><feTurbulence type='turbulence' baseFrequency='5' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.7'/></svg>");
 
-    &.hola {
-      top: 9rem;
-      right: 30rem;
-      transform: rotate(-50deg);
-      font-size: 4rem;
-    }
+          background-blend-mode: overlay;
+          background-size: cover;
+          background-repeat: no-repeat;
+          border-radius: 50%;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+      }
 
-    &.soy {
-      top: 6rem;
-      left: 20rem;
-      transform: rotate(8deg);
-    }
-
-    &.nombre {
-      top: 14rem;
-      left: 3.5rem;
-      transform: rotate(8deg);
-      font-size: 6rem;
+      .hero-handwriting.hola {
+        position: absolute;
+        top: 3%;
+        right: 80%;
+        transform: rotate(-40deg);
+        font-size: clamp(1rem, 2.5vw, 2rem);
+        font-family: "Barlow Condensed", sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #9b59b6;
+        text-transform: uppercase;
+        pointer-events: none;
+        user-select: none;
+        z-index: 2;
+        white-space: nowrap;
+      }
     }
   }
 

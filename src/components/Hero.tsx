@@ -10,7 +10,8 @@ const Hero: React.FC = () => {
       <div className="hero-flex">
         <div className="hero-text">
           <span className="line soy">SOY</span>
-          <span className="line nombre">MARIBEL CRESPI</span>
+          <span className="line nombre">MARIBEL</span>
+          <span className="line apellido">CRESPI</span>
         </div>
         <div className="hero-image-wrapper">
           <div className="hero-logo">

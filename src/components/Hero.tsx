@@ -9,14 +9,12 @@ const Hero: React.FC = () => {
     <section className="hero-section">
       <div className="hero-content">
         <div className="container">
-          <h2 className="hero-greeting">{t("hero.greeting")} 👋</h2>
-          <h1 className="hero-name">
-            {t("hero.iam")} <span className="highlight">{t("hero.name")}</span>
-          </h1>
-          <p className="hero-title">{t("hero.title")}</p>
+          <span className="hero-handwriting hola">¡Hola!</span>
+          <span className="hero-handwriting soy">SOY</span>
+          <span className="hero-handwriting nombre">MARIBEL CRESPI</span>
         </div>
-        <div className="hero-logo-wrapper">
-          <img src="/yo-baskin.png" alt="Logo" className="hero-logo" />
+        <div className="hero-logo">
+          <img src="/yo-baskin.png" alt="Maribel" />
         </div>
       </div>
       <div className="bottom-hero-content">

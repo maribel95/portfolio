@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "@styles/Navbar.scss";
 import { useTranslation } from "react-i18next";
-import { ThemeContext } from "@context/ThemeContext"; // usa la ruta correcta según tus alias
+import { ThemeContext } from "@context/ThemeContext";
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -31,7 +31,6 @@ const Navbar: React.FC = () => {
     }, 150);
   };
 
-  // ⭐ Cambiar de tema y guardar en localStorage automáticamente
   const toggleTheme = () => {
     const nextTheme =
       theme === "light" ? "dark" : theme === "dark" ? "fun" : "light";
@@ -55,6 +54,7 @@ const Navbar: React.FC = () => {
           alt="Logo"
           className="navbar-logo"
           onClick={handleClick}
+          draggable={false}
           style={{ cursor: "pointer" }}
         />
 

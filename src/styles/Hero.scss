@@ -49,27 +49,82 @@
     }
   }
 
-  .hero-logo-wrapper {
+  .hero-logo {
     position: relative;
-    width: 42vw;
-    max-width: 520px;
-    min-width: 140px;
-    padding: 1rem;
-    border: 6px solid #333;
-    border-radius: 2rem;
-    background: linear-gradient(145deg, #222, #444); // fondo decorativo
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); // sombra para dar profundidad
-    transition: all 0.3s ease;
-
+    width: 40vw;
+    max-width: 500px;
+    min-width: 120px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: 0;
+
+      background: linear-gradient(to right, #a577f6, #5998f6),
+        /* degradado más oscuro */
+          url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='noiseFilter'><feTurbulence type='turbulence' baseFrequency='5' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.7'/></svg>");
+
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
   }
 
-  .hero-logo {
-    width: 100%;
-    height: auto;
-    border-radius: 1.5rem;
+  .hero-handwriting {
+    position: absolute;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 5rem;
+    font-style: italic;
+    font-weight: 700;
+    color: #9b59b6; // morado Canva
+    text-transform: uppercase;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 5;
+    white-space: nowrap;
+
+    &.hola {
+      top: 9rem;
+      right: 30rem;
+      transform: rotate(-50deg);
+      font-size: 4rem;
+    }
+
+    &.soy {
+      top: 6rem;
+      left: 20rem;
+      transform: rotate(8deg);
+    }
+
+    &.nombre {
+      top: 14rem;
+      left: 3.5rem;
+      transform: rotate(8deg);
+      font-size: 6rem;
+    }
   }
 
   .bottom-hero-content {

@@ -40,6 +40,8 @@
         padding-top: 2vw;
         padding-right: 5vw;
         letter-spacing: 0.2em;
+        transform: skewX(-15deg);
+        display: inline-block; // necesario para que funcione
       }
 
       .soy {
@@ -155,7 +157,7 @@
     flex-wrap: wrap;
     width: 100%;
     padding: 2rem 1rem;
-    margin-top: auto; // Empuja hacia el final de la sección
+    margin-top: 3rem; // Empuja hacia el final de la sección
   }
 
   .bottom-container {

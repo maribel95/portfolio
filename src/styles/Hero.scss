@@ -53,6 +53,7 @@
         transform: rotate(1deg);
         margin-left: 5.5vw;
         animation-delay: 4.2s;
+        //@include granulado-text;
       }
       .apellido {
         color: var(--hero-highlight);
@@ -95,7 +96,7 @@
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           border-radius: 50%;
           position: relative;
           z-index: 2;

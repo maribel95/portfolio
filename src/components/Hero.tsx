@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
         </div>
         <div className="hero-image-wrapper">
           <div className="hero-logo">
-            <img src="/yo-baskin.png" alt="Maribel" />
+            <img src="/yo-excursion.png" alt="Maribel" />
           </div>
           <span className="hero-handwriting hola" key={t("hero.greeting")}>
             {t("hero.greeting")

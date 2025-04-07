@@ -41,10 +41,6 @@ const Navbar: React.FC = () => {
     i18n.changeLanguage(nextLang);
   };
 
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
-
   return (
     <nav className="navbar">
       <div className="navbar-content">

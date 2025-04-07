@@ -7,6 +7,11 @@
     "description1": "I’m a passionate frontend developer with a love for clean design and intuitive user experiences. I enjoy turning ideas into real, interactive, and visually engaging web apps.",
     "description2": "When I’m not coding, you can probably find me learning new tech, reading about design systems, or sketching layouts on napkins."
   },
+  "footer": {
+    "title": "FIND ME ON",
+    "subtitle": "That webs :)",
+    "bottom": "Designed and Developed by"
+  },
   "home": "Home",
   "about": "About",
   "projects": "Projects",

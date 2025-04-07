@@ -8,6 +8,11 @@
     "description1": "Soy un apasionado del desarrollo frontend, apasionado por el diseño limpio y las experiencias de usuario intuitivas. Disfruto convirtiendo ideas en aplicaciones web reales, interactivas y visualmente atractivas.",
     "description2": "Cuando no estoy codificando, probablemente me encuentres aprendiendo nuevas tecnologías, leyendo sobre sistemas de diseño o dibujando diseños en servilletas."
   },
+  "footer": {
+    "title": "PUEDES ENCONTRARME EN",
+    "subtitle": "Estas redes de aquí :)",
+    "bottom": "Diseñado y desarrollado por"
+  },
   "home": "Inicio",
   "about": "Bio",
   "projects": "Proyectos",

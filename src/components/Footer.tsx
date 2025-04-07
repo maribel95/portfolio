@@ -1,12 +1,13 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import "@styles/Footer.scss";
-
+import { useTranslation } from "react-i18next";
 const Footer: React.FC = () => {
+  const { t, i18n } = useTranslation();
   return (
     <footer className="footer">
-      <h2 className="footer__title">FIND ME ON</h2>
-      <p className="footer__subtitle">Feel free to connect with me</p>
+      <h2 className="footer__title">{t("footer.title")}</h2>
+      <p className="footer__subtitle">{t("footer.subtitle")}</p>
       <div className="footer__icons">
         <a
           href="https://github.com/maribel95"
@@ -31,7 +32,7 @@ const Footer: React.FC = () => {
         </a>
       </div>
       <div className="footer__bottom">
-        <p>Designed and Developed by Maribel Crespí Valero</p>
+        <p>{t("footer.bottom")} Maribel Crespí Valero</p>
         <p>© {new Date().getFullYear()} Maribel</p>
       </div>
     </footer>

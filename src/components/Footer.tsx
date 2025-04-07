@@ -7,7 +7,6 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <h2 className="footer__title">{t("footer.title")}</h2>
-      <p className="footer__subtitle">{t("footer.subtitle")}</p>
       <div className="footer__icons">
         <a
           href="https://github.com/maribel95"
@@ -32,8 +31,10 @@ const Footer: React.FC = () => {
         </a>
       </div>
       <div className="footer__bottom">
-        <p>{t("footer.bottom")} Maribel Crespí Valero</p>
-        <p>© {new Date().getFullYear()} Maribel</p>
+        <p>
+          {t("footer.bottom")} Maribel Crespí Valero ©{" "}
+          {new Date().getFullYear()}{" "}
+        </p>
       </div>
     </footer>
   );

@@ -2,22 +2,17 @@
 @use "./mixins" as *;
 .footer {
   text-align: center;
-  background-color: var(--footer-bg); // ✅ actualizado
+  background-color: var(--footer-bottom-bg);
   color: var(--text-color);
   width: 100%;
   height: auto;
-  margin: 0 auto;
+  margin: 0;
   transition: background-color 0.3s ease;
 
   &__title {
     font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-  }
-
-  &__subtitle {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
+    margin: 0.5rem;
+    //margin-bottom: 0.5rem;
   }
 
   &__icons {
@@ -25,7 +20,8 @@
     justify-content: center;
     gap: 1.5rem;
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    margin: 0;
+    //margin-bottom: 1.5rem;
 
     a {
       color: var(--accent-color);
@@ -43,7 +39,6 @@
     opacity: 0.8;
     background-color: var(--footer-bottom-bg);
     padding: 1rem;
-    margin-top: 2rem;
 
     p {
       margin: 0.3rem 0;

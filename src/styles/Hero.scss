@@ -4,14 +4,16 @@
 .hero-section {
   padding: 3rem 3rem 0 3rem;
   width: 100%;
-  min-height: 100vh; // Asegura que ocupe toda la pantalla
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
-  //background-color: var(--hero-bg);
-  background-color: rgba(15, 15, 27, 0.2);
+  background-color: var(--hero-bg);
   color: var(--hero-text);
   transition: background-color 0.3s ease;
   z-index: 1;
+  position: relative;
+  overflow: hidden;
 
   .hero-flex {
     display: flex;
@@ -160,6 +162,7 @@
     width: 100%;
     padding: 2rem 1rem;
     margin-top: 3rem; // Empuja hacia el final de la sección
+    z-index: 1;
   }
 
   .bottom-container {

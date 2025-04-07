@@ -2,11 +2,13 @@ import React from "react";
 import "@styles/Hero.scss";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
+import Background from "./Background";
 
 const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
   return (
     <section className="hero-section">
+      <Background />
       <div className="hero-flex">
         <div className="hero-text">
           <span className="line soy">{t("hero.iam")}</span>

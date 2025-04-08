@@ -21,7 +21,7 @@
   animation: blobFloat 6s ease-in-out infinite;
   transition: transform 0.1s ease-out;
 }
-
+/* 
 .blob1 {
   top: -5%;
   left: -5%;
@@ -40,7 +40,7 @@
   bottom: -5%;
   right: -5%;
 }
-
+*/
 @keyframes blobFloat {
   0% {
     transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)

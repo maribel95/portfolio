@@ -117,12 +117,16 @@ const Background = () => {
         const dy = mouseY - blobCenterY;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        const threshold = 200;
+        const maxDisplacement = parseFloat(
+          blob.dataset.maxDisplacement || "30"
+        );
+
+        const threshold = 300; // ⬅️ antes era 200, ahora aumentamos su "zona de reacción"
 
         if (distance < threshold) {
-          const factor = ((threshold - distance) / threshold) * 10;
-          const moveX = (-dx / distance) * factor;
-          const moveY = (-dy / distance) * factor;
+          const strength = (threshold - distance) / threshold;
+          const moveX = (-dx / distance) * strength * maxDisplacement;
+          const moveY = (-dy / distance) * strength * maxDisplacement;
 
           blob.style.setProperty("--mouse-x", `${moveX}px`);
           blob.style.setProperty("--mouse-y", `${moveY}px`);
@@ -140,7 +144,15 @@ const Background = () => {
   return (
     <div className="background-container" ref={containerRef}>
       {blobImages.map((src, index) => (
-        <img key={index} src={src} className="blob" alt={`blob-${index}`} />
+        <img
+          key={index}
+          src={src}
+          className="blob"
+          alt={`blob-${index}`}
+          data-max-displacement={(Math.random() * 20 + 20).toFixed(2)} // ya lo tienes
+          data-float-speed={`${(Math.random() * 3 + 3).toFixed(2)}s`} // entre 3s y 6s
+          data-float-scale={`${(Math.random() * 0.1 + 1).toFixed(2)}`} // entre 1 y 1.1
+        />
       ))}
 
       <div className="noise-overlay noiseA" ref={noiseRefA}></div>

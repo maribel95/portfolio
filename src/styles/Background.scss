@@ -18,37 +18,18 @@
 
   transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
     rotate(0deg);
-  animation: blobFloat 6s ease-in-out infinite;
-  transition: transform 0.1s ease-out;
-}
-/* 
-.blob1 {
-  top: -5%;
-  left: -5%;
+  animation: blobFloat 4s ease-in-out infinite;
+  transition: transform 5s ease;
 }
 
-.blob2 {
-  top: -5%;
-  right: -5%;
-}
-
-.blob3 {
-  bottom: -5%;
-  left: -5%;
-}
-.blob4 {
-  bottom: -5%;
-  right: -5%;
-}
-*/
 @keyframes blobFloat {
   0% {
     transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
       rotate(0deg);
   }
   50% {
-    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1.02)
-      rotate(2deg);
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1.04)
+      rotate(5deg);
   }
   100% {
     transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)

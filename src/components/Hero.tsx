@@ -17,8 +17,10 @@ const Hero: React.FC = () => {
         </div>
         <div className="hero-image-wrapper">
           <div className="hero-logo">
+            <div className="rotating-border"></div>
             <img src="/yo-excursion.png" alt="Maribel" />
           </div>
+
           <span className="hero-handwriting hola" key={t("hero.greeting")}>
             {t("hero.greeting")
               .split("")

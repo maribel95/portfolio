@@ -41,6 +41,8 @@ body.theme-dark {
   --footer-bg: #0d0d0d; // reemplazo de $primary-color-hero
   --footer-bottom-bg: #171717;
   --blob-opacity: 1;
+  --border-imageA: #232323;
+  --border-imageB: #ffffff;
 }
 
 // Tema claro
@@ -57,6 +59,8 @@ body.theme-light {
   --footer-bg: #ffffff;
   --footer-bottom-bg: #eeeeee;
   --blob-opacity: 0.3;
+  --border-imageA: #ffffff;
+  --border-imageB: #232323;
 }
 
 body {

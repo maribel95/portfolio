@@ -12,10 +12,14 @@
   width: 40vw;
   max-width: 400px;
   min-width: 120px;
-  opacity: var(--blob-opacity);
+  opacity: var(--blob-opacity, 1);
   pointer-events: none;
   z-index: -1;
+
+  transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
+    rotate(0deg);
   animation: blobFloat 6s ease-in-out infinite;
+  transition: transform 0.1s ease-out;
 }
 
 .blob1 {
@@ -39,15 +43,19 @@
 
 @keyframes blobFloat {
   0% {
-    transform: translate(0px, 0px) scale(1) rotate(0deg);
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
+      rotate(0deg);
   }
   50% {
-    transform: translate(5px, -5px) scale(1.02) rotate(2deg);
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1.02)
+      rotate(2deg);
   }
   100% {
-    transform: translate(0px, 0px) scale(1) rotate(0deg);
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
+      rotate(0deg);
   }
 }
+
 .noise-overlay {
   position: absolute;
   inset: 0; // top: 0; right: 0; bottom: 0; left: 0

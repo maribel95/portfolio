@@ -40,6 +40,41 @@ const Background = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      const blobs = document.querySelectorAll<HTMLImageElement>(".blob");
+      blobs.forEach((blob, index) => {
+        const rect = blob.getBoundingClientRect();
+        const blobCenterX = rect.left + rect.width / 2;
+        const blobCenterY = rect.top + rect.height / 2;
+
+        const dx = mouseX - blobCenterX;
+        const dy = mouseY - blobCenterY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        const threshold = 200; // px
+
+        if (distance < threshold) {
+          const factor = ((threshold - distance) / threshold) * 10; // escala del efecto
+          const moveX = (-dx / distance) * factor;
+          const moveY = (-dy / distance) * factor;
+
+          blob.style.setProperty("--mouse-x", `${moveX}px`);
+          blob.style.setProperty("--mouse-y", `${moveY}px`);
+        } else {
+          blob.style.setProperty("--mouse-x", `0px`);
+          blob.style.setProperty("--mouse-y", `0px`);
+        }
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
     <div className="background-container">
       <img src="/blob1.png" className="blob blob1" alt="blob" />

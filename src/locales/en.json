@@ -4,12 +4,11 @@
     "iam": "I'M",
     "title": "Computer engineer",
     "intro": "A <1>QUICK</1> INTRO",
-    "description1": "I’m a passionate frontend developer with a love for clean design and intuitive user experiences. I enjoy turning ideas into real, interactive, and visually engaging web apps.",
-    "description2": "When I’m not coding, you can probably find me learning new tech, reading about design systems, or sketching layouts on napkins."
+    "description1": "I was born in 2001 in Mallorca, Spain. Graduated in Computer Engineering and specialized in Artificial Intelligence.",
+    "description2": "."
   },
   "footer": {
     "title": "FIND ME ON",
-    "subtitle": "That webs :)",
     "bottom": "Designed and Developed by"
   },
   "home": "Home",

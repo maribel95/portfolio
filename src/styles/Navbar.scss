@@ -79,13 +79,15 @@
     position: relative;
 
     a {
+      display: inline-block; // asegúrate de que pueda expandirse
+      padding: 0.5rem 1rem; // espacio clicable arriba/abajo y laterales
+      border-radius: 0.5rem; // opcional: suaviza el borde al hacer hover
       color: var(--text-color);
       text-decoration: none;
       font-weight: 700;
       font-size: 1.1rem;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, background-color 0.3s ease;
 
-      // underline animado
       &::after {
         content: "";
         display: block;
@@ -94,19 +96,22 @@
         background-color: var(--hover-color);
         transition: width 0.3s ease;
         position: absolute;
-        bottom: -4px;
+        bottom: 4px; // ajusta si se descoloca al aumentar el padding
         left: 0;
       }
 
       &:hover {
         color: var(--hover-color);
+        background-color: rgba(
+          var(--background-navbar-button),
+          0.05
+        ); // opcional
 
         &::after {
           width: 100%;
         }
       }
 
-      // estilo activo
       &.active {
         color: var(--hover-color);
 

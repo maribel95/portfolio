@@ -44,7 +44,12 @@ const Hero: React.FC = () => {
             </Trans>
           </h1>
           <p className="bottom-description">{t("hero.description1")}</p>
-          <p className="bottom-description">{t("hero.description2")}</p>
+
+          <div className="text-row">
+            <button className="hero-quick">Experience</button>
+            <button className="hero-quick">Skills</button>
+            <button className="hero-quick">Hobbies</button>
+          </div>
         </div>
       </div>
     </section>

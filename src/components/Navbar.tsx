@@ -66,9 +66,6 @@ const Navbar: React.FC = () => {
           <li>
             <a href="#resume">{t("resume")}</a>
           </li>
-          <li>
-            <a href="#blogs">{t("blogs")}</a>
-          </li>
         </ul>
 
         <div className="navbar-lang">

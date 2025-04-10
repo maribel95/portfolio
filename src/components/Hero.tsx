@@ -3,16 +3,65 @@ import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 import Background from "./Background";
 import SkillsSphere from "./SkillsSphere";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const [showExperience, setShowExperience] = useState(false);
-  const [showSkills, setShowSkills] = useState(false);
+  const [activePanel, setActivePanel] = useState<
+    "experience" | "skills" | null
+  >(null);
+
+  const experienceRef = useRef<HTMLDivElement | null>(null);
+  const skillsRef = useRef<HTMLDivElement | null>(null);
 
   const experience = t("hero.quick-experience-description", {
     returnObjects: true,
   }) as string[];
+
+  function smoothScrollTo(targetY: number, duration = 1000) {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    let startTime: number | null = null;
+
+    function step(timestamp: number) {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percent = Math.min(progress / duration, 1);
+      const easeInOut =
+        percent < 0.5
+          ? 2 * percent * percent
+          : -1 + (4 - 2 * percent) * percent;
+
+      window.scrollTo(0, startY + distance * easeInOut);
+
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  }
+
+  useEffect(() => {
+    if (activePanel === "experience" && experienceRef.current) {
+      experienceRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    if (activePanel === "skills" && skillsRef.current) {
+      const timeout = setTimeout(() => {
+        const offsetTop =
+          skillsRef.current!.getBoundingClientRect().top + window.scrollY;
+        const extraPadding = 260;
+
+        smoothScrollTo(offsetTop - extraPadding, 800);
+      }, 100); // Esperamos a que la animación de skills haya terminado
+
+      return () => clearTimeout(timeout);
+    }
+  }, [activePanel]);
 
   return (
     <section className="hero-section">
@@ -58,13 +107,21 @@ const Hero: React.FC = () => {
             <div className="text-row">
               <button
                 className="hero-quick"
-                onClick={() => setShowExperience(!showExperience)}
+                onClick={() =>
+                  setActivePanel((prev) =>
+                    prev === "experience" ? null : "experience"
+                  )
+                }
               >
                 {t("hero.quick-experience")}
               </button>
               <button
                 className="hero-quick"
-                onClick={() => setShowSkills(!showSkills)}
+                onClick={() =>
+                  setActivePanel((prev) =>
+                    prev === "skills" ? null : "skills"
+                  )
+                }
               >
                 {t("hero.quick-skills")}
               </button>
@@ -72,7 +129,10 @@ const Hero: React.FC = () => {
             </div>
 
             <div
-              className={`experience-panel ${showExperience ? "visible" : ""}`}
+              ref={experienceRef}
+              className={`experience-panel ${
+                activePanel === "experience" ? "visible" : ""
+              }`}
             >
               <p>
                 {experience.map((line, index) => (
@@ -84,8 +144,13 @@ const Hero: React.FC = () => {
               </p>
             </div>
 
-            <div className={`skills-panel ${showSkills ? "visible" : ""}`}>
-              {showSkills && <SkillsSphere visible={showSkills} />}
+            <div
+              ref={skillsRef}
+              className={`skills-panel ${
+                activePanel === "skills" ? "visible" : ""
+              }`}
+            >
+              <SkillsSphere visible={activePanel === "skills"} />
             </div>
           </div>
         </div>

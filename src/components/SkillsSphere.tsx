@@ -20,6 +20,10 @@ const techs = [
   "php",
   "go",
   "html",
+  "mulesoft",
+  "vscode",
+  "figma",
+  "canva",
 ];
 const SkillsSphere: React.FC<SkillsSphereProps> = ({ visible }) => {
   useEffect(() => {
@@ -68,8 +72,9 @@ const SkillsSphere: React.FC<SkillsSphereProps> = ({ visible }) => {
             reverse: true,
             radius: 130,
             depth: 0.8,
-            maxSpeed: 0.16,
-            minSpeed: 0.1,
+            maxSpeed: 0.12,
+            minSpeed: 0.08,
+            decel: 0.4,
             dragControl: false,
             wheelZoom: false,
             weight: true,

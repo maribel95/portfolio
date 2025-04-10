@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
         <div className="bottom-container">
           <h1>
             <Trans i18nKey="hero.intro">
-              LET ME <span className="highlight">INTRODUCE</span> MYSELF
+              A <span className="highlight">QUICK</span> INTRO
             </Trans>
             🙌🏼
           </h1>
@@ -188,6 +188,7 @@ const Hero: React.FC = () => {
                 </p>
               </div>
             </div>
+            <p className="bottom-wanna-know">{t("hero.bottom-wanna-know")}</p>
           </div>
         </div>
       </div>

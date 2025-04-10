@@ -252,6 +252,61 @@
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     }
   }
+  .text-row-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .experience-panel {
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--experience-panel-border);
+    background-color: var(--experience-panel-bg);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+
+    &.visible {
+      max-height: 300px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-color);
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  .skills-panel {
+    //margin-top: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--experience-panel-border);
+    background-color: var(--experience-panel-bg);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.visible {
+      max-height: 500px; // aumenta si tu esfera es de 300px + márgenes
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   // Media queries para pantallas móviles
   @include respond(mobile) {
     padding: 2rem 1rem 0 1rem;

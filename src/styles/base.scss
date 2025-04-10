@@ -44,6 +44,8 @@ body.theme-dark {
   --border-imageA: #232323;
   --border-imageB: #ffffff;
   --background-navbar-button: 255, 255, 255;
+  --experience-panel-border: rgba(255, 255, 255, 0.2);
+  --experience-panel-bg: rgba(255, 255, 255, 0.05);
 }
 
 // Tema claro
@@ -63,6 +65,8 @@ body.theme-light {
   --border-imageA: #ffffff;
   --border-imageB: #232323;
   --background-navbar-button: 0, 0, 0;
+  --experience-panel-border: rgba(86, 86, 86, 0.2);
+  --experience-panel-bg: rgba(45, 45, 45, 0.05);
 }
 
 body {

@@ -5,7 +5,15 @@
     "title": "Computer engineer",
     "intro": "A <1>QUICK</1> INTRO",
     "description1": "I was born in 2001 in Mallorca, Spain. Graduated in Computer Engineering and specialized in Artificial Intelligence.",
-    "description2": "."
+    "description2": ".",
+    "quick-experience-description": [
+      "👩‍💻 1 year developing Frontend and Backend.",
+      "⚙️ Microservices ⚙️ REST API ⚙️ SQL Databases",
+      "⚙️ Continuous Integration and Continuous Deployment (CI/CD)."
+    ],
+    "quick-experience": "EXPERIENCE",
+    "quick-skills": "SKILLS",
+    "quick-hobbies": "HOBBIES"
   },
   "footer": {
     "title": "FIND ME ON",

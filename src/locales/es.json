@@ -4,9 +4,17 @@
     "name": "MARIBEL CRESPI",
     "iam": "SOY",
     "title": "Ingeniera informática",
-    "intro": "UNA <1>MINI</1> PRESENTACIÓN",
+    "intro": "UNA <1>MINI</1> INTRO",
     "description1": "Nací en 2001 en Mallorca, España. Graduada en Ingenieria informática y especializada en inteligencia artificial.",
-    "description2": "."
+    "description2": ".",
+    "quick-experience-description": [
+      "👩‍💻 1 año desarrollando Front y Back.",
+      "⚙️ Microservicios ⚙️ API REST ⚙️ Bases de datos SQL",
+      "⚙️ Integración continua y despliegue continuo (CI/CD)."
+    ],
+    "quick-experience": "EXPERIENCIA",
+    "quick-skills": "TECNOLOGIAS",
+    "quick-hobbies": "PASATIEMPOS"
   },
   "footer": {
     "title": "PUEDES ENCONTRARME EN",

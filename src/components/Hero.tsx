@@ -19,6 +19,10 @@ const Hero: React.FC = () => {
     returnObjects: true,
   }) as string[];
 
+  const hobbies = t("hero.quick-hobbies-description", {
+    returnObjects: true,
+  }) as string[];
+
   function smoothScrollTo(targetY: number, duration = 1000) {
     const startY = window.scrollY;
     const distance = targetY - startY;
@@ -175,8 +179,12 @@ const Hero: React.FC = () => {
                 }`}
               >
                 <p>
-                  Me encanta dedicar mi tiempo libre a actividades creativas y
-                  activas...
+                  {hobbies.map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
                 </p>
               </div>
             </div>

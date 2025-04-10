@@ -318,9 +318,7 @@
   }
 
   .hobbies-panel {
-    @extend .panel-base;
-    padding: 2rem 2.5rem;
-
+    @extend .experience-panel;
     &.visible {
       max-height: 500px;
     }

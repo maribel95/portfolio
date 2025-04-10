@@ -12,6 +12,13 @@
       "⚙️ Microservicios ⚙️ API REST ⚙️ Bases de datos SQL",
       "⚙️ Integración continua y despliegue continuo (CI/CD)."
     ],
+    "quick-hobbies-description": [
+      "🏀 Deportes de todo tipo aunque en especial baloncesto.",
+      "🥑 Nutrición y alimentación.",
+      "📚 Leer divulgación variada.",
+      "💻 Desarrollar mis propios proyectos!"
+    ],
+
     "quick-experience": "EXPERIENCIA",
     "quick-skills": "TECNOLOGIAS",
     "quick-hobbies": "PASATIEMPOS"

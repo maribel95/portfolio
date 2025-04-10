@@ -8,11 +8,12 @@ import React, { useState, useRef, useEffect } from "react";
 const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [activePanel, setActivePanel] = useState<
-    "experience" | "skills" | null
+    "experience" | "skills" | "hobbies" | null
   >(null);
 
   const experienceRef = useRef<HTMLDivElement | null>(null);
   const skillsRef = useRef<HTMLDivElement | null>(null);
+  const hobbiesRef = useRef<HTMLDivElement>(null);
 
   const experience = t("hero.quick-experience-description", {
     returnObjects: true,
@@ -43,24 +44,28 @@ const Hero: React.FC = () => {
   }
 
   useEffect(() => {
-    if (activePanel === "experience" && experienceRef.current) {
-      experienceRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    if (!activePanel) return;
 
-    if (activePanel === "skills" && skillsRef.current) {
-      const timeout = setTimeout(() => {
+    const scrollToPanel = () => {
+      const panelRef =
+        activePanel === "experience"
+          ? experienceRef
+          : activePanel === "skills"
+          ? skillsRef
+          : hobbiesRef;
+
+      if (panelRef.current) {
         const offsetTop =
-          skillsRef.current!.getBoundingClientRect().top + window.scrollY;
-        const extraPadding = 260;
+          panelRef.current.getBoundingClientRect().top + window.scrollY;
+        const scrollPadding = 260;
 
-        smoothScrollTo(offsetTop - extraPadding, 800);
-      }, 100); // Esperamos a que la animación de skills haya terminado
+        smoothScrollTo(offsetTop - scrollPadding, 700); // 👈 ahora sí, scroll personalizado
+      }
+    };
 
-      return () => clearTimeout(timeout);
-    }
+    const timeout = setTimeout(scrollToPanel, 150); // esperar a que se muestre el panel
+
+    return () => clearTimeout(timeout);
   }, [activePanel]);
 
   return (
@@ -125,32 +130,55 @@ const Hero: React.FC = () => {
               >
                 {t("hero.quick-skills")}
               </button>
-              <button className="hero-quick">{t("hero.quick-hobbies")}</button>
+              <button
+                className="hero-quick"
+                onClick={() =>
+                  setActivePanel((prev) =>
+                    prev === "hobbies" ? null : "hobbies"
+                  )
+                }
+              >
+                {t("hero.quick-hobbies")}
+              </button>
             </div>
 
-            <div
-              ref={experienceRef}
-              className={`experience-panel ${
-                activePanel === "experience" ? "visible" : ""
-              }`}
-            >
-              <p>
-                {experience.map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </p>
-            </div>
+            <div className="panel-wrapper">
+              <div
+                ref={experienceRef}
+                className={`experience-panel panel-base ${
+                  activePanel === "experience" ? "visible" : ""
+                }`}
+              >
+                <p>
+                  {experience.map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </p>
+              </div>
 
-            <div
-              ref={skillsRef}
-              className={`skills-panel ${
-                activePanel === "skills" ? "visible" : ""
-              }`}
-            >
-              <SkillsSphere visible={activePanel === "skills"} />
+              <div
+                ref={skillsRef}
+                className={`skills-panel panel-base ${
+                  activePanel === "skills" ? "visible" : ""
+                }`}
+              >
+                <SkillsSphere visible={activePanel === "skills"} />
+              </div>
+
+              <div
+                ref={hobbiesRef}
+                className={`hobbies-panel panel-base ${
+                  activePanel === "hobbies" ? "visible" : ""
+                }`}
+              >
+                <p>
+                  Me encanta dedicar mi tiempo libre a actividades creativas y
+                  activas...
+                </p>
+              </div>
             </div>
           </div>
         </div>

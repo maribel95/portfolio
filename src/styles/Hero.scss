@@ -257,23 +257,44 @@
     flex-direction: column;
     align-items: center;
   }
-
-  .experience-panel {
+  // Quick introduction panels
+  .panel-wrapper {
+    position: relative;
     margin-top: 1rem;
-    padding: 1rem 1.5rem;
+  }
+  .panel-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden; // 👈 esto es clave para ocultarlo completamente
+    transform: translateY(-10px);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out,
+      max-height 0.6s ease-in-out;
+
     border-radius: 1rem;
     border: 1px solid var(--experience-panel-border);
     background-color: var(--experience-panel-bg);
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.4s ease;
+
+    &.visible {
+      position: relative;
+      max-height: 1000px;
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible; // 👈 vuelve a mostrarse cuando se abre
+      pointer-events: auto;
+    }
+  }
+  .experience-panel {
+    @extend .panel-base;
+    padding: 1rem 1.5rem;
 
     &.visible {
       max-height: 300px;
-      opacity: 1;
-      transform: translateY(0);
     }
 
     p {
@@ -285,32 +306,25 @@
   }
 
   .skills-panel {
-    //margin-top: 1rem;
+    @extend .panel-base;
     padding: 2rem;
-    border-radius: 1rem;
-    border: 1px solid var(--experience-panel-border);
-    background-color: var(--experience-panel-bg);
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    scroll-margin-top: 100px;
-    opacity: 0;
-    max-height: 0;
-    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out,
-      max-height 0.6s ease-in-out;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
     &.visible {
-      max-height: 500px; // aumenta si tu esfera es de 300px + márgenes
-      opacity: 1;
-      transform: translateY(0);
+      max-height: 500px;
     }
   }
 
+  .hobbies-panel {
+    @extend .panel-base;
+    padding: 2rem 2.5rem;
+
+    &.visible {
+      max-height: 500px;
+    }
+  }
   // Media queries para pantallas móviles
   @include respond(mobile) {
     padding: 2rem 1rem 0 1rem;

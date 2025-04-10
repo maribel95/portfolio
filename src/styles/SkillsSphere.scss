@@ -1,3 +1,4 @@
+@use "./variables" as *;
 .skills-sphere {
   display: flex;
   justify-content: center;
@@ -9,9 +10,9 @@
     display: block;
     margin: 0 auto;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(162, 89, 255, 0.2);
+    background-color: var(--sphere-bg);
+    border: 1px solid $sphere-border;
+    box-shadow: 0 0 15px $sphere-box-shadow;
     cursor: default !important;
   }
 

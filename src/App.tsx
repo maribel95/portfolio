@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CV from "./components/CV";
+import Background from "./components/Background";
 import "@styles/base.scss";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Routes, Route } from "react-router-dom";

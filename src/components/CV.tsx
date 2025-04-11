@@ -1,132 +1,106 @@
-import "@styles/CV.scss"; // si usas estilos personalizados
+import { useTranslation } from "react-i18next";
+import "@styles/CV.scss";
+import i18n from "i18n";
 
 function CV() {
+  const { t } = useTranslation();
+  const cvFile = i18n.language === "en" ? "/pdf/CV-EN.pdf" : "/pdf/CV-ES.pdf";
   return (
-    <section className="cv-html">
-      <header className="cv-header">
-        <p className="cv-contact">
-          <a href="mailto:maribelcrespi5@gmail.com" rel="noreferrer">
-            maribelcrespi5@gmail.com
-          </a>{" "}
-          -{" "}
-          <a href="tel:+3462982539" rel="noreferrer">
-            (+34) 629 82 53 39{" "}
-          </a>{" "}
-          -{" "}
-          <a
-            href="https://linkedin.com/in/maribelcrespi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            /in/maribelcrespi/
-          </a>{" "}
-          -{" "}
-          <a
-            href="https://github.com/maribel95"
-            target="_blank"
-            rel="noreferrer"
-          >
-            github.com/maribel95
-          </a>
-        </p>
-        <h1>MARIBEL CRESPÍ VALERO </h1>
-        <h2>INGENIERA BACKEND</h2>
-        <p>
-          Con casi un año de experiencia en desarrollo backend y habilidades
-          sólidas en frontend, he trabajado en la creación y optimización de
-          APIs y microservicios, mejorando la arquitectura y eficiencia de
-          varios proyectos empresariales. Graduada en Ingeniería Informática con
-          especialización en Inteligencia Artificial y Computación. En mi tiempo
-          libre sigo formándome con libros, vídeos y cursos. Aporto una
-          combinación de conocimientos técnicos y analíticos para resolver
-          problemas complejos de manera eficaz.
-        </p>
-      </header>
+    <>
+      <section className="cv-html">
+        <header className="cv-header">
+          <p className="cv-contact">
+            <a href="mailto:maribelcrespi5@gmail.com" rel="noreferrer">
+              maribelcrespi5@gmail.com
+            </a>{" "}
+            -{" "}
+            <a href="tel:+3462982539" rel="noreferrer">
+              (+34) 629 82 53 39{" "}
+            </a>{" "}
+            -{" "}
+            <a
+              href="https://linkedin.com/in/maribelcrespi"
+              target="_blank"
+              rel="noreferrer"
+            >
+              /in/maribelcrespi/
+            </a>{" "}
+            -{" "}
+            <a
+              href="https://github.com/maribel95"
+              target="_blank"
+              rel="noreferrer"
+            >
+              github.com/maribel95
+            </a>
+          </p>
+          <h1>MARIBEL CRESPÍ VALERO</h1>
+          <h2>{t("cv.title")}</h2>
+          <p>{t("cv.summary")}</p>
+        </header>
 
-      <section className="cv-section">
-        <h3>EXPERIENCIA RECIENTE</h3>
-        <p className="cv-position">
-          Desarrolladora BackEnd <span>en Grupo Piñero</span>
-        </p>
-        <p className="cv-date">
-          Enero 2024 - Octubre 2024 · 9 meses [Mallorca, España] [Industria
-          Hotelera, B2B]
-        </p>
+        <section className="cv-section">
+          <h3>{t("cv.experience")}</h3>
+          <p className="cv-position">
+            {t("cv.position")} <span>{t("cv.company")}</span>
+          </p>
+          <p className="cv-date">{t("cv.date-range")}</p>
 
-        <h4>RESPONSABILIDADES</h4>
-        <ul>
-          <li>
-            Desarrollo e implementación del back de un aplicativo web para la
-            gestión de datos de las centrales de reserva de Grupo Piñero.
-            Lenguaje Java y framework Spring Boot.
-          </li>
-          <li>Diseño e integración de APIs a través de MuleSoft...</li>
-          <li>
-            Manejo de herramientas y aplicaciones relacionadas con el ERP de
-            Oracle.
-          </li>
-          <li>Control de versiones con Git y gestión de ramas con Git Flow.</li>
-          <li>Optimización de consultas SQL.</li>
-          <li>Manejo de pipelines de gestión de procesos con Jenkins.</li>
-        </ul>
-
-        <h4>LOGROS CLAVE</h4>
-        <ul>
-          <li>Creación y despliegue de +10 microservicios RESTful/SOAP.</li>
-          <li>Optimización de funciones back-end en +5 proyectos distintos.</li>
-          <li>
-            Mejora de arquitectura incluyendo módulo MyBatis y estructura base
-            reutilizable.
-          </li>
-        </ul>
-      </section>
-
-      <section className="cv-section">
-        <h3>HABILIDADES</h3>
-        <div className="cv-skills">
+          <h4>{t("cv.responsibilitiesTitle")}</h4>
           <ul>
-            <li>Trabajo en equipo</li>
-            <li>Pensamiento abstracto</li>
-            <li>Resolución de problemas</li>
-            <li>Escucha activa</li>
-            <li>Autónoma</li>
-            <li>Aprendizaje rápido</li>
+            {(
+              t("cv.responsibilities", { returnObjects: true }) as string[]
+            ).map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
           </ul>
+
+          <h4>{t("cv.achievementsTitle")}</h4>
           <ul>
-            <li>Planificación estratégica</li>
-            <li>Pensamiento pragmático</li>
-            <li>Adaptabilidad</li>
-            <li>Organizada</li>
-            <li>Metódica</li>
-            <li>Disciplinada</li>
+            {(t("cv.achievements", { returnObjects: true }) as string[]).map(
+              (item: string, index: number) => (
+                <li key={index}>{item}</li>
+              )
+            )}
           </ul>
-          <ul>
-            <li>Java</li>
-            <li>SQL</li>
-            <li>PHP</li>
-            <li>Python</li>
-            <li>Javascript</li>
-            <li>Programación orientada a objetos (OOP)</li>
-          </ul>
-        </div>
+        </section>
+
+        <section className="cv-section">
+          <h3>{t("cv.skillsTitle")}</h3>
+          <div className="cv-skills">
+            {(t("cv.skills", { returnObjects: true }) as string[][]).map(
+              (group: string[], idx: number) => (
+                <ul key={idx}>
+                  {group.map((item, subidx) => (
+                    <li key={subidx}>{item}</li>
+                  ))}
+                </ul>
+              )
+            )}
+          </div>
+        </section>
+
+        <section className="cv-section">
+          <h3>{t("cv.educationTitle")}</h3>
+          <p className="cv-education">
+            <strong>{t("cv.degree")}</strong> – {t("cv.university")}
+          </p>
+          <p>{t("cv.dates")}</p>
+          <p>{t("cv.specialization")}</p>
+        </section>
+
+        <section className="cv-section">
+          <h3>{t("cv.languagesTitle")}</h3>
+          <p>{t("cv.languages")}</p>
+        </section>
       </section>
 
-      <section className="cv-section">
-        <h3>EDUCACIÓN</h3>
-        <p className="cv-education">
-          <strong>Ingeniería informática</strong> – Universidad de las Islas
-          Baleares (EPS-UIB)
-        </p>
-        <p>Sep 2019 - Sep 2023 [Mallorca, España]</p>
-        <p>Especialización en inteligencia artificial y computación.</p>
-      </section>
-
-      <section className="cv-section">
-        <h3>IDIOMAS</h3>
-        <p>Español, Catalán e Inglés.</p>
-      </section>
-    </section>
+      <div className="cv-download">
+        <a href={cvFile} download className="cv-download-btn">
+          ⬇️ {t("cv.download")}
+        </a>
+      </div>
+    </>
   );
 }
-
 export default CV;

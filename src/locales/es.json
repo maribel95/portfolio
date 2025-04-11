@@ -32,5 +32,63 @@
   "about": "Bio",
   "projects": "Proyectos",
   "resume": "CV",
-  "blogs": "Blogs"
+  "blogs": "Blogs",
+  "cv": {
+    "title": "INGENIERA BACKEND",
+    "summary": "Con casi un año de experiencia en desarrollo backend y habilidades sólidas en frontend, he trabajado en la creación y optimización de APIs y microservicios, mejorando la arquitectura y eficiencia de varios proyectos empresariales. Graduada en Ingeniería Informática con especialización en Inteligencia Artificial y Computación. En mi tiempo libre sigo formándome con libros, vídeos y cursos. Aporto una combinación de conocimientos técnicos y analíticos para resolver problemas complejos de manera eficaz.",
+    "experience": "EXPERIENCIA RECIENTE",
+    "position": "Desarrolladora BackEnd",
+    "company": "en Grupo Piñero",
+    "date-range": "Enero 2024 - Octubre 2024 · 9 meses [Mallorca, España] [Industria Hotelera, B2B]",
+    "responsibilitiesTitle": "RESPONSABILIDADES",
+    "responsibilities": [
+      "Desarrollo e implementación del back de un aplicativo web para la gestión de datos de las centrales de reserva de Grupo Piñero. Lenguaje Java y framework Spring Boot.",
+      "Diseño e integración de APIs a través de MuleSoft...",
+      "Manejo de herramientas y aplicaciones relacionadas con el ERP de Oracle.",
+      "Control de versiones con Git y gestión de ramas con Git Flow.",
+      "Optimización de consultas SQL.",
+      "Manejo de pipelines de gestión de procesos con Jenkins."
+    ],
+    "achievementsTitle": "LOGROS CLAVE",
+    "achievements": [
+      "Creación y despliegue de +10 microservicios RESTful/SOAP.",
+      "Optimización de funciones back-end en +5 proyectos distintos.",
+      "Mejora de arquitectura incluyendo módulo MyBatis y estructura base reutilizable."
+    ],
+    "skillsTitle": "HABILIDADES",
+    "skills": [
+      [
+        "Trabajo en equipo",
+        "Pensamiento abstracto",
+        "Resolución de problemas",
+        "Escucha activa",
+        "Autónoma",
+        "Aprendizaje rápido"
+      ],
+      [
+        "Planificación estratégica",
+        "Pensamiento pragmático",
+        "Adaptabilidad",
+        "Organizada",
+        "Metódica",
+        "Disciplinada"
+      ],
+      [
+        "Java",
+        "SQL",
+        "PHP",
+        "Python",
+        "Javascript",
+        "Programación orientada a objetos (OOP)"
+      ]
+    ],
+    "educationTitle": "EDUCACIÓN",
+    "degree": "Ingeniería informática",
+    "university": "Universidad de las Islas Baleares (EPS-UIB)",
+    "dates": "Sep 2019 - Sep 2023 [Mallorca, España]",
+    "specialization": "Especialización en inteligencia artificial y computación.",
+    "languagesTitle": "IDIOMAS",
+    "languages": "Español, Catalán e Inglés.",
+    "download": "Descargar CV en PDF"
+  }
 }

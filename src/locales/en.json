@@ -26,9 +26,68 @@
     "title": "FIND ME ON",
     "bottom": "Designed and Developed by"
   },
+
   "home": "Home",
   "about": "About",
   "projects": "Projects",
   "resume": "Resume",
-  "blogs": "Blogs"
+  "blogs": "Blogs",
+  "cv": {
+    "title": "BACKEND ENGINEER",
+    "summary": "With almost one year of experience in backend development and solid frontend skills, I have worked on creating and optimizing APIs and microservices, improving architecture and efficiency across multiple business projects. I hold a degree in Computer Engineering with a specialization in Artificial Intelligence and Computing. In my free time, I continue learning through books, videos, and online courses. I bring a combination of technical and analytical knowledge to effectively solve complex problems.",
+    "experience": "RECENT EXPERIENCE",
+    "position": "Backend Developer",
+    "company": "at Grupo Piñero",
+    "date-range": "January 2024 - October 2024 · 9 months [Mallorca, Spain] [Hospitality Industry, B2B]",
+    "responsibilitiesTitle": "RESPONSIBILITIES",
+    "responsibilities": [
+      "Developed and implemented the backend of a web application for managing reservation center data at Grupo Piñero using Java and the Spring Boot framework.",
+      "Designed and integrated APIs through MuleSoft...",
+      "Managed tools and applications related to Oracle ERP.",
+      "Version control using Git and branch management with Git Flow.",
+      "Optimized SQL queries.",
+      "Handled CI/CD pipelines with Jenkins."
+    ],
+    "achievementsTitle": "KEY ACHIEVEMENTS",
+    "achievements": [
+      "Created and deployed 10+ RESTful/SOAP microservices.",
+      "Optimized backend functions across 5+ different projects.",
+      "Improved architecture by integrating MyBatis module and reusable base structure."
+    ],
+    "skillsTitle": "SKILLS",
+    "skills": [
+      [
+        "Teamwork",
+        "Abstract thinking",
+        "Problem-solving",
+        "Active listening",
+        "Autonomous",
+        "Fast learner"
+      ],
+      [
+        "Strategic planning",
+        "Pragmatic thinking",
+        "Adaptability",
+        "Organized",
+        "Methodical",
+        "Disciplined"
+      ],
+      [
+        "Java",
+        "SQL",
+        "PHP",
+        "Python",
+        "Javascript",
+        "Object-Oriented Programming (OOP)"
+      ]
+    ],
+    "educationTitle": "EDUCATION",
+    "degree": "Computer Engineering",
+    "university": "University of the Balearic Islands (EPS-UIB)",
+    "dates": "Sep 2019 - Sep 2023 [Mallorca, Spain]",
+    "specialization": "Specialization in Artificial Intelligence and Computing.",
+    "languagesTitle": "LANGUAGES",
+    "languages": "Spanish, Catalan and English.",
+    "download": "Download CV in PDF"
+  }
 }

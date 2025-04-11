@@ -1,16 +1,24 @@
 import { useEffect, useRef } from "react";
 import "@styles/Background.scss";
 
-const blobImages = ["/blob1.png", "/blob2.png", "/blob3.png", "/blob4.png"];
+const blobImages = [
+  "/blobs/blob1.png",
+  "/blobs/blob2.png",
+  "/blobs/blob3.png",
+  "/blobs/blob4.png",
+  "/blobs/blob5.png",
+  "/blobs/blob6.png",
+  "/blobs/blob7.png",
+];
 const Background = () => {
   const noiseRefA = useRef<HTMLDivElement>(null);
   const noiseRefB = useRef<HTMLDivElement>(null);
 
   const noiseImages = [
-    "/noise1.png",
-    "/noise2.png",
-    "/noise3.png",
-    "/noise4.png",
+    "/noise/noise1.png",
+    "/noise/noise2.png",
+    "/noise/noise3.png",
+    "/noise/noise4.png",
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,7 +82,8 @@ const Background = () => {
 
         while (!placedSuccessfully && tries < 200) {
           x = Math.random() * (window.innerWidth - r * 2);
-          y = Math.random() * (window.innerHeight - r * 2);
+          const height = container.scrollHeight || window.innerHeight;
+          y = Math.random() * (height - r * 2);
 
           const overlap = placed.some((b) => {
             const dx = b.x - x;

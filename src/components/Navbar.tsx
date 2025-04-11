@@ -1,42 +1,68 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "@styles/Navbar.scss";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "@context/ThemeContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = useContext(ThemeContext);
+  const location = useLocation(); // 👈 importante
+  const route = location.pathname;
 
-  const [currentImage, setCurrentImage] = useState("/luki-pixel.png");
+  const dogAnimations: Record<
+    string,
+    { default: string; sequence: string[]; sound: string }
+  > = {
+    "/": {
+      default: "/dogs/luki-pixel.png",
+      sequence: [
+        "/dogs/luki-pixel.png",
+        "/dogs/luki-bark1.png",
+        "/dogs/luki-bark2.png",
+        "/dogs/luki-bark1.png",
+        "/dogs/luki-pixel.png",
+      ],
+      sound: "/dog-bark.mp3",
+    },
+    "/cv": {
+      default: "/dogs/xopi-pixel.png",
+      sequence: ["/dogs/xopi-pixel.png", "/dogs/xopi-pixel.png"],
+      sound: "/xopi-barking.mp3",
+    },
+  };
 
-  const imageSequence = [
-    "/luki-pixel.png",
-    "/luki-bark1.png",
-    "/luki-bark2.png",
-    "/luki-bark3.png",
-    "/luki-pixel.png",
-  ];
+  const [currentImage, setCurrentImage] = useState(
+    dogAnimations[route]?.default || dogAnimations["/"].default
+  );
+
+  // 🔁 Actualizar el perrito al cambiar de ruta
+  useEffect(() => {
+    setCurrentImage(
+      dogAnimations[route]?.default || dogAnimations["/"].default
+    );
+  }, [route]);
 
   const handleClick = () => {
-    const barkAudio = new Audio("/dog-bark.mp3");
-    barkAudio.play();
+    const { sequence, sound } = dogAnimations[route] || dogAnimations["/"];
+    const audio = new Audio(sound);
+    audio.play();
 
     let index = 0;
     const interval = setInterval(() => {
-      setCurrentImage(imageSequence[index]);
+      setCurrentImage(sequence[index]);
       index++;
-      if (index === imageSequence.length) {
+      if (index === sequence.length) {
         clearInterval(interval);
       }
-    }, 150);
+    }, 130);
   };
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
-
     setTheme(nextTheme);
   };
+
   const toggleLanguage = () => {
     const nextLang = i18n.language === "en" ? "es" : "en";
     i18n.changeLanguage(nextLang);
@@ -74,8 +100,7 @@ const Navbar: React.FC = () => {
             {i18n.language === "en" ? "🇬🇧" : "🇪🇸"}
           </button>
           <button onClick={toggleTheme}>
-            {theme === "light" && "☀️"}
-            {theme === "dark" && "🌙"}
+            {theme === "light" ? "☀️" : "🌙"}
           </button>
         </div>
       </div>

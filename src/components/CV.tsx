@@ -1,12 +1,14 @@
 import { useTranslation } from "react-i18next";
 import "@styles/CV.scss";
 import i18n from "i18n";
-
+import Background from "./Background";
 function CV() {
   const { t } = useTranslation();
   const cvFile = i18n.language === "en" ? "/pdf/CV-EN.pdf" : "/pdf/CV-ES.pdf";
+
   return (
-    <>
+    <div className="cv-container">
+      <Background />
       <section className="cv-html">
         <header className="cv-header">
           <p className="cv-contact">
@@ -58,7 +60,7 @@ function CV() {
           <h4>{t("cv.achievementsTitle")}</h4>
           <ul>
             {(t("cv.achievements", { returnObjects: true }) as string[]).map(
-              (item: string, index: number) => (
+              (item, index) => (
                 <li key={index}>{item}</li>
               )
             )}
@@ -69,7 +71,7 @@ function CV() {
           <h3>{t("cv.skillsTitle")}</h3>
           <div className="cv-skills">
             {(t("cv.skills", { returnObjects: true }) as string[][]).map(
-              (group: string[], idx: number) => (
+              (group, idx) => (
                 <ul key={idx}>
                   {group.map((item, subidx) => (
                     <li key={subidx}>{item}</li>
@@ -100,7 +102,8 @@ function CV() {
           ⬇️ {t("cv.download")}
         </a>
       </div>
-    </>
+    </div>
   );
 }
+
 export default CV;

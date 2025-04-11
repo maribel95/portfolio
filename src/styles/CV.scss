@@ -1,5 +1,17 @@
 @use "./variables" as *;
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700;800&family=Roboto:wght@400;700&display=swap");
+.cv-container {
+  position: relative; // NECESARIO para que el background se posicione dentro
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-color); // Por si no carga el fondo
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden; // por si hay desbordamientos raros
+  z-index: 1; // el contenido se superpone al background
+}
 
 .cv-html {
   max-width: 850px;

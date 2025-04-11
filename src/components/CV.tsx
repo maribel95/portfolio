@@ -45,7 +45,9 @@ function CV() {
 
       <section className="cv-section">
         <h3>EXPERIENCIA RECIENTE</h3>
-        <p className="cv-position">Desarrolladora BackEnd en Grupo Piñero</p>
+        <p className="cv-position">
+          Desarrolladora BackEnd <span>en Grupo Piñero</span>
+        </p>
         <p className="cv-date">
           Enero 2024 - Octubre 2024 · 9 meses [Mallorca, España] [Industria
           Hotelera, B2B]
@@ -111,7 +113,7 @@ function CV() {
 
       <section className="cv-section">
         <h3>EDUCACIÓN</h3>
-        <p>
+        <p className="cv-education">
           <strong>Ingeniería informática</strong> – Universidad de las Islas
           Baleares (EPS-UIB)
         </p>

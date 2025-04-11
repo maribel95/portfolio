@@ -1,3 +1,4 @@
+@use "./variables" as *;
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700;800&family=Roboto:wght@400;700&display=swap");
 
 .cv-html {
@@ -21,14 +22,14 @@
     font-weight: bold;
     font-size: 0.95rem;
     margin-bottom: 1rem;
-    color: #3366cc;
+    color: $cv-title-color;
     font-family: "Oswald", sans-serif;
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
 
     a {
-      color: #3366cc;
+      color: $cv-title-color;
       text-decoration: none;
 
       &:hover {
@@ -39,11 +40,11 @@
 
   h1,
   h2 {
-    font-family: "Roboto", sans-serif;
     font-weight: 700;
   }
 
   h1 {
+    color: #3e3e3e;
     font-size: 2.8rem; // antes 2.4rem
     letter-spacing: 0.05rem;
     text-transform: uppercase;
@@ -52,21 +53,17 @@
 
   h2 {
     font-size: 1.1rem;
-    color: #007bff;
+    color: $cv-title-color;
     text-transform: uppercase;
     margin-bottom: 1rem;
-  }
-
-  p {
-    font-family: "Oswald", sans-serif;
   }
 }
 
 .cv-section {
   h3,
   h4 {
-    font-family: "Roboto", sans-serif;
-    //font-weight: 700;
+    font-weight: 700;
+    color: #3e3e3e;
   }
 
   h3 {
@@ -74,7 +71,6 @@
     font-weight: 800;
     font-size: 1.9rem;
     text-transform: uppercase;
-    color: #333;
     margin-bottom: 0.8rem;
     line-height: 1.2;
   }
@@ -83,16 +79,26 @@
     font-size: 1rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
-    color: #222;
     text-transform: uppercase;
+  }
+  p {
+    font-family: "Oswald", sans-serif;
   }
 
   .cv-position {
     font-weight: 700;
     font-size: 1.1rem;
-    color: #2c65c8;
+    color: $cv-title-color;
     margin-bottom: 0.3rem;
+    font-family: "Oswald", sans-serif;
+    span {
+      font-weight: 500;
+    }
+  }
+  .cv-education {
     font-family: "Roboto", sans-serif;
+    color: $cv-title-color;
+    font-size: 1.1rem;
   }
 
   .cv-date {
@@ -138,7 +144,7 @@
   strong {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-    color: #2c65c8;
+    color: $cv-title-color;
   }
 
   p {

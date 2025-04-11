@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "@styles/Navbar.scss";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "@context/ThemeContext";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -55,16 +56,16 @@ const Navbar: React.FC = () => {
 
         <ul className="navbar-menu">
           <li>
-            <a href="#home">{t("home")}</a>
+            <Link to="/">{t("home")}</Link>
+          </li>
+          <li>
+            <Link to="/cv">{t("resume")}</Link>
           </li>
           <li>
             <a href="#about">{t("about")}</a>
           </li>
           <li>
             <a href="#projects">{t("projects")}</a>
-          </li>
-          <li>
-            <a href="#resume">{t("resume")}</a>
           </li>
         </ul>
 

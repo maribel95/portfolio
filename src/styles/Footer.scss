@@ -7,12 +7,10 @@
   width: 100%;
   height: auto;
   margin: 0;
-  transition: background-color 0.3s ease;
 
   &__title {
     font-size: 1.8rem;
     margin: 0.5rem;
-    //margin-bottom: 0.5rem;
   }
 
   &__icons {
@@ -21,11 +19,10 @@
     gap: 1.5rem;
     font-size: 1.8rem;
     margin: 0;
-    //margin-bottom: 1.5rem;
 
     a {
       color: var(--accent-color);
-      transition: transform 0.2s ease, color 0.2s ease;
+      //transition: transform 0.2s ease, color 0.2s ease;
 
       &:hover {
         transform: scale(1.2);

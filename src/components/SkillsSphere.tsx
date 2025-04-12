@@ -24,6 +24,7 @@ const techs = [
   "vscode",
   "figma",
   "canva",
+  "postman",
 ];
 const SkillsSphere: React.FC<SkillsSphereProps> = ({ visible }) => {
   useEffect(() => {

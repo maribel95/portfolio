@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const location = useLocation(); // 👈 importante
   const route = location.pathname;
-
+  const [isVibrating, setIsVibrating] = useState(false);
   const dogAnimations: Record<
     string,
     { default: string; sequence: string[]; sound: string }
@@ -27,7 +27,11 @@ const Navbar: React.FC = () => {
     },
     "/cv": {
       default: "/dogs/xopi-pixel.png",
-      sequence: ["/dogs/xopi-pixel.png", "/dogs/xopi-pixel.png"],
+      sequence: [
+        "/dogs/xopi-pixel.png",
+        "/dogs/xopi-bark1.png",
+        "/dogs/xopi-pixel.png",
+      ],
       sound: "/xopi-barking.mp3",
     },
   };
@@ -48,6 +52,17 @@ const Navbar: React.FC = () => {
     const audio = new Audio(sound);
     audio.play();
 
+    if (route === "/cv") {
+      setIsVibrating(true);
+      setCurrentImage(sequence[1]); // ladrido
+      setTimeout(() => {
+        setCurrentImage(sequence[2]); // volver al pixel
+        setIsVibrating(false);
+      }, 1000); // mantener ladrido durante 1 segundo
+      return;
+    }
+
+    // Animación normal para el resto
     let index = 0;
     const interval = setInterval(() => {
       setCurrentImage(sequence[index]);
@@ -74,7 +89,9 @@ const Navbar: React.FC = () => {
         <img
           src={currentImage}
           alt="Logo"
-          className="navbar-logo"
+          className={`navbar-logo ${
+            route === "/cv" ? "navbar-logo--xopi" : "navbar-logo--default"
+          } ${isVibrating ? "navbar-logo--vibrate" : ""}`}
           onClick={handleClick}
           draggable={false}
           style={{ cursor: "pointer" }}
@@ -88,10 +105,10 @@ const Navbar: React.FC = () => {
             <Link to="/cv">{t("resume")}</Link>
           </li>
           <li>
-            <a href="#about">{t("about")}</a>
+            <Link to="/projects">{t("projects")}</Link>
           </li>
           <li>
-            <a href="#projects">{t("projects")}</a>
+            <a href="#about">{t("about")}</a>
           </li>
         </ul>
 

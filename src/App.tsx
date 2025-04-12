@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CV from "./components/CV";
 import ScrollToTop from "./components/ScrollToTop";
-import Background from "./components/Background";
+import Projects from "@components/Projects";
 import "@styles/base.scss";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Routes, Route } from "react-router-dom";
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/cv" element={<CV />} />
+          <Route path="/projects" element={<Projects />} />
         </Routes>
         <Footer />
       </div>

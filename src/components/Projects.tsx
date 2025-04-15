@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "@styles/Projects.scss";
 
 const projects = [
@@ -101,14 +101,14 @@ const projects = [
 
 export default function Projects() {
   const [cursorY, setCursorY] = useState(0);
-
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const previewRef = useRef<HTMLDivElement | null>(null);
+  const imageHeight = 360;
+  const halfImage = imageHeight / 2;
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const containerTop = e.currentTarget.getBoundingClientRect().top;
-    const y = e.clientY - containerTop;
+    const y = e.clientY;
     setCursorY(y);
   };
-
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
     <section className="projects">
@@ -123,7 +123,6 @@ export default function Projects() {
               }`}
               onMouseEnter={() => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(null)}
-              onMouseMove={(e) => handleMouseMove(e)}
             >
               <span className="projects__number">0{index + 1}.</span>
               <span className="projects__name">{project.title}</span>
@@ -132,7 +131,11 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="projects__preview">
+        <div
+          className="projects__preview"
+          ref={previewRef}
+          onMouseMove={(e) => handleMouseMove(e)}
+        >
           <img
             src={activeIndex !== null ? projects[activeIndex].image : ""}
             alt=""
@@ -140,7 +143,7 @@ export default function Projects() {
               activeIndex !== null ? "visible" : ""
             }`}
             style={{
-              top: `${cursorY - 100 / 2}px`,
+              top: `${cursorY + 130}px`, // ajusta este valor a tu gusto
             }}
           />
         </div>

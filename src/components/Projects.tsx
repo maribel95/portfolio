@@ -3,33 +3,111 @@ import "@styles/Projects.scss";
 
 const projects = [
   {
-    title: "Epikcart",
-    tech: ["React", "Redux", "React i18n"],
-    image: "/images/epikcart.png",
+    title: "TFG",
+    tech: ["Python", "IA", "LIME"],
+    image: "/projects/tfg-en.jpeg",
   },
   {
-    title: "Resume Roaster",
-    tech: ["GPT-4", "Next.js", "PostgreSQL"],
-    image: "/images/resume-roaster.png",
+    title: "File system",
+    tech: ["C", "Makefile", "Shell"],
+    image: "/projects/fileSystem.jpeg",
   },
   {
-    title: "Real Estate",
-    tech: ["React.js", "Redux", "Tailwind CSS"],
-    image: "/images/real-estate.png",
+    title: "Machine learning",
+    tech: [
+      "Neural networks",
+      "Deep learning",
+      "Data analysis",
+      "Jupiter Notebook",
+    ],
+    image: "/projects/machineLearning.jpeg",
   },
   {
-    title: "Consulting Finance",
-    tech: ["HTML", "CSS & SCSS", "JavaScript"],
-    image: "/images/consulting.png",
+    title: "Data mining",
+    tech: [
+      "R",
+      "Bayesian statistics",
+      "Multivariable statistics",
+      "Data science",
+    ],
+    image: "/projects/dataMining.jpeg",
   },
   {
-    title: "devLinks",
-    tech: ["Next.js", "Formik", "Drag & Drop"],
-    image: "/images/devlinks.png",
+    title: "Statistics NBA 2015",
+    tech: [
+      "R",
+      "Statistical models",
+      "Multivariable statistics",
+      "Data science",
+    ],
+    image: "/projects/estadistica-es.jpeg",
+  },
+  {
+    title: "Minishell",
+    tech: ["C", "Makefile", "Shell", "Layered programming"],
+    image: "/projects/minishell.jpeg",
+  },
+  {
+    title: "Concurrent programming",
+    tech: ["Java", "Go", "Ada", "RabbitMQ"],
+    image: "/projects/programacionConcurrente.jpeg",
+  },
+  {
+    title: "Super Tennis 68k",
+    tech: ["Assembly", "Easy 68k"],
+    image: "/projects/superTennis.jpeg",
+  },
+  {
+    title: "Fishing game",
+    tech: ["Java"],
+    image: "/projects/fishingGame.jpeg",
+  },
+  {
+    title: "Goal based agent",
+    tech: ["Java", "AI"],
+    image: "/projects/marley.jpeg",
+  },
+  {
+    title: "PS-ECI emulator",
+    tech: ["Assembly", "Easy68k"],
+    image: "/projects/ps-eci.jpeg",
+  },
+  {
+    title: "Dashboard",
+    tech: ["HTML5", "CSS", "JavaScript", "PHP"],
+    image: "/projects/dashboard.jpeg",
+  },
+  {
+    title: "Compiler",
+    tech: ["Assembly", "Java", "Lex", "Data structures"],
+    image: "/projects/compiler.jpeg",
+  },
+  {
+    title: "MineSweeper",
+    tech: ["Java", "Video games"],
+    image: "/projects/minesweeper.jpeg",
+  },
+  {
+    title: "Advanced algorithms",
+    tech: ["Java", "Algorithm design", "MVC", "Data structures"],
+    image: "/projects/AA.jpeg",
+  },
+  {
+    title: "Potigames",
+    tech: ["HTML5", "CSS", "SASS", "Javascript"],
+    image: "/projects/potigames.jpeg",
   },
 ];
 
 export default function Projects() {
+  const [cursorY, setCursorY] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const containerTop = e.currentTarget.getBoundingClientRect().top;
+    const y = e.clientY - containerTop;
+    setCursorY(y);
+  };
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
@@ -45,6 +123,7 @@ export default function Projects() {
               }`}
               onMouseEnter={() => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(null)}
+              onMouseMove={(e) => handleMouseMove(e)}
             >
               <span className="projects__number">0{index + 1}.</span>
               <span className="projects__name">{project.title}</span>
@@ -52,14 +131,18 @@ export default function Projects() {
             </div>
           ))}
         </div>
+
         <div className="projects__preview">
-          {activeIndex !== null && (
-            <img
-              src={projects[activeIndex].image}
-              alt={projects[activeIndex].title}
-              className="projects__image"
-            />
-          )}
+          <img
+            src={activeIndex !== null ? projects[activeIndex].image : ""}
+            alt=""
+            className={`projects__image ${
+              activeIndex !== null ? "visible" : ""
+            }`}
+            style={{
+              top: `${cursorY - 100 / 2}px`,
+            }}
+          />
         </div>
       </div>
     </section>

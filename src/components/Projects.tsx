@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "@styles/Projects.scss";
+import Background from "./Background";
 
 const projects = [
   {
@@ -145,6 +146,7 @@ export default function Projects() {
   };
   return (
     <section className="projects">
+      <Background />
       <div
         className="projects__container"
         onMouseMove={(e) => handleMouseMove(e)}
@@ -175,13 +177,13 @@ export default function Projects() {
           onMouseMove={(e) => handleMouseMove(e)}
         >
           <img
-            src={activeIndex !== null ? projects[activeIndex].image : ""}
+            src={activeIndex !== null ? projects[activeIndex].image : undefined}
             alt=""
             className={`projects__image ${
               activeIndex !== null ? "visible" : ""
             }`}
             style={{
-              top: `${imageTop}px`, // ya no usamos el cursor
+              top: `${imageTop}px`,
             }}
           />
         </div>

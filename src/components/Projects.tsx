@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "@styles/Projects.scss";
 
 const projects = [
@@ -101,27 +101,66 @@ const projects = [
 
 export default function Projects() {
   const [cursorY, setCursorY] = useState(0);
+  const [animatedY, setAnimatedY] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const previewRef = useRef<HTMLDivElement | null>(null);
-  const imageHeight = 360;
-  const halfImage = imageHeight / 2;
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const y = e.clientY;
-    setCursorY(y);
-  };
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [imageTop, setImageTop] = useState(0);
 
+  const handleMouseEnter = (index: number) => {
+    setActiveIndex(index);
+
+    const el = itemRefs.current[index];
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      const offset = rect.top + el.offsetHeight / 2 - 180; // Centrar verticalmente la imagen (180 = mitad de altura)
+
+      // Limita para que no se salga del viewport
+      const minTop = 20;
+      const maxTop = window.innerHeight - 360 - 20; // 360 = altura imagen
+      const finalTop = Math.min(Math.max(offset, minTop), maxTop);
+
+      setImageTop(finalTop);
+    }
+  };
+  useEffect(() => {
+    let animationFrame: number;
+
+    const animate = () => {
+      setAnimatedY((prevY) => {
+        const delta = cursorY - prevY;
+        return prevY + delta * 0.1;
+      });
+
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setCursorY(e.clientY);
+  };
   return (
     <section className="projects">
-      <div className="projects__container">
+      <div
+        className="projects__container"
+        onMouseMove={(e) => handleMouseMove(e)}
+      >
         <div className="projects__list">
           <h2 className="projects__title">Selected Projects</h2>
           {projects.map((project, index) => (
             <div
               key={index}
+              ref={(el) => {
+                itemRefs.current[index] = el;
+              }}
               className={`projects__item ${
                 activeIndex === index ? "active" : ""
               }`}
-              onMouseEnter={() => setActiveIndex(index)}
+              onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => setActiveIndex(null)}
             >
               <span className="projects__number">0{index + 1}.</span>
@@ -143,7 +182,7 @@ export default function Projects() {
               activeIndex !== null ? "visible" : ""
             }`}
             style={{
-              top: `${cursorY + 130}px`, // ajusta este valor a tu gusto
+              top: `${imageTop}px`, // ya no usamos el cursor
             }}
           />
         </div>

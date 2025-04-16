@@ -116,7 +116,7 @@ export default function Projects() {
       const offset = rect.top + el.offsetHeight / 2 - 180; // Centrar verticalmente la imagen (180 = mitad de altura)
 
       // Limita para que no se salga del viewport
-      const minTop = 20;
+      const minTop = 80;
       const maxTop = window.innerHeight - 360 - 20; // 360 = altura imagen
       const finalTop = Math.min(Math.max(offset, minTop), maxTop);
 
@@ -129,7 +129,7 @@ export default function Projects() {
     const animate = () => {
       setAnimatedY((prevY) => {
         const delta = cursorY - prevY;
-        return prevY + delta * 0.1;
+        return prevY + delta * 0.005;
       });
 
       animationFrame = requestAnimationFrame(animate);
@@ -150,7 +150,6 @@ export default function Projects() {
         onMouseMove={(e) => handleMouseMove(e)}
       >
         <div className="projects__list">
-          <h2 className="projects__title">Selected Projects</h2>
           {projects.map((project, index) => (
             <div
               key={index}

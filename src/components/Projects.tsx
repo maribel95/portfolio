@@ -117,7 +117,7 @@ export default function Projects() {
       const offset = rect.top + el.offsetHeight / 2 - 180; // Centrar verticalmente la imagen (180 = mitad de altura)
 
       // Limita para que no se salga del viewport
-      const minTop = 80;
+      const minTop = 100;
       const maxTop = window.innerHeight - 360 - 20; // 360 = altura imagen
       const finalTop = Math.min(Math.max(offset, minTop), maxTop);
 

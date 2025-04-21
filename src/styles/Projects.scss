@@ -65,17 +65,17 @@
   }
   &__image {
     position: fixed;
-    //left: 50%; // o donde quieras
     right: 5vw;
     opacity: 0;
     pointer-events: none;
-    height: 360px; // 🔥 Añade esto: altura fija
+    width: 40vw; // ✅ ancho relativo al viewport
+    max-width: 650px;
+    min-width: 300px;
+    height: auto; // ✅ altura automática según proporción
     border-radius: 1rem;
     box-shadow: 0 0 30px rgba(0, 255, 153, 0.3);
-    object-fit: cover;
-    width: 650px;
-    opacity: 0;
-    transform: translateY(0) scale(0.97); // 🔥 añade escala sutil al oculto
+    object-fit: contain;
+    transform: translateY(0) scale(0.97);
     transition: opacity 0.6s ease, top 0.6s ease, transform 0.6s ease;
     z-index: 20;
   }

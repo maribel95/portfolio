@@ -107,18 +107,20 @@ export default function Projects() {
   const previewRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [imageTop, setImageTop] = useState(0);
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   const handleMouseEnter = (index: number) => {
     setActiveIndex(index);
 
     const el = itemRefs.current[index];
+    const imageHeight = imageRef.current?.offsetHeight || 360;
     if (el) {
       const rect = el.getBoundingClientRect();
-      const offset = rect.top + el.offsetHeight / 2 - 180; // Centrar verticalmente la imagen (180 = mitad de altura)
+      const offset = rect.top + el.offsetHeight / 2 - imageHeight / 2; // Centrar verticalmente la imagen (180 = mitad de altura)
 
       // Limita para que no se salga del viewport
       const minTop = 100;
-      const maxTop = window.innerHeight - 360 - 20; // 360 = altura imagen
+      const maxTop = window.innerHeight - imageHeight - 20; // 360 = altura imagen
       const finalTop = Math.min(Math.max(offset, minTop), maxTop);
 
       setImageTop(finalTop);
@@ -177,11 +179,15 @@ export default function Projects() {
           onMouseMove={(e) => handleMouseMove(e)}
         >
           <img
+            ref={imageRef}
             src={activeIndex !== null ? projects[activeIndex].image : undefined}
             alt=""
             className={`projects__image ${
               activeIndex !== null ? "visible" : ""
             }`}
+            onLoad={() => {
+              if (activeIndex !== null) handleMouseEnter(activeIndex);
+            }}
             style={{
               top: `${imageTop}px`,
             }}

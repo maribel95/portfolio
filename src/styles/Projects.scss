@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   &__title {
@@ -31,14 +31,26 @@
   }
 
   &__item {
+    gap: 0.05rem;
     font-size: 3rem;
-    font-weight: 700; // siempre
-    color: var(--text-color);
+    font-weight: 700;
+    //color: var(--text-color);
     transition: color 0.3s ease;
     will-change: color;
     z-index: 1;
-    &.active {
-      color: $navbar-hover-color;
+
+    &.active,
+    &:hover {
+      .projects__number,
+      .projects__name {
+        color: $navbar-hover-color;
+      }
+    }
+
+    &:hover {
+      .projects__tech::after {
+        width: 100%;
+      }
     }
   }
 
@@ -47,11 +59,36 @@
     color: var(--projects-tech-color);
     margin-right: 1rem;
   }
-
   &__tech {
     font-size: 1.1rem;
-    margin-top: 0.5rem;
-    color: var(--projects-tech-color);
+    color: var(--projects-tech-color); // gris base
+    position: relative;
+    overflow: hidden; // corta la pseudocapa
+    line-height: 1.2; // por estética
+
+    &::after {
+      content: attr(data-text); // clona el texto
+      position: absolute;
+      inset: 0; // ocupa todo
+      white-space: nowrap;
+      color: $projects-number-techs-color; // morado
+      width: 0; // parte visible = 0 %
+      overflow: hidden;
+      pointer-events: none;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &__item:hover .projects__tech::after,
+  &__item.active .projects__tech::after {
+    width: 100%;
+  }
+  &__item:hover,
+  &__item.active {
+    .projects__number,
+    .projects__name {
+      color: $navbar-hover-color;
+    }
   }
 
   &__preview {
@@ -84,5 +121,34 @@
   &__image.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+  .projects__name {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      color: $navbar-hover-color; // o cualquier color que quieras usar para el hover
+    }
+  }
+}
+@keyframes fillText {
+  0% {
+    background-size: 0% 100%;
+  }
+  30% {
+    background-size: 20% 100%;
+  }
+  60% {
+    background-size: 50% 100%;
+  }
+  80% {
+    background-size: 80% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
   }
 }

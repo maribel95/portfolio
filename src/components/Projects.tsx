@@ -7,11 +7,13 @@ const projects = [
     title: "TFG",
     tech: ["Python", "IA", "LIME"],
     image: "/projects/tfg-en.jpeg",
+    url: "https://github.com/maribel95/Bachelor-s-Degree-Final-Project",
   },
   {
     title: "File system",
     tech: ["C", "Makefile", "Shell"],
     image: "/projects/fileSystem.jpeg",
+    url: "https://github.com/maribel95/Mini-File-System",
   },
   {
     title: "Machine learning",
@@ -22,6 +24,7 @@ const projects = [
       "Jupiter Notebook",
     ],
     image: "/projects/machineLearning.jpeg",
+    url: "https://github.com/maribel95/Machine-learning",
   },
   {
     title: "Data mining",
@@ -32,6 +35,7 @@ const projects = [
       "Data science",
     ],
     image: "/projects/dataMining.jpeg",
+    url: "https://github.com/maribel95/Data-mining-final-project",
   },
   {
     title: "Statistics NBA 2015",
@@ -42,61 +46,73 @@ const projects = [
       "Data science",
     ],
     image: "/projects/estadistica-es.jpeg",
+    url: "https://github.com/maribel95/Statistical-project-NBA-Season-2015-2016",
   },
   {
     title: "Minishell",
     tech: ["C", "Makefile", "Shell", "Layered programming"],
     image: "/projects/minishell.jpeg",
+    url: "https://github.com/maribel95/Mini-shell",
   },
   {
     title: "Concurrent programming",
     tech: ["Java", "Go", "Ada", "RabbitMQ"],
     image: "/projects/programacionConcurrente.jpeg",
+    url: "https://github.com/maribel95/Concurrent-programming",
   },
   {
     title: "Super Tennis 68k",
     tech: ["Assembly", "Easy 68k"],
     image: "/projects/superTennis.jpeg",
+    url: "https://github.com/maribel95/SUPER-TENNIS-68K",
   },
   {
     title: "Fishing game",
     tech: ["Java"],
     image: "/projects/fishingGame.jpeg",
+    url: "https://github.com/maribel95/Practice-mini-fishing-game",
   },
   {
     title: "Goal based agent",
     tech: ["Java", "AI"],
     image: "/projects/marley.jpeg",
+    url: "https://github.com/maribel95/Goal-based-agent",
   },
   {
     title: "PS-ECI emulator",
     tech: ["Assembly", "Easy68k"],
     image: "/projects/ps-eci.jpeg",
+    url: "https://github.com/maribel95/PS-ECI-machine-emulator",
   },
   {
     title: "MineSweeper",
     tech: ["Java", "Video games"],
     image: "/projects/minesweeper.jpeg",
+    url: "https://github.com/maribel95/Minesweeper-game",
   },
   {
     title: "Dashboard",
     tech: ["HTML5", "CSS", "JavaScript", "PHP"],
     image: "/projects/dashboard.jpeg",
+    url: "https://github.com/maribel95/Dashboard",
   },
   {
     title: "Compiler",
     tech: ["Assembly", "Java", "Lex", "Data structures"],
     image: "/projects/compiler.jpeg",
+    url: "https://github.com/maribel95/Compiler",
   },
   {
     title: "Advanced algorithms",
     tech: ["Java", "Algorithm design", "MVC", "Data structures"],
     image: "/projects/AA.jpeg",
+    url: "https://github.com/maribel95/Advanced-algorithms",
   },
   {
     title: "Potigames",
     tech: ["HTML5", "CSS", "SASS", "Javascript"],
     image: "/projects/potigames.jpeg",
+    url: "https://github.com/tuusuario/potigames",
   },
 ];
 
@@ -170,9 +186,26 @@ export default function Projects() {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => setActiveIndex(null)}
             >
-              <span className="projects__number">0{index + 1}.</span>
-              <span className="projects__name">{project.title}</span>
-              <div className="projects__tech">{project.tech.join(" • ")}</div>
+              <span className="projects__number">{index + 1}.</span>
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="projects__name"
+                  onClick={(e) => e.stopPropagation()} // opcional si hay otras interacciones
+                >
+                  {project.title}
+                </a>
+              ) : (
+                <span className="projects__name">{project.title}</span>
+              )}
+              <div
+                className="projects__tech"
+                data-text={project.tech.join(" • ")}
+              >
+                {project.tech.join(" • ")}
+              </div>
             </div>
           ))}
         </div>

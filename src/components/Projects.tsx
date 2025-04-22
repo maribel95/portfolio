@@ -112,7 +112,7 @@ const projects = [
     title: "Potigames",
     tech: ["HTML5", "CSS", "SASS", "Javascript"],
     image: "/projects/potigames.jpeg",
-    url: "https://github.com/tuusuario/potigames",
+    url: "https://odilofortes.github.io",
   },
 ];
 

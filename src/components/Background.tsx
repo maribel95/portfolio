@@ -6,9 +6,9 @@ const blobImages = [
   "/blobs/blob2.png",
   "/blobs/blob3.png",
   "/blobs/blob4.png",
-  "/blobs/blob5.png",
-  "/blobs/blob6.png",
-  "/blobs/blob7.png",
+  //"/blobs/blob5.png",
+  //"/blobs/blob6.png",
+  //"/blobs/blob7.png",
 ];
 const Background = () => {
   const noiseRefA = useRef<HTMLDivElement>(null);

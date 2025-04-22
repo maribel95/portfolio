@@ -74,6 +74,11 @@ const projects = [
     image: "/projects/ps-eci.jpeg",
   },
   {
+    title: "MineSweeper",
+    tech: ["Java", "Video games"],
+    image: "/projects/minesweeper.jpeg",
+  },
+  {
     title: "Dashboard",
     tech: ["HTML5", "CSS", "JavaScript", "PHP"],
     image: "/projects/dashboard.jpeg",
@@ -82,11 +87,6 @@ const projects = [
     title: "Compiler",
     tech: ["Assembly", "Java", "Lex", "Data structures"],
     image: "/projects/compiler.jpeg",
-  },
-  {
-    title: "MineSweeper",
-    tech: ["Java", "Video games"],
-    image: "/projects/minesweeper.jpeg",
   },
   {
     title: "Advanced algorithms",
@@ -108,6 +108,7 @@ export default function Projects() {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [imageTop, setImageTop] = useState(0);
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const EXTRA_RATIO = 0.2;
 
   const handleMouseEnter = (index: number) => {
     setActiveIndex(index);
@@ -116,8 +117,11 @@ export default function Projects() {
     const imageHeight = imageRef.current?.offsetHeight || 360;
     if (el) {
       const rect = el.getBoundingClientRect();
-      const offset = rect.top + el.offsetHeight / 2 - imageHeight / 2; // Centrar verticalmente la imagen (180 = mitad de altura)
-
+      let offset = rect.top + el.offsetHeight / 2 - imageHeight / 2; // Centrar verticalmente la imagen (180 = mitad de altura)
+      // 👇  si es el último proyecto, aplica el desplazamiento extra
+      if (index === projects.length - 1) {
+        offset -= imageHeight * EXTRA_RATIO;
+      }
       // Limita para que no se salga del viewport
       const minTop = 100;
       const maxTop = window.innerHeight - imageHeight - 20; // 360 = altura imagen

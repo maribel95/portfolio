@@ -47,6 +47,7 @@ body.theme-dark {
   --experience-panel-border: rgba(255, 255, 255, 0.2);
   --experience-panel-bg: rgba(255, 255, 255, 0.05);
   --sphere-bg: rgba(0, 0, 0, 0.8);
+  --projects-tech-color: #999;
 }
 
 // Tema claro
@@ -69,6 +70,7 @@ body.theme-light {
   --experience-panel-border: rgba(86, 86, 86, 0.2);
   --experience-panel-bg: rgba(45, 45, 45, 0.05);
   --sphere-bg: rgba(255, 255, 255, 0.8);
+  --projects-tech-color: #5d5d5d;
 }
 
 body {

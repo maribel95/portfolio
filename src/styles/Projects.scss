@@ -68,12 +68,12 @@
       content: attr(data-text); // clona el texto
       position: absolute;
       inset: 0; // ocupa todo
-      white-space: nowrap;
+
       color: var(--projects-number-techs-color); // morado
       width: 0; // parte visible = 0 %
       overflow: hidden;
       pointer-events: none;
-      transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 6s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
@@ -106,7 +106,7 @@
     pointer-events: none;
     width: 40vw; // ✅ ancho relativo al viewport
     max-width: 650px;
-    min-width: 300px;
+    min-width: 270px;
     height: auto; // ✅ altura automática según proporción
     border-radius: 1rem;
     box-shadow: 0 0 30px $projects-box-shadow;

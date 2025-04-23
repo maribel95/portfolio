@@ -166,6 +166,18 @@ export default function Projects() {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setCursorY(e.clientY);
   };
+
+  function splitChars(text: string) {
+    return [...text].map((ch, i) => (
+      <span
+        key={i}
+        className="tech-char"
+        style={{ transitionDelay: `${i * 10}ms` }}
+      >
+        {ch}
+      </span>
+    ));
+  }
   return (
     <section className="projects">
       <Background />
@@ -200,11 +212,8 @@ export default function Projects() {
               ) : (
                 <span className="projects__name">{project.title}</span>
               )}
-              <div
-                className="projects__tech"
-                data-text={project.tech.join(" • ")}
-              >
-                {project.tech.join(" • ")}
+              <div className="projects__tech">
+                {splitChars(project.tech.join(" • "))}
               </div>
             </div>
           ))}

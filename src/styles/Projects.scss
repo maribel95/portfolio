@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 2.5rem;
+    z-index: 1;
   }
 
   &__title {
@@ -31,23 +32,19 @@
   }
 
   &__item {
-    gap: clamp(1.5rem, 1rem + 1vw, 2.5rem);
+    gap: clamp(0.25rem, 0.15rem + 0.4vw, 0.5rem);
     font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem);
-    font-weight: 700;
-    will-change: color;
-    z-index: 1;
 
-    &.active,
-    &:hover {
+    &:hover,
+    &.active {
       .projects__number,
       .projects__name {
-        color: $navbar-hover-color;
+        color: var(--projects-number-techs-color);
       }
-    }
 
-    &:hover {
-      .projects__tech::after {
-        width: 100%;
+      /* Rellena sólo la línea de tech del item hovered */
+      .projects__tech {
+        background-size: 100% 100%;
       }
     }
   }
@@ -57,36 +54,24 @@
     color: var(--projects-tech-color);
     margin-right: 1rem;
   }
+  /* ---------- TEXTO DE TECNOLOGÍAS ---------- */
   &__tech {
+    font-weight: 600;
     font-size: clamp(0.9rem, 0.7rem + 0.8vw, 1.1rem);
-    color: var(--projects-tech-color); // gris base
+    color: var(--projects-tech-color);
     position: relative;
-    overflow: hidden; // corta la pseudocapa
-    line-height: 1.2; // por estética
-
-    &::after {
-      content: attr(data-text); // clona el texto
-      position: absolute;
-      inset: 0; // ocupa todo
-
-      color: var(--projects-number-techs-color); // morado
-      width: 0; // parte visible = 0 %
-      overflow: hidden;
-      pointer-events: none;
-      transition: width 6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    line-height: 1.3;
   }
 
-  &__item:hover .projects__tech::after,
-  &__item.active .projects__tech::after {
-    width: 100%;
+  /* ---------- HOVER / ACTIVE -------------- */
+  .tech-char {
+    transition: color 0.1s ease;
   }
-  &__item:hover,
-  &__item.active {
-    .projects__number,
-    .projects__name {
-      color: $navbar-hover-color;
-    }
+
+  /* Al hacer hover en el ítem, todas las letras cambian a morado */
+  &__item:hover .tech-char,
+  &__item.active .tech-char {
+    color: var(--projects-number-techs-color);
   }
 
   &__preview {
@@ -131,22 +116,5 @@
       cursor: pointer;
       color: $navbar-hover-color; // o cualquier color que quieras usar para el hover
     }
-  }
-}
-@keyframes fillText {
-  0% {
-    background-size: 0% 100%;
-  }
-  30% {
-    background-size: 20% 100%;
-  }
-  60% {
-    background-size: 50% 100%;
-  }
-  80% {
-    background-size: 80% 100%;
-  }
-  100% {
-    background-size: 100% 100%;
   }
 }

@@ -71,19 +71,28 @@
   }
 
   /* título morado en hover */
+  .projects__item.active .projects__name,
   .projects__name:hover {
-    color: var(--projects-number-techs-color);
+    color: var(--hover-color);
   }
 
-  /* pinta de morado **sólo** las letras de techs si el cursor
-   está SOBRE el título */
-  .projects__name:hover + .projects__tech .tech-char {
-    color: var(--projects-number-techs-color);
-    transition: color 0.15s ease;
+  /* ---------- ESTADO NORMAL ---------- */
+  .tech-char,
+  .projects__number,
+  .projects__name {
+    transition: none;
   }
 
-  /* número morado cuando el cursor está SOBRE el título */
-  .projects__item:has(.projects__name:hover) .projects__number {
+  /* ---------- HOVER EN TODA LA TARJETA ---------- */
+  .projects__item:hover,
+  .projects__item.active {
+    cursor: pointer;
+  }
+
+  .projects__item:hover .projects__number,
+  .projects__item:hover .tech-char,
+  .projects__item.active .projects__number,
+  .projects__item.active .tech-char {
     color: var(--projects-number-techs-color);
     transition: color 0.15s ease;
   }

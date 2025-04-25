@@ -34,19 +34,7 @@
   &__item {
     gap: clamp(0.25rem, 0.15rem + 0.4vw, 0.5rem);
     font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem);
-
-    // &:hover,
-    // &.active {
-    //   .projects__number,
-    //   .projects__name {
-    //     color: var(--projects-number-techs-color);
-    //   }
-
-    //   /* Rellena sólo la línea de tech del item hovered */
-    //   .projects__tech {
-    //     background-size: 100% 100%;
-    //   }
-    // }
+    width: clamp(15rem, 47%, 40rem);
   }
 
   &__number {

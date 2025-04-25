@@ -189,55 +189,42 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
+              className="projects__wrapper"
+              onClick={() => window.open(project.url, "_blank")}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => setActiveIndex(null)}
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
-              className={`projects__item ${
-                activeIndex === index ? "active" : ""
-              }`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => setActiveIndex(null)}
             >
-              <span className="projects__number">{index + 1}.</span>
-              {project.url ? (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="projects__name"
-                  onClick={(e) => e.stopPropagation()} // opcional si hay otras interacciones
-                >
-                  {project.title}
-                </a>
-              ) : (
+              <div
+                className={`projects__item ${
+                  activeIndex === index ? "active" : ""
+                }`}
+              >
+                <span className="projects__number">{index + 1}.</span>
                 <span className="projects__name">{project.title}</span>
-              )}
-              <div className="projects__tech">
-                {splitChars(project.tech.join(" • "))}
+                <div className="projects__tech">
+                  {splitChars(project.tech.join(" • "))}
+                </div>
               </div>
+
+              {activeIndex === index && (
+                <img
+                  ref={imageRef}
+                  src={project.image}
+                  alt=""
+                  className="projects__image visible"
+                  style={{
+                    top: `${imageTop}px`,
+                  }}
+                  onLoad={() => {
+                    if (activeIndex !== null) handleMouseEnter(activeIndex);
+                  }}
+                />
+              )}
             </div>
           ))}
-        </div>
-
-        <div
-          className="projects__preview"
-          ref={previewRef}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <img
-            ref={imageRef}
-            src={activeIndex !== null ? projects[activeIndex].image : undefined}
-            alt=""
-            className={`projects__image ${
-              activeIndex !== null ? "visible" : ""
-            }`}
-            onLoad={() => {
-              if (activeIndex !== null) handleMouseEnter(activeIndex);
-            }}
-            style={{
-              top: `${imageTop}px`,
-            }}
-          />
         </div>
       </div>
     </section>

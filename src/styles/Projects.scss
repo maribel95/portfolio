@@ -96,7 +96,19 @@
     color: var(--projects-number-techs-color);
     transition: color 0.15s ease;
   }
+  .projects__wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: auto;
+    cursor: pointer;
 
+    &:hover .projects__image {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
   &__preview {
     flex: 1;
     display: flex;

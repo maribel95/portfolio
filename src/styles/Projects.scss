@@ -73,7 +73,7 @@
   /* título morado en hover */
   .projects__item.active .projects__name,
   .projects__name:hover {
-    color: var(--hover-color);
+    color: $navbar-hover-color;
   }
 
   /* ---------- ESTADO NORMAL ---------- */

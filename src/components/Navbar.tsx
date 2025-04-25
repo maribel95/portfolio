@@ -34,6 +34,17 @@ const Navbar: React.FC = () => {
       ],
       sound: "/xopi-barking.mp3",
     },
+    "/projects": {
+      default: "/dogs/sarki-pixel.png",
+      sequence: [
+        "/dogs/sarki-pixel.png",
+        "/dogs/sarki-bark1.png",
+        "/dogs/sarki-bark2.png",
+        "/dogs/sarki-bark1.png",
+        "/dogs/sarki-pixel.png",
+      ],
+      sound: "/dog-bark.mp3",
+    },
   };
 
   const [currentImage, setCurrentImage] = useState(
@@ -70,7 +81,7 @@ const Navbar: React.FC = () => {
       if (index === sequence.length) {
         clearInterval(interval);
       }
-    }, 130);
+    }, 120); //130
   };
 
   const toggleTheme = () => {

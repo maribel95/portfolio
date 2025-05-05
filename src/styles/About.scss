@@ -1,66 +1,70 @@
 .about {
   width: 100%;
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem 2rem 2rem; // menos padding arriba
   background-color: var(--hero-bg);
   color: var(--hero-text);
   z-index: 1;
 
   &__wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap; // para responsividad
+    justify-content: space-between; // cambio importante
+    align-items: flex-start; // sube el texto
+    gap: 4rem;
+    flex-wrap: nowrap;
     max-width: 1200px;
     margin: 0 auto;
   }
 
   &__text {
-    flex: 1;
+    flex: 1.4;
     min-width: 300px;
     text-align: left;
+    margin-top: 2rem; // si quieres aún más separación del top
+    font-family: "Barlow Condensed", sans-serif;
   }
 
-  &__title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
   &__heading {
-    font-family: "Barlow Condensed", sans-serif;
+    white-space: nowrap;
     font-style: italic;
     text-transform: uppercase;
-    line-height: 1;
-    font-size: 4rem;
+    line-height: 1.1;
+    font-size: clamp(1.8rem, 5vw, 3.8rem);
     letter-spacing: 3px;
-    text-align: center;
+    text-align: left;
     color: var(--text-color);
-    font-weight: 900;
-
+    font-weight: 700;
     margin-bottom: 2rem;
     position: relative;
     z-index: 2;
   }
 
   &__description {
-    font-size: 1.2rem;
-    color: #666;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-color);
     line-height: 1.6;
+    font-weight: 500;
   }
 
   &__image {
-    flex: 1;
-    min-width: 300px;
+    flex: 0.6;
+    min-width: 280px;
     display: flex;
-    justify-content: center;
+    justify-content: center; // centra horizontalmente
+    align-items: center; // centra verticalmente
+    padding-top: 2rem; // opcional, si quieres bajarla un poco
 
     img {
-      height: 40vw; // ajusta según tu imagen
-      object-fit: cover;
-      filter: drop-shadow(
-        0 0 2px var(--about-image-shadow)
-      ); // color y tamaño personalizable
+      height: clamp(200px, 45vw, 600px);
+      object-fit: contain; // mejor que cover para mantener proporción
+      filter: drop-shadow(0 0 2px var(--about-image-shadow));
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .about__image {
+    padding-top: 5rem; //⬅️ Aumenta esto para bajarla un poco
+    margin-left: -5.5rem; //⬅️ Acerca la imagen al texto, sin que se solapen
   }
 }

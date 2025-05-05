@@ -10,9 +10,21 @@ const About: React.FC = () => {
         <div className="about__text">
           <h3 className="about__heading">¿QUIERES SABER MÁS DE MÍ?</h3>
           <p className="about__description">
-            Soy una persona apasionada por la tecnología, el diseño y la
-            creatividad. Me encanta aprender cosas nuevas y buscar soluciones
-            innovadoras para los desafíos que se presentan.
+            Lo básico ya lo sabes, aquí te contaré qué me gusta y qué me
+            inspira. Y cómo eso moldea mi forma de trabajar.
+          </p>
+          <p className="about__description">
+            Desde siempre he jugado a baloncesto y he tenido la suerte de estar
+            en diferentes equipos, llegando a entrenar con jugadoras de ligas
+            semiprofesionales y una medalla olímpica.
+          </p>
+          <p className="about__description">
+            He aguantado ritmos exigentes y he aprendido que el equipo siempre
+            va primero.
+          </p>
+          <p className="about__description">
+            He aguantado ritmos exigentes y he aprendido que el equipo siempre
+            va primero.
           </p>
         </div>
         <div className="about__image">

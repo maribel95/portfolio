@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
             <Link to="/projects">{t("projects")}</Link>
           </li>
           <li>
-            <a href="#about">{t("about")}</a>
+            <Link to="/about">{t("about")}</Link>
           </li>
         </ul>
 

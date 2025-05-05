@@ -49,6 +49,8 @@ body.theme-dark {
   --sphere-bg: rgba(0, 0, 0, 0.8);
   --projects-tech-color: #999;
   --projects-number-techs-color: #57328a;
+  --about-text-color: rgba(255, 255, 255, 0.87);
+  --about-image-shadow: rgba(224, 224, 224, 0.9);
 }
 
 // Tema claro
@@ -73,6 +75,8 @@ body.theme-light {
   --sphere-bg: rgba(255, 255, 255, 0.8);
   --projects-tech-color: #5d5d5d;
   --projects-number-techs-color: #4601a5;
+  --about-text-color: rgb(153, 153, 153);
+  --about-image-shadow: rgba(118, 118, 118, 1);
 }
 
 body {

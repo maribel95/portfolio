@@ -1,14 +1,13 @@
 import { useTranslation } from "react-i18next";
 import "@styles/CV.scss";
 import i18n from "i18n";
-import Background from "./Background";
 function CV() {
   const { t } = useTranslation();
   const cvFile = i18n.language === "en" ? "/pdf/CV-EN.pdf" : "/pdf/CV-ES.pdf";
 
   return (
     <div className="cv-container">
-      <Background />
+      {/* <Background /> */}
       <section className="cv-html">
         <header className="cv-header">
           <p className="cv-contact">

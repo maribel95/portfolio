@@ -1,7 +1,6 @@
 import "@styles/Hero.scss";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
-import Background from "./Background";
 import SkillsSphere from "./SkillsSphere";
 import React, { useState, useRef, useEffect } from "react";
 
@@ -74,7 +73,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="hero-section">
-      <Background />
+      {/* <Background /> */}
       <div className="hero-flex">
         <div className="hero-text">
           <span className="line soy">{t("hero.iam")}</span>

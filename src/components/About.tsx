@@ -1,7 +1,6 @@
 // About.tsx
 import React from "react";
 import "@styles/About.scss";
-import Background from "./Background";
 
 const About: React.FC = () => {
   return (
@@ -24,7 +23,8 @@ const About: React.FC = () => {
           </p>
           <p className="about__description">
             He aguantado ritmos exigentes y he aprendido que el equipo siempre
-            va primero.
+            va primero. Y ademas he aprendido a disfrutar de cada momento, a no
+            rendirme y a dar lo mejor de mí.
           </p>
         </div>
         <div className="about__image">

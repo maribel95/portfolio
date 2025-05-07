@@ -118,9 +118,9 @@ const Navbar: React.FC = () => {
           <li>
             <Link to="/projects">{t("projects")}</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/about">{t("about")}</Link>
-          </li>
+          </li> */}
         </ul>
 
         <div className="navbar-lang">

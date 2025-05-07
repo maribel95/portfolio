@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "@styles/Projects.scss";
+import Background from "./Background";
 
 const projects = [
   {
@@ -179,7 +180,7 @@ export default function Projects() {
   }
   return (
     <section className="projects">
-      {/* <Background /> */}
+      <Background />
       <div
         className="projects__container"
         onMouseMove={(e) => handleMouseMove(e)}

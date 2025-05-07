@@ -1,0 +1,63 @@
+@use "./variables" as *;
+.background-container {
+  position: absolute;
+  top: $navbar-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.blob {
+  position: absolute;
+  width: 40vw;
+  max-width: 400px;
+  min-width: 120px;
+  opacity: var(--blob-opacity, 1);
+  pointer-events: none;
+  z-index: -1;
+
+  transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
+    rotate(0deg);
+  animation: blobFloat 4s ease-in-out infinite;
+  transition: transform 5s ease;
+}
+
+@keyframes blobFloat {
+  0% {
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
+      rotate(0deg);
+  }
+  50% {
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1.04)
+      rotate(5deg);
+  }
+  100% {
+    transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px)) scale(1)
+      rotate(0deg);
+  }
+}
+
+.noise-overlay {
+  position: absolute;
+  inset: 0; // top: 0; right: 0; bottom: 0; left: 0
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-size: 150px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.noiseA {
+  z-index: 15;
+}
+
+.noiseB {
+  z-index: 16; // está por encima para que se solapen bien
+}

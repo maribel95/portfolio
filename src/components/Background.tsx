@@ -1,31 +1,58 @@
 import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import "@styles/Background.scss";
 
-const smallTriangleStyles = [
-  "small-top-left",
-  "small-top-right",
-  "small-frame",
-  "small-diagonal-split", // nueva
+type TriangleStyle = {
+  name: string;
+  position: "left" | "right" | "mixed";
+};
+
+const smallTriangleStyles: TriangleStyle[] = [
+  { name: "small-top-left", position: "left" },
+  { name: "small-top-right", position: "right" },
+  { name: "small-frame", position: "mixed" },
+  { name: "small-diagonal-split", position: "mixed" },
 ];
 
-const largeTriangleStyles = [
-  "large-bottom-left",
-  "large-diagonal",
-  "large-bottom-right",
-  "large-rotated-left", // nueva
-  "large-layered-right", // nueva
+const largeTriangleStyles: TriangleStyle[] = [
+  { name: "large-bottom-left", position: "left" },
+  { name: "large-diagonal", position: "mixed" },
+  { name: "large-bottom-right", position: "right" },
+  { name: "large-rotated-left", position: "left" },
+  { name: "large-layered-right", position: "right" },
+  { name: "large-inward-corner", position: "left" },
 ];
 
 const Background = () => {
+  const location = useLocation();
+  const route = location.pathname;
+
+  const allowedPositions = useMemo(() => {
+    if (route === "/projects") return ["right"];
+    return ["left", "right", "mixed"];
+  }, [route]);
+
+  const filteredSmallStyles = useMemo(() => {
+    return smallTriangleStyles.filter((style) =>
+      allowedPositions.includes(style.position)
+    );
+  }, [allowedPositions]);
+
+  const filteredLargeStyles = useMemo(() => {
+    return largeTriangleStyles.filter((style) =>
+      allowedPositions.includes(style.position)
+    );
+  }, [allowedPositions]);
+
   const small = useMemo(() => {
-    const i = Math.floor(Math.random() * smallTriangleStyles.length);
-    return smallTriangleStyles[i];
-  }, []);
+    const i = Math.floor(Math.random() * filteredSmallStyles.length);
+    return filteredSmallStyles[i].name;
+  }, [filteredSmallStyles]);
 
   const large = useMemo(() => {
-    const i = Math.floor(Math.random() * largeTriangleStyles.length);
-    return largeTriangleStyles[i];
-  }, []);
+    const i = Math.floor(Math.random() * filteredLargeStyles.length);
+    return filteredLargeStyles[i].name;
+  }, [filteredLargeStyles]);
 
   return (
     <div className={`triangle-decorations ${small} ${large}`}>

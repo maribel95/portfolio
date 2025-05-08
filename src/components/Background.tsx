@@ -5,11 +5,15 @@ const smallTriangleStyles = [
   "small-top-left",
   "small-top-right",
   "small-frame",
+  "small-diagonal-split", // nueva
 ];
+
 const largeTriangleStyles = [
   "large-bottom-left",
   "large-diagonal",
   "large-bottom-right",
+  "large-rotated-left", // nueva
+  "large-layered-right", // nueva
 ];
 
 const Background = () => {

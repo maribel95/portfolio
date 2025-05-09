@@ -20,14 +20,14 @@
     .triangle-1 {
       top: 0;
       left: 0;
-      border-left: 100px solid transparent;
-      border-bottom: 100px solid $triangle-purple-dark;
+      border-left: 8vw solid transparent;
+      border-bottom: 8vw solid $triangle-purple-dark;
     }
     .triangle-2 {
-      top: 30px;
-      left: 30px;
-      border-left: 100px solid transparent;
-      border-bottom: 100px solid $triangle-purple-light;
+      top: 2vw;
+      left: 2vw;
+      border-left: 8vw solid transparent;
+      border-bottom: 8vw solid $triangle-purple-light;
     }
   }
 
@@ -35,28 +35,45 @@
     .triangle-1 {
       top: 0;
       right: 0;
-      border-right: 100px solid transparent;
-      border-bottom: 100px solid $triangle-blue-dark;
+      border-right: 10vw solid transparent;
+      border-bottom: 10vw solid $triangle-blue-dark;
     }
     .triangle-2 {
-      top: 30px;
-      right: 30px;
-      border-right: 100px solid transparent;
-      border-bottom: 100px solid $triangle-blue-light;
+      top: 2vw;
+      right: 2vw;
+      border-right: 10vw solid transparent;
+      border-bottom: 10vw solid $triangle-blue-light;
     }
   }
+
   &.small-frame {
     .triangle-1 {
       top: 0;
       left: 0;
-      border-left: 80px solid transparent;
-      border-bottom: 80px solid $triangle-purple-dark;
+      border-left: 8vw solid transparent;
+      border-bottom: 8vw solid $triangle-purple-dark;
     }
     .triangle-2 {
       bottom: 0;
       right: 0;
-      border-right: 80px solid transparent;
-      border-top: 80px solid $triangle-blue-light;
+      border-right: 8vw solid transparent;
+      border-top: 8vw solid $triangle-blue-light;
+    }
+  }
+
+  &.small-diagonal-split {
+    .triangle-1 {
+      top: 2vw;
+      left: 2vw;
+      border-left: 10vw solid transparent;
+      border-bottom: 10vw solid $triangle-purple-dark;
+    }
+
+    .triangle-2 {
+      bottom: 2vw;
+      right: 2vw;
+      border-right: 10vw solid transparent;
+      border-top: 10vw solid $triangle-blue-light;
     }
   }
 
@@ -68,15 +85,15 @@
     .triangle-3 {
       bottom: 0;
       left: 0;
-      border-left: 300px solid $triangle-purple-dark;
-      border-top: 300px solid transparent;
+      border-left: 25vw solid $triangle-purple-dark;
+      border-top: 25vw solid transparent;
     }
 
     .triangle-4 {
       bottom: 0;
-      left: 150px;
-      border-left: 300px solid $triangle-purple-light;
-      border-top: 300px solid transparent;
+      left: 12.5vw;
+      border-left: 25vw solid $triangle-purple-light;
+      border-top: 25vw solid transparent;
     }
   }
 
@@ -84,64 +101,46 @@
     .triangle-3 {
       bottom: 0;
       right: 0;
-      border-right: 300px solid $triangle-blue-dark;
-      border-top: 300px solid transparent;
+      border-right: 25vw solid $triangle-blue-dark;
+      border-top: 25vw solid transparent;
     }
 
     .triangle-4 {
       bottom: 0;
-      right: 150px;
-      border-right: 300px solid $triangle-blue-light;
-      border-top: 300px solid transparent;
+      right: 12.5vw;
+      border-right: 25vw solid $triangle-blue-light;
+      border-top: 25vw solid transparent;
     }
   }
+
   &.large-diagonal {
     .triangle-3 {
       top: 0;
       left: 0;
-      border-left: 300px solid transparent;
-      border-bottom: 300px solid $triangle-purple-dark;
+      border-left: 20vw solid transparent;
+      border-bottom: 20vw solid $triangle-purple-dark;
     }
     .triangle-4 {
       bottom: 0;
       right: 0;
-      border-right: 300px solid transparent;
-      border-top: 300px solid $triangle-blue-light;
-    }
-  }
-
-  /* ------------------------------- */
-  /* 🟣 NEW TRIANGLES - PLANTILLA  */
-  /* ------------------------------- */
-  &.small-diagonal-split {
-    .triangle-1 {
-      top: 20px;
-      left: 20px;
-      border-left: 100px solid transparent;
-      border-bottom: 100px solid $triangle-purple-dark;
-    }
-
-    .triangle-2 {
-      bottom: 20px;
-      right: 20px;
-      border-right: 100px solid transparent;
-      border-top: 100px solid $triangle-blue-light;
+      border-right: 20vw solid transparent;
+      border-top: 20vw solid $triangle-blue-light;
     }
   }
 
   &.large-rotated-left {
     .triangle-3 {
       bottom: 0;
-      left: -50px;
-      border-left: 300px solid $triangle-purple-dark;
-      border-top: 300px solid transparent;
+      left: 0;
+      border-left: 25vw solid $triangle-purple-dark;
+      border-top: 25vw solid transparent;
     }
 
     .triangle-4 {
-      bottom: 0;
-      left: 180px;
-      border-left: 300px solid $triangle-purple-light;
-      border-top: 300px solid transparent;
+      bottom: -5vw;
+      left: 10vw;
+      border-left: 25vw solid $triangle-purple-light;
+      border-top: 25vw solid transparent;
     }
   }
 
@@ -149,15 +148,24 @@
     .triangle-3 {
       bottom: 0;
       right: 0;
-      border-right: 300px solid $triangle-blue-dark;
-      border-top: 300px solid transparent;
+      border-right: 25vw solid $triangle-blue-dark;
+      border-top: 25vw solid transparent;
     }
 
     .triangle-4 {
-      bottom: 40px;
-      right: 40px;
-      border-right: 300px solid $triangle-blue-light;
-      border-top: 300px solid transparent;
+      bottom: 2vw;
+      right: 2vw;
+      border-right: 25vw solid $triangle-blue-light;
+      border-top: 25vw solid transparent;
+    }
+  }
+
+  /* ------------------------------- */
+  /* Responsividad adicional        */
+  /* ------------------------------- */
+  @media (max-width: 600px) {
+    .triangle {
+      transform: scale(0.8);
     }
   }
 }

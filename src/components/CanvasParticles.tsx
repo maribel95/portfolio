@@ -10,12 +10,11 @@ const CanvasParticles = () => {
 
     const getCSSVariable = (name: string): string => {
       const el = document.body || document.documentElement;
-      const value = getComputedStyle(el).getPropertyValue(name).trim();
-      return value;
+      return getComputedStyle(el).getPropertyValue(name).trim();
     };
 
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let height = (canvas.height = document.body.scrollHeight);
 
     const particles: {
       x: number;
@@ -25,24 +24,31 @@ const CanvasParticles = () => {
       color: string;
     }[] = [];
 
-    const numParticles = 80;
+    const particlesPerArea = 0.00035;
+    let numParticles = Math.floor(width * height * particlesPerArea);
 
-    for (let i = 0; i < numParticles; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        color: `hsl(${Math.random() * 360}, 40%, 70%)`,
-      });
-    }
+    const createParticles = () => {
+      particles.length = 0;
+      numParticles = Math.floor(width * height * particlesPerArea);
+
+      for (let i = 0; i < numParticles; i++) {
+        const hue = 240 + Math.random() * 60;
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          color: `hsl(${hue}, 10%, 20%)`,
+        });
+      }
+    };
+
+    createParticles();
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      const strokeColor = getCSSVariable("--canvas-stroke-lines");
-      ctx.strokeStyle =
-        strokeColor !== "" ? strokeColor : "rgba(200, 200, 200, 0.1)";
-      ctx.strokeStyle = strokeColor;
+      const strokeColor =
+        getCSSVariable("--canvas-stroke-lines") || "rgba(200, 200, 200, 0.1)";
 
       for (let i = 0; i < numParticles; i++) {
         const p = particles[i];
@@ -79,13 +85,17 @@ const CanvasParticles = () => {
 
     draw();
 
-    const resize = () => {
+    const observer = new ResizeObserver(() => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
+      height = canvas.height = document.body.scrollHeight;
+      createParticles();
+    });
 
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
+    observer.observe(document.body);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (

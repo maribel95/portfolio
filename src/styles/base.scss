@@ -38,6 +38,7 @@ body.theme-dark {
   --hero-text: rgba(255, 255, 255, 0.87);
   --hero-secondary: #919191;
   --hero-highlight: #a259ff;
+  --hero-quick-highlight: #6795f7;
   --footer-bg: #0d0d0d; // reemplazo de $primary-color-hero
   --footer-bottom-bg: #171717;
   --blob-opacity: 1;
@@ -51,6 +52,8 @@ body.theme-dark {
   --projects-number-techs-color: #57328a;
   --about-text-color: rgba(255, 255, 255, 0.87);
   --about-image-shadow: rgba(224, 224, 224, 0.9);
+  --canvas-stroke-lines: rgba(200, 200, 200, 0.1);
+  --canvas-particles: #aaaaaa;
 }
 
 // Tema claro
@@ -64,6 +67,7 @@ body.theme-light {
   --hero-text: #242424;
   --hero-secondary: #666666;
   --hero-highlight: #7b2cbf;
+  --hero-quick-highlight: #2d5fc9;
   --footer-bg: #ffffff;
   --footer-bottom-bg: #eeeeee;
   --blob-opacity: 0.3;
@@ -77,6 +81,8 @@ body.theme-light {
   --projects-number-techs-color: #4601a5;
   --about-text-color: rgb(153, 153, 153);
   --about-image-shadow: rgba(118, 118, 118, 1);
+  --canvas-stroke-lines: rgba(18, 18, 18, 0.1);
+  --canvas-particles: #333333;
 }
 
 body {

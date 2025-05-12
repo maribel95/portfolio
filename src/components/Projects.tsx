@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "@styles/Projects.scss";
-import Background from "./Background";
+import CanvasParticles from "./CanvasParticles";
 
 const projects = [
   {
@@ -180,7 +180,7 @@ export default function Projects() {
   }
   return (
     <section className="projects">
-      <Background />
+      <CanvasParticles />
       <div
         className="projects__container"
         onMouseMove={(e) => handleMouseMove(e)}

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import "@styles/Background.scss";
+import "@styles/Background-triangles.scss";
 
 type TriangleStyle = {
   name: string;
@@ -23,7 +23,7 @@ const largeTriangleStyles: TriangleStyle[] = [
   { name: "large-inward-corner", position: "left" },
 ];
 
-const Background = () => {
+const BackgroundTriangles = () => {
   const location = useLocation();
   const route = location.pathname;
 
@@ -63,4 +63,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default BackgroundTriangles;

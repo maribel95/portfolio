@@ -24,7 +24,7 @@ const CanvasParticles = () => {
       color: string;
     }[] = [];
 
-    const particlesPerArea = 0.00035;
+    const particlesPerArea = 0.0002;
     let numParticles = Math.floor(width * height * particlesPerArea);
 
     const createParticles = () => {
@@ -38,7 +38,7 @@ const CanvasParticles = () => {
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          color: `hsl(${hue}, 10%, 20%)`,
+          color: `hsl(${hue}, 50%, 60%)`,
         });
       }
     };

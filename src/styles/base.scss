@@ -19,6 +19,7 @@
 }
 html {
   font-size: $font-base;
+  scrollbar-gutter: stable;
 }
 // 🧼 Reset básico
 html,
@@ -88,6 +89,7 @@ body.theme-light {
 body {
   min-width: 320px;
   min-height: 100vh;
+  overflow-y: scroll;
 }
 
 // 🔗 Enlaces

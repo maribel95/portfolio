@@ -18,7 +18,7 @@ function makeParticle(width: number, height: number): Particle {
     y: Math.random() * height,
     vx: (Math.random() - 0.5) * 0.5,
     vy: (Math.random() - 0.5) * 0.5,
-    color: `hsl(${hue}, 60%, 70%)`,
+    color: `hsl(${hue}, 90%, 90%)`,
   };
 }
 
@@ -39,13 +39,21 @@ const CanvasParticles: React.FC = () => {
     for (let i = 0; i < targetCount(); i++) {
       particles.push(makeParticle(width, height));
     }
-
+    const getCSSVariable = (name: string): string => {
+      const el = document.body || document.documentElement;
+      const value = getComputedStyle(el).getPropertyValue(name).trim();
+      return value;
+    };
     // ---- bucle de animación ----
     let rafId: number;
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(255,255,255,0.1)";
+      const strokeColor = getCSSVariable("--canvas-stroke-lines");
+      ctx.strokeStyle =
+        strokeColor !== "" ? strokeColor : "rgba(200, 200, 200, 0.1)";
+      ctx.strokeStyle = strokeColor;
+      //ctx.strokeStyle = "rgba(255,255,255,0.1)";
 
       particles.forEach((p, i) => {
         // mover partícula

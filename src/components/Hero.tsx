@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 import CanvasParticles from "./CanvasParticles";
 import SkillsSphere from "./SkillsSphere";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 
 const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -11,22 +11,27 @@ const Hero: React.FC = () => {
     "experience" | "skills" | "hobbies" | null
   >(null);
 
-  const experienceRef = useRef<HTMLDivElement | null>(null);
-  const skillsRef = useRef<HTMLDivElement | null>(null);
-  const hobbiesRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
-  const experience = t("hero.quick-experience-description", {
-    returnObjects: true,
-  }) as string[];
+  // dentro del componente
+  const experience = useMemo(
+    () =>
+      t("hero.quick-experience-description", {
+        returnObjects: true,
+      }) as string[],
+    [t, i18n.language]
+  );
+  const hobbies = useMemo(
+    () =>
+      t("hero.quick-hobbies-description", { returnObjects: true }) as string[],
+    [t, i18n.language]
+  );
 
-  const hobbies = t("hero.quick-hobbies-description", {
-    returnObjects: true,
-  }) as string[];
-
-  function smoothScrollTo(targetY: number, duration = 1000) {
+  function smoothScrollTo(targetY: number, duration = 1000): number {
     const startY = window.scrollY;
     const distance = targetY - startY;
     let startTime: number | null = null;
+    let rafId: number;
 
     function step(timestamp: number) {
       if (!startTime) startTime = timestamp;
@@ -40,36 +45,24 @@ const Hero: React.FC = () => {
       window.scrollTo(0, startY + distance * easeInOut);
 
       if (progress < duration) {
-        window.requestAnimationFrame(step);
+        rafId = window.requestAnimationFrame(step);
       }
     }
 
-    window.requestAnimationFrame(step);
+    rafId = window.requestAnimationFrame(step);
+    return rafId; // ✅ devuelve el número para poder cancelarlo
   }
 
   useEffect(() => {
-    if (!activePanel) return;
+    if (!activePanel || !panelRef.current) return;
+    const offsetTop =
+      panelRef.current.getBoundingClientRect().top + window.scrollY;
 
-    const scrollToPanel = () => {
-      const panelRef =
-        activePanel === "experience"
-          ? experienceRef
-          : activePanel === "skills"
-          ? skillsRef
-          : hobbiesRef;
+    let rafId: number;
+    const scroll = () => (rafId = smoothScrollTo(offsetTop - 260, 700));
+    scroll();
 
-      if (panelRef.current) {
-        const offsetTop =
-          panelRef.current.getBoundingClientRect().top + window.scrollY;
-        const scrollPadding = 260;
-
-        smoothScrollTo(offsetTop - scrollPadding, 700); // 👈 ahora sí, scroll personalizado
-      }
-    };
-
-    const timeout = setTimeout(scrollToPanel, 150); // esperar a que se muestre el panel
-
-    return () => clearTimeout(timeout);
+    return () => cancelAnimationFrame(rafId);
   }, [activePanel]);
 
   return (
@@ -148,44 +141,32 @@ const Hero: React.FC = () => {
 
             <div className="panel-wrapper">
               <div
-                ref={experienceRef}
-                className={`experience-panel panel-base ${
-                  activePanel === "experience" ? "visible" : ""
-                }`}
+                ref={panelRef}
+                className={`panel-base ${activePanel ? "visible" : ""}`}
               >
-                <p>
-                  {experience.map((line, index) => (
-                    <span key={index}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
-                </p>
-              </div>
+                {activePanel === "experience" && (
+                  <p>
+                    {experience.map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        <br />
+                      </span>
+                    ))}
+                  </p>
+                )}
 
-              <div
-                ref={skillsRef}
-                className={`skills-panel panel-base ${
-                  activePanel === "skills" ? "visible" : ""
-                }`}
-              >
-                <SkillsSphere visible={activePanel === "skills"} />
-              </div>
+                {activePanel === "skills" && <SkillsSphere visible />}
 
-              <div
-                ref={hobbiesRef}
-                className={`hobbies-panel panel-base ${
-                  activePanel === "hobbies" ? "visible" : ""
-                }`}
-              >
-                <p>
-                  {hobbies.map((line, index) => (
-                    <span key={index}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
-                </p>
+                {activePanel === "hobbies" && (
+                  <p>
+                    {hobbies.map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        <br />
+                      </span>
+                    ))}
+                  </p>
+                )}
               </div>
             </div>
             <p className="bottom-wanna-know">{t("hero.bottom-wanna-know")}</p>

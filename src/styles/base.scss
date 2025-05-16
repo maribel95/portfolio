@@ -40,14 +40,14 @@ body.theme-dark {
   --hero-secondary: #919191;
   --hero-highlight: #a259ff;
   --hero-quick-highlight: #6795f7;
-  --footer-bg: #0d0d0d; // reemplazo de $primary-color-hero
+  --footer-bg: #0d0d0d;
   --footer-bottom-bg: #171717;
   --blob-opacity: 1;
   --border-imageA: #232323;
   --border-imageB: #ffffff;
   --background-navbar-button: 255, 255, 255;
-  --experience-panel-border: rgba(255, 255, 255, 0.2);
-  --experience-panel-bg: rgba(255, 255, 255, 0.05);
+  --experience-panel-border: rgba(255, 255, 255, 0.4);
+  --experience-panel-bg: rgba(174, 174, 174, 0.4);
   --sphere-bg: rgba(0, 0, 0, 0.8);
   --projects-tech-color: #999;
   --projects-number-techs-color: #57328a;
@@ -75,8 +75,8 @@ body.theme-light {
   --border-imageA: #ffffff;
   --border-imageB: #232323;
   --background-navbar-button: 0, 0, 0;
-  --experience-panel-border: rgba(86, 86, 86, 0.2);
-  --experience-panel-bg: rgba(45, 45, 45, 0.05);
+  --experience-panel-border: rgba(86, 86, 86, 0.4);
+  --experience-panel-bg: rgba(88, 88, 88, 0.4);
   --sphere-bg: rgba(255, 255, 255, 0.8);
   --projects-tech-color: #5d5d5d;
   --projects-number-techs-color: #4601a5;

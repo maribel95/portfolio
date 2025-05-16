@@ -1,15 +1,28 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import "@styles/Navbar.scss";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from "@context/ThemeContext";
 import { Link, useLocation } from "react-router-dom";
 
+/**
+ * Navbar con "perritos animados".
+ *   – Evita que la animación active se "cuelgue" al cambiar de ruta.
+ *   – Si se hace click en un link mientras la animación sigue, se cancela
+ *     el cambio (o la animación), para que nunca aparezca un logo incorrecto.
+ */
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = useContext(ThemeContext);
-  const location = useLocation(); // 👈 importante
+  const location = useLocation();
   const route = location.pathname;
+
+  // refs para limpiar timers/intervals activos
+  const timerRef = useRef<number | null>(null);
+
+  /** Indica si hay animación en curso ⇒ bloquea navegación */
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
+
   const dogAnimations: Record<
     string,
     { default: string; sequence: string[]; sound: string }
@@ -51,39 +64,74 @@ const Navbar: React.FC = () => {
     dogAnimations[route]?.default || dogAnimations["/"].default
   );
 
-  // 🔁 Actualizar el perrito al cambiar de ruta
+  // ────────────────────────────────────────────────────────────
+  // Limpia cualquier animación activa cuando la ruta cambia.
+  // También restablece la imagen por defecto.
+  // ────────────────────────────────────────────────────────────
   useEffect(() => {
+    if (timerRef.current !== null) {
+      clearInterval(timerRef.current);
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    setIsAnimating(false);
+    setIsVibrating(false);
     setCurrentImage(
       dogAnimations[route]?.default || dogAnimations["/"].default
     );
   }, [route]);
 
+  // ────────────────────────────────────────────────────────────
+  // Maneja la animación del perrito.
+  // ────────────────────────────────────────────────────────────
   const handleClick = () => {
-    const { sequence, sound } = dogAnimations[route] || dogAnimations["/"];
-    const audio = new Audio(sound);
-    audio.play();
+    // Si ya está animando, ignoramos clics adicionales
+    if (isAnimating) return;
 
+    const { sequence, sound } = dogAnimations[route] || dogAnimations["/"];
+    new Audio(sound).play();
+
+    setIsAnimating(true);
+
+    // Animación específica de Xopi (vibración + 1 ladrido)
     if (route === "/cv") {
       setIsVibrating(true);
       setCurrentImage(sequence[1]); // ladrido
-      setTimeout(() => {
+
+      timerRef.current = window.setTimeout(() => {
         setCurrentImage(sequence[2]); // volver al pixel
         setIsVibrating(false);
-      }, 1000); // mantener ladrido durante 1 segundo
+        setIsAnimating(false);
+        timerRef.current = null;
+      }, 1000);
       return;
     }
 
-    // Animación normal para el resto
+    // Animación general (bucle de frames)
     let index = 0;
-    const interval = setInterval(() => {
+    timerRef.current = window.setInterval(() => {
       setCurrentImage(sequence[index]);
       index++;
       if (index === sequence.length) {
-        clearInterval(interval);
+        clearInterval(timerRef.current!);
+        timerRef.current = null;
+        setIsAnimating(false);
       }
-    }, 120); //130
+    }, 120);
   };
 
+  // Prevent navigation while animating (accessibility‑friendly)
+  const maybeBlockNavigation = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (isAnimating) {
+      e.preventDefault();
+    }
+  };
+
+  // ────────────────────────────────────────────────────────────
+  // Theme & language toggles
+  // ────────────────────────────────────────────────────────────
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
@@ -110,24 +158,39 @@ const Navbar: React.FC = () => {
 
         <ul className="navbar-menu">
           <li>
-            <Link to="/">{t("home")}</Link>
+            <Link
+              to="/"
+              onClick={maybeBlockNavigation}
+              aria-disabled={isAnimating}
+            >
+              {t("home")}
+            </Link>
           </li>
           <li>
-            <Link to="/cv">{t("resume")}</Link>
+            <Link
+              to="/cv"
+              onClick={maybeBlockNavigation}
+              aria-disabled={isAnimating}
+            >
+              {t("resume")}
+            </Link>
           </li>
           <li>
-            <Link to="/projects">{t("projects")}</Link>
+            <Link
+              to="/projects"
+              onClick={maybeBlockNavigation}
+              aria-disabled={isAnimating}
+            >
+              {t("projects")}
+            </Link>
           </li>
-          {/* <li>
-            <Link to="/about">{t("about")}</Link>
-          </li> */}
         </ul>
 
         <div className="navbar-lang">
-          <button onClick={toggleLanguage}>
+          <button onClick={toggleLanguage} disabled={isAnimating}>
             {i18n.language === "en" ? "🇬🇧" : "🇪🇸"}
           </button>
-          <button onClick={toggleTheme}>
+          <button onClick={toggleTheme} disabled={isAnimating}>
             {theme === "light" ? "☀️" : "🌙"}
           </button>
         </div>

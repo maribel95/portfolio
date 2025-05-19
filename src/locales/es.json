@@ -22,7 +22,32 @@
     "quick-experience": "EXPERIENCIA",
     "quick-skills": "TECNOLOGIAS",
     "quick-hobbies": "PASATIEMPOS",
-    "bottom-wanna-know": "¿Quieres saber más? Echa un vistazo al resto del portfolio :)"
+    "bottom-wanna-know": "¿Quieres saber más? Echa un vistazo al resto del portfolio :)",
+    "skills-list": [
+      "html",
+      "sass",
+      "typescript",
+      "react",
+      "vite",
+      "canva",
+      "figma",
+
+      "php",
+      "nodejs",
+      "python",
+      "java",
+      "spring",
+      "go",
+      "c",
+      "mysql",
+      "mulesoft",
+
+      "git",
+      "postman",
+      "jenkins"
+    ],
+    "show-list": "Ver lista",
+    "show-sphere": "Ver esfera"
   },
   "footer": {
     "title": "PUEDES ENCONTRARME EN",

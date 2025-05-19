@@ -20,7 +20,32 @@
     "quick-experience": "EXPERIENCE",
     "quick-skills": "SKILLS",
     "quick-hobbies": "HOBBIES",
-    "bottom-wanna-know": "Want to know more? Check out the rest of the site :)"
+    "bottom-wanna-know": "Want to know more? Check out the rest of the site :)",
+    "skills-list": [
+      "html",
+      "sass",
+      "typescript",
+      "react",
+      "vite",
+      "canva",
+      "figma",
+
+      "php",
+      "nodejs",
+      "python",
+      "java",
+      "spring",
+      "go",
+      "c",
+      "mysql",
+      "mulesoft",
+
+      "git",
+      "postman",
+      "jenkins"
+    ],
+    "show-list": "Show list",
+    "show-sphere": "Show sphere"
   },
   "footer": {
     "title": "FIND ME ON",

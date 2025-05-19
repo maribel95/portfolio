@@ -11,6 +11,8 @@ const Hero: React.FC = () => {
     "experience" | "skills" | "hobbies" | null
   >(null);
 
+  const [skillsMode, setSkillsMode] = useState<"sphere" | "list">("sphere");
+
   const panelRef = useRef<HTMLDivElement>(null);
 
   // dentro del componente
@@ -26,6 +28,10 @@ const Hero: React.FC = () => {
       t("hero.quick-hobbies-description", { returnObjects: true }) as string[],
     [t, i18n.language]
   );
+  const skillsList = useMemo(() => {
+    const raw = t("hero.skills-list", { returnObjects: true });
+    return Array.isArray(raw) ? (raw as string[]) : [];
+  }, [t, i18n.language]);
 
   function smoothScrollTo(targetY: number, duration = 1000): number {
     const startY = window.scrollY;
@@ -142,7 +148,11 @@ const Hero: React.FC = () => {
             <div className="panel-wrapper">
               <div
                 ref={panelRef}
-                className={`panel-base ${activePanel ? "visible" : ""}`}
+                className={`panel-base ${activePanel ? "visible" : ""} ${
+                  activePanel === "skills" && skillsMode === "list"
+                    ? "skills-list-bg"
+                    : ""
+                }`}
               >
                 {activePanel === "experience" && (
                   <p>
@@ -155,7 +165,44 @@ const Hero: React.FC = () => {
                   </p>
                 )}
 
-                {activePanel === "skills" && <SkillsSphere visible />}
+                {activePanel === "skills" && (
+                  <>
+                    <button
+                      className="skills-toggle"
+                      onClick={() =>
+                        setSkillsMode((prev) =>
+                          prev === "sphere" ? "list" : "sphere"
+                        )
+                      }
+                      aria-label={
+                        skillsMode === "sphere"
+                          ? t("hero.show-list") // ← añade estas claves al i18n
+                          : t("hero.show-sphere")
+                      }
+                      title={
+                        skillsMode === "sphere"
+                          ? t("hero.show-list")
+                          : t("hero.show-sphere")
+                      }
+                    >
+                      {skillsMode === "sphere" ? "≡" : "◐"}
+                      {/* pon aquí un icono SVG si lo prefieres */}
+                    </button>
+
+                    {skillsMode === "sphere" ? (
+                      <SkillsSphere visible />
+                    ) : (
+                      <ul className="skills-grid">
+                        {skillsList.map((tech) => (
+                          <li key={tech}>
+                            <img src={`/logos/${tech}.png`} alt={tech} />
+                            <span>{tech.toUpperCase()}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
 
                 {activePanel === "hobbies" && (
                   <p>

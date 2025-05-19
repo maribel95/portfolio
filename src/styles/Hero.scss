@@ -13,6 +13,9 @@
   z-index: 1;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .hero-flex {
     display: flex;
@@ -274,7 +277,8 @@
     width: 100%;
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
+
+    overflow: visible;
     pointer-events: none;
     visibility: hidden; // 👈 esto es clave para ocultarlo completamente
     transform: translateY(-10px);
@@ -315,6 +319,16 @@
     }
   }
 
+  .skills-box {
+    position: relative;
+    width: var(--skills-box-size);
+    height: var(--skills-box-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* evita que la glow salga fuera */
+    position: relative; /* para que el grid herede el centrado */
+  }
   .skills-panel {
     @extend .panel-base;
     padding: 2rem;
@@ -327,26 +341,20 @@
     }
   }
   .skills-list-bg {
-    --gap: 2rem;
+    --gap-l: 1.2rem;
   }
 
   .skills-list-bg::before {
     content: "";
     position: absolute;
-
-    /* deja un hueco uniforme alrededor */
-    top: var(--gap);
-    right: var(--gap);
-    bottom: var(--gap);
-    left: var(--gap);
-
-    background: var(--sphere-bg); /* fondo negro */
-    border-radius: 12px; /* esquinas redondeadas internas */
-    box-shadow: 0 0 8px 2px #a060ff; /* glow morado */
-    opacity: 0.85; /* ligera transparencia */
-    pointer-events: none; /* no intercepta clics */
-    z-index: -1; /* se queda detrás del grid */
+    inset: var(--gap-l); /* mismo margen en los 4 lados */
+    border-radius: 12px;
+    background: var(--sphere-bg);
+    box-shadow: 0 0 8px 2px #a060ff;
+    opacity: 0.88;
+    z-index: -1;
   }
+
   .hobbies-panel {
     @extend .experience-panel;
     &.visible {
@@ -355,73 +363,73 @@
   }
 
   /* el panel-base ya es position: relative; */
+  /* Botón esquina superior-derecha */
   .skills-toggle {
     position: absolute;
-    top: 0.4rem;
-    right: 0.4rem;
+    top: var(--gap-l); /* 1.2 rem */
+    right: var(--gap-l);
+    top: var(--gap-l, 1rem);
+    right: var(--gap-l, 1rem);
 
-    width: 2rem;
-    height: 2rem;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.2rem; // si usas texto
-    backdrop-filter: blur(4px);
-    background: var(--layer-bg);
-    cursor: pointer;
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  /* vista de lista */
-  .skills-grid {
+    width: 42px; /* área táctil recomendada ≥40×40 px  */
+    height: 42px;
+    border: 1px solid transparent;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem 1.2rem;
-    padding: 1rem 0.5rem;
+    align-items: center;
     justify-content: center;
 
-    li {
-      list-style: none;
-      font-weight: 600;
-      font-size: 0.95rem;
+    border-radius: 50%;
+
+    background: var(
+      --button-background
+    ); /* semitransp. válido en dark y light */
+    color: var(--button-color);
+
+    font-size: 1.25rem;
+
+    cursor: pointer;
+
+    z-index: 5; /* por encima del pseudo ::before (-1) y del grid (0) */
+
+    &:hover {
+      transform: scale(1.08);
+    }
+    &:active {
+      transform: scale(0.94);
     }
   }
+
   .skills-grid {
-    --size: 72px; /* ajusta a tu gusto */
-    --cols: 5; /* columnas fijas */
+    --cols: 5;
+    --cell: 66px; /* ← nuevo */
+    --gap: 16px;
 
     display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
-    grid-auto-rows: var(--size);
-    gap: 1rem;
-    padding: 1.2rem 0.8rem;
-    justify-items: center; /* centra cada celda */
+    grid-template-columns: repeat(var(--cols), var(--cell));
+    grid-auto-rows: var(--cell);
+    gap: var(--gap);
+    padding: var(--gap);
+    place-content: center;
 
     li {
+      width: var(--cell);
+      height: var(--cell);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      list-style: none;
-      font-size: 0.75rem;
+      font-size: 0.72rem; /* ya no se corta */
       font-weight: 600;
-      text-align: center;
-      width: var(--size);
-      height: var(--size);
 
       img {
         width: 100%;
-        height: 100%;
-        max-height: 48px; /* icono algo más pequeño que la celda */
+        height: 42px;
         object-fit: contain;
         margin-bottom: 0.2rem;
-        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.25));
       }
     }
   }
+
   // Media queries para pantallas móviles
   @include respond(mobile) {
     padding: 2rem 1rem 0 1rem;

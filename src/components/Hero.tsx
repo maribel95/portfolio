@@ -189,18 +189,20 @@ const Hero: React.FC = () => {
                       {/* pon aquí un icono SVG si lo prefieres */}
                     </button>
 
-                    {skillsMode === "sphere" ? (
-                      <SkillsSphere visible />
-                    ) : (
-                      <ul className="skills-grid">
-                        {skillsList.map((tech) => (
-                          <li key={tech}>
-                            <img src={`/logos/${tech}.png`} alt={tech} />
-                            <span>{tech.toUpperCase()}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <div className="skills-box">
+                      {skillsMode === "sphere" ? (
+                        <SkillsSphere visible />
+                      ) : (
+                        <ul className="skills-grid">
+                          {skillsList.slice(0, 20).map((tech) => (
+                            <li key={tech}>
+                              <img src={`/logos/${tech}.png`} alt={tech} />
+                              <span>{tech.toUpperCase()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </>
                 )}
 

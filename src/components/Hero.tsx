@@ -1,24 +1,35 @@
 import "@styles/Hero.scss";
-import { useTranslation } from "react-i18next";
-import { Trans } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import CanvasParticles from "./CanvasParticles";
 import SkillsSphere from "./SkillsSphere";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 
+// 🖼️ Lista de imágenes clicables para el avatar.
+// Añade aquí tantos nombres (sin extensión) como quieras y se irán rotando.
+const heroImages = ["yo-excursion", "yo-baskin", "yo-perro"] as const;
+
+type HeroImageName = (typeof heroImages)[number];
+
 const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
+
+  /* --------------------------------------------------
+   * ESTADOS PRINCIPALES
+   * -------------------------------------------------- */
   const [activePanel, setActivePanel] = useState<
     "experience" | "skills" | "hobbies" | null
   >(null);
-
   const [skillsMode, setSkillsMode] = useState<"sphere" | "list">("sphere");
+  const [imageIndex, setImageIndex] = useState(0); // índice actual del avatar
 
+  /* --------------------------------------------------
+   * REFS Y CACHÉS DE TRADUCCIÓN
+   * -------------------------------------------------- */
   const panelRef = useRef<HTMLDivElement>(null);
   const front = t("hero.skills-front", { returnObjects: true }) as string[];
   const back = t("hero.skills-back", { returnObjects: true }) as string[];
   const tools = t("hero.skills-tools", { returnObjects: true }) as string[];
 
-  // dentro del componente
   const experience = useMemo(
     () =>
       t("hero.quick-experience-description", {
@@ -36,6 +47,19 @@ const Hero: React.FC = () => {
     return Array.isArray(raw) ? (raw as string[]) : [];
   }, [t, i18n.language]);
 
+  /* --------------------------------------------------
+   * PRE‑CARGA de imágenes para evitar parpadeos
+   * -------------------------------------------------- */
+  useEffect(() => {
+    heroImages.forEach((name) => {
+      const img = new Image();
+      img.src = `/${name}.png`;
+    });
+  }, []);
+
+  /* --------------------------------------------------
+   * SCROLL SUAVE al abrir paneles
+   * -------------------------------------------------- */
   function smoothScrollTo(targetY: number, duration = 1000): number {
     const startY = window.scrollY;
     const distance = targetY - startY;
@@ -59,7 +83,7 @@ const Hero: React.FC = () => {
     }
 
     rafId = window.requestAnimationFrame(step);
-    return rafId; // ✅ devuelve el número para poder cancelarlo
+    return rafId; // para cancelarlo después
   }
 
   useEffect(() => {
@@ -74,6 +98,9 @@ const Hero: React.FC = () => {
     return () => cancelAnimationFrame(rafId);
   }, [activePanel]);
 
+  /* --------------------------------------------------
+   * RENDER AUXILIAR DE TECNOLOGÍAS
+   * -------------------------------------------------- */
   function renderTech(tech: string) {
     return (
       <li key={tech}>
@@ -82,21 +109,47 @@ const Hero: React.FC = () => {
       </li>
     );
   }
+
+  /* --------------------------------------------------
+   * HANDLERS
+   * -------------------------------------------------- */
+  const handleAvatarClick = () => {
+    // Avanza al siguiente índice de la lista circularmente
+    setImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  /* Nombre y ruta de la imagen actual */
+  const currentImageName: HeroImageName = heroImages[imageIndex];
+  const currentImageSrc = `/${currentImageName}.png`;
+
+  /* --------------------------------------------------
+   * JSX PRINCIPAL
+   * -------------------------------------------------- */
   return (
     <section className="hero-section">
       <CanvasParticles />
+
+      {/* --------------------- Texto + Avatar --------------------- */}
       <div className="hero-flex">
         <div className="hero-text">
           <span className="line soy">{t("hero.iam")}</span>
           <span className="line nombre">MARIBEL</span>
           <span className="line apellido">CRESPI</span>
         </div>
+
         <div className="hero-image-wrapper">
           <div className="hero-logo">
-            <div className="rotating-border"></div>
-            <img src="/yo-excursion.png" alt="Maribel" />
+            <div className="rotating-border" />
+            {/* Avatar clicable que rota entre imágenes */}
+            <img
+              src={currentImageSrc}
+              alt="Maribel"
+              onClick={handleAvatarClick}
+              className="clickable-avatar"
+            />
           </div>
 
+          {/* Texto "¡Hola!" manuscrito */}
           <span className="hero-handwriting hola" key={t("hero.greeting")}>
             {t("hero.greeting")
               .split("")
@@ -112,6 +165,8 @@ const Hero: React.FC = () => {
           </span>
         </div>
       </div>
+
+      {/* --------------------- Sección inferior (intro, botones, paneles) --------------------- */}
       <div className="bottom-hero-content">
         <div className="bottom-container">
           <h1>
@@ -123,6 +178,7 @@ const Hero: React.FC = () => {
           <p className="bottom-description">{t("hero.description1")}</p>
 
           <div className="text-row-wrapper">
+            {/* Botones de acceso rápido */}
             <div className="text-row">
               <button
                 className="hero-quick"
@@ -156,6 +212,7 @@ const Hero: React.FC = () => {
               </button>
             </div>
 
+            {/* Panel desplegable */}
             <div className="panel-wrapper">
               <div
                 ref={panelRef}
@@ -188,7 +245,7 @@ const Hero: React.FC = () => {
                         }
                         aria-label={
                           skillsMode === "sphere"
-                            ? t("hero.show-list") // ← añade estas claves al i18n
+                            ? t("hero.show-list")
                             : t("hero.show-sphere")
                         }
                         title={
@@ -198,7 +255,6 @@ const Hero: React.FC = () => {
                         }
                       >
                         {skillsMode === "sphere" ? "◧" : "◑"}
-                        {/* pon aquí un icono SVG si lo prefieres */}
                       </button>
 
                       <div className="skills-box">
@@ -233,6 +289,7 @@ const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
+
             <p className="bottom-wanna-know">{t("hero.bottom-wanna-know")}</p>
           </div>
         </div>

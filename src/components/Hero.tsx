@@ -14,6 +14,9 @@ const Hero: React.FC = () => {
   const [skillsMode, setSkillsMode] = useState<"sphere" | "list">("sphere");
 
   const panelRef = useRef<HTMLDivElement>(null);
+  const front = t("hero.skills-front", { returnObjects: true }) as string[];
+  const back = t("hero.skills-back", { returnObjects: true }) as string[];
+  const tools = t("hero.skills-tools", { returnObjects: true }) as string[];
 
   // dentro del componente
   const experience = useMemo(
@@ -71,6 +74,14 @@ const Hero: React.FC = () => {
     return () => cancelAnimationFrame(rafId);
   }, [activePanel]);
 
+  function renderTech(tech: string) {
+    return (
+      <li key={tech}>
+        <img src={`/logos/${tech}.png`} alt={tech} />
+        <span>{tech.toUpperCase()}</span>
+      </li>
+    );
+  }
   return (
     <section className="hero-section">
       <CanvasParticles />
@@ -185,7 +196,7 @@ const Hero: React.FC = () => {
                           : t("hero.show-sphere")
                       }
                     >
-                      {skillsMode === "sphere" ? "≡" : "◐"}
+                      {skillsMode === "sphere" ? "◧" : "◑"}
                       {/* pon aquí un icono SVG si lo prefieres */}
                     </button>
 
@@ -194,12 +205,14 @@ const Hero: React.FC = () => {
                         <SkillsSphere visible />
                       ) : (
                         <ul className="skills-grid">
-                          {skillsList.slice(0, 20).map((tech) => (
-                            <li key={tech}>
-                              <img src={`/logos/${tech}.png`} alt={tech} />
-                              <span>{tech.toUpperCase()}</span>
-                            </li>
-                          ))}
+                          <li className="cat">FRONT-END</li>
+                          {front.map(renderTech)}
+
+                          <li className="cat">BACK-END</li>
+                          {back.map(renderTech)}
+
+                          <li className="cat">TOOLS</li>
+                          {tools.map(renderTech)}
                         </ul>
                       )}
                     </div>

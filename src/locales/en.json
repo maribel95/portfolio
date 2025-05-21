@@ -44,6 +44,19 @@
       "postman",
       "jenkins"
     ],
+    "skills-front": ["html", "sass", "typescript", "react", "vite"],
+    "skills-back": [
+      "php",
+      "nodejs",
+      "python",
+      "java",
+      "spring",
+      "go",
+      "c",
+      "mysql",
+      "mulesoft"
+    ],
+    "skills-tools": ["canva", "figma", "git", "postman", "jenkins"],
     "show-list": "Show list",
     "show-sphere": "Show sphere"
   },

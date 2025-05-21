@@ -58,6 +58,7 @@ body.theme-dark {
   --canvas-particles: #aaaaaa;
   --button-color: #ffffff;
   --button-background: rgba(255, 255, 255, 0.08);
+  --line-panel-detail: rgba(211, 211, 211, 0.3);
 }
 
 // Tema claro
@@ -89,6 +90,7 @@ body.theme-light {
   --canvas-particles: #333333;
   --button-color: #000;
   --button-background: rgba(211, 211, 211, 0.4);
+  --line-panel-detail: rgb(167, 166, 166);
 }
 
 body {

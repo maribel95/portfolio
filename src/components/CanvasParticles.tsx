@@ -18,7 +18,7 @@ function makeParticle(width: number, height: number): Particle {
     y: Math.random() * height,
     vx: (Math.random() - 0.5) * 0.5,
     vy: (Math.random() - 0.5) * 0.5,
-    color: `hsl(${hue}, 90%, 90%)`,
+    color: `hsl(${hue}, 90%, 80%, 0.9)`,
   };
 }
 
@@ -64,7 +64,7 @@ const CanvasParticles: React.FC = () => {
 
         // dibujar partícula
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 2.4, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.fill();
 

@@ -17,6 +17,14 @@
   justify-content: center;
   align-items: center;
 
+  .panel-inner {
+    background-color: var(--panel-bg-blur); // capa blanca translúcida
+    backdrop-filter: blur(9px);
+    border-radius: inherit;
+    padding: 1.2rem;
+    width: 100%;
+    height: 100%;
+  }
   .hero-flex {
     display: flex;
     //flex-wrap: wrap;
@@ -296,6 +304,10 @@
     display: flex;
     justify-content: center; /* eje X */
     align-items: center; /* eje Y  */
+
+    text-align: left; /* desactiva el centrado global */
+    flex-direction: column; /* cada línea = una fila */
+    gap: 0.45rem; /* espacio vertical entre líneas */
 
     &.visible {
       position: relative;

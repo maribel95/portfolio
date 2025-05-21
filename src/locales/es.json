@@ -23,29 +23,7 @@
     "quick-skills": "TECNOLOGIAS",
     "quick-hobbies": "PASATIEMPOS",
     "bottom-wanna-know": "¿Quieres saber más? Echa un vistazo al resto del portfolio :)",
-    "skills-list": [
-      "html",
-      "sass",
-      "typescript",
-      "react",
-      "vite",
-      "canva",
-      "figma",
 
-      "php",
-      "nodejs",
-      "python",
-      "java",
-      "spring",
-      "go",
-      "c",
-      "mysql",
-      "mulesoft",
-
-      "git",
-      "postman",
-      "jenkins"
-    ],
     "skills-front": ["html", "sass", "typescript", "react", "vite"],
     "skills-back": [
       "php",

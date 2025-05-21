@@ -49,6 +49,7 @@ body.theme-dark {
   --background-navbar-button: 255, 255, 255;
   --experience-panel-border: rgba(255, 255, 255, 0.4);
   --experience-panel-bg: rgba(174, 174, 174, 0.4);
+  --panel-bg-blur: rgba(174, 174, 174, 0.08);
   --sphere-bg: rgba(0, 0, 0, 0.8);
   --projects-tech-color: #999;
   --projects-number-techs-color: #57328a;
@@ -80,7 +81,8 @@ body.theme-light {
   --border-imageB: #232323;
   --background-navbar-button: 0, 0, 0;
   --experience-panel-border: rgba(86, 86, 86, 0.4);
-  --experience-panel-bg: rgba(88, 88, 88, 0.4);
+  --experience-panel-bg: rgba(204, 204, 204, 0.4);
+  --panel-bg-blur: rgba(204, 204, 204, 0.08);
   --sphere-bg: rgba(255, 255, 255, 0.8);
   --projects-tech-color: #5d5d5d;
   --projects-number-techs-color: #4601a5;

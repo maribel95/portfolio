@@ -21,29 +21,7 @@
     "quick-skills": "SKILLS",
     "quick-hobbies": "HOBBIES",
     "bottom-wanna-know": "Want to know more? Check out the rest of the site :)",
-    "skills-list": [
-      "html",
-      "sass",
-      "typescript",
-      "react",
-      "vite",
-      "canva",
-      "figma",
 
-      "php",
-      "nodejs",
-      "python",
-      "java",
-      "spring",
-      "go",
-      "c",
-      "mysql",
-      "mulesoft",
-
-      "git",
-      "postman",
-      "jenkins"
-    ],
     "skills-front": ["html", "sass", "typescript", "react", "vite"],
     "skills-back": [
       "php",

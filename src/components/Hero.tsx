@@ -165,70 +165,72 @@ const Hero: React.FC = () => {
                     : ""
                 }`}
               >
-                {activePanel === "experience" && (
-                  <p>
-                    {experience.map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        <br />
-                      </span>
-                    ))}
-                  </p>
-                )}
+                <div className="panel-inner">
+                  {activePanel === "experience" && (
+                    <p>
+                      {experience.map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          <br />
+                        </span>
+                      ))}
+                    </p>
+                  )}
 
-                {activePanel === "skills" && (
-                  <>
-                    <button
-                      className="skills-toggle"
-                      onClick={() =>
-                        setSkillsMode((prev) =>
-                          prev === "sphere" ? "list" : "sphere"
-                        )
-                      }
-                      aria-label={
-                        skillsMode === "sphere"
-                          ? t("hero.show-list") // ← añade estas claves al i18n
-                          : t("hero.show-sphere")
-                      }
-                      title={
-                        skillsMode === "sphere"
-                          ? t("hero.show-list")
-                          : t("hero.show-sphere")
-                      }
-                    >
-                      {skillsMode === "sphere" ? "◧" : "◑"}
-                      {/* pon aquí un icono SVG si lo prefieres */}
-                    </button>
+                  {activePanel === "skills" && (
+                    <>
+                      <button
+                        className="skills-toggle"
+                        onClick={() =>
+                          setSkillsMode((prev) =>
+                            prev === "sphere" ? "list" : "sphere"
+                          )
+                        }
+                        aria-label={
+                          skillsMode === "sphere"
+                            ? t("hero.show-list") // ← añade estas claves al i18n
+                            : t("hero.show-sphere")
+                        }
+                        title={
+                          skillsMode === "sphere"
+                            ? t("hero.show-list")
+                            : t("hero.show-sphere")
+                        }
+                      >
+                        {skillsMode === "sphere" ? "◧" : "◑"}
+                        {/* pon aquí un icono SVG si lo prefieres */}
+                      </button>
 
-                    <div className="skills-box">
-                      {skillsMode === "sphere" ? (
-                        <SkillsSphere visible />
-                      ) : (
-                        <ul className="skills-grid">
-                          <li className="cat">FRONT-END</li>
-                          {front.map(renderTech)}
+                      <div className="skills-box">
+                        {skillsMode === "sphere" ? (
+                          <SkillsSphere visible />
+                        ) : (
+                          <ul className="skills-grid">
+                            <li className="cat">FRONT-END</li>
+                            {front.map(renderTech)}
 
-                          <li className="cat">BACK-END</li>
-                          {back.map(renderTech)}
+                            <li className="cat">BACK-END</li>
+                            {back.map(renderTech)}
 
-                          <li className="cat">TOOLS</li>
-                          {tools.map(renderTech)}
-                        </ul>
-                      )}
-                    </div>
-                  </>
-                )}
+                            <li className="cat">TOOLS</li>
+                            {tools.map(renderTech)}
+                          </ul>
+                        )}
+                      </div>
+                    </>
+                  )}
 
-                {activePanel === "hobbies" && (
-                  <p>
-                    {hobbies.map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        <br />
-                      </span>
-                    ))}
-                  </p>
-                )}
+                  {activePanel === "hobbies" && (
+                    <p>
+                      {hobbies.map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          <br />
+                        </span>
+                      ))}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
             <p className="bottom-wanna-know">{t("hero.bottom-wanna-know")}</p>

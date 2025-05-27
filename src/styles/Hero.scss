@@ -145,6 +145,13 @@
           border-radius: 50%;
           position: relative;
           z-index: 2;
+          // Para que no se pueda pulsar el logo en ningún navegador
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+
+          -webkit-user-drag: none;
         }
 
         &::before {

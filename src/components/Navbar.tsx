@@ -7,73 +7,92 @@ import { Link, useLocation } from "react-router-dom";
 /**
  * Navbar con "perritos animados" (Luki, Xopi, Sarki).
  *
- * Novedades respecto a la versión anterior:
- *   1. Hover  ⇒ muestra luki‑happier mientras el cursor esté encima.
- *   2. Idle   ⇒ cada 3.5 – 8 s (aleatorio) Luki mira a un lado y acto
- *                seguido al otro (luki‑left → luki‑right o viceversa).
- *   3. El ciclo idle se pausa durante hover o durante la animación de
- *      ladrido, y se reanuda de forma limpia al terminar.
+ * Mejoras en esta versión:
+ *   • Hover específico para cada ruta ⇒ muestra sprite …-happier.
+ *   • **Idle universal**: ahora cada perrito (Luki, Xopi, Sarki) se balancea
+ *     de izquierda a derecha cuando el usuario no interactúa.
+ *   • Lógica de idle parametrizada via `idleFrames` en la configuración, de
+ *     modo que añadir nuevos perritos es trivial.
  */
+
+type DogConfig = {
+  /** Sprite por defecto (quieto). */
+  default: string;
+  /** Sprite mostrado durante hover. */
+  hover: string;
+  /** Secuencia de frames para la animación de ladrido. */
+  sequence: string[];
+  /** Secuencia de dos frames para la animación idle (left / right). */
+  idleFrames: [string, string];
+  /** Sonido asociado al ladrido. */
+  sound: string;
+};
+
+// ────────────────────────────────────────────────────────────
+// Configuración centralizada de cada perrito por ruta
+// ────────────────────────────────────────────────────────────
+const dogAnimations: Record<string, DogConfig> = {
+  "/": {
+    default: "/dogs/luki-pixel.png",
+    hover: "/dogs/luki-happier.png",
+    idleFrames: ["/dogs/luki-left.png", "/dogs/luki-right.png"],
+    sequence: [
+      "/dogs/luki-pixel.png",
+      "/dogs/luki-bark1.png",
+      "/dogs/luki-bark2.png",
+      "/dogs/luki-bark1.png",
+      "/dogs/luki-pixel.png",
+    ],
+    sound: "/dog-bark.mp3",
+  },
+  "/cv": {
+    default: "/dogs/xopi-pixel.png",
+    hover: "/dogs/xopi-happier.png",
+    idleFrames: ["/dogs/xopi-left.png", "/dogs/xopi-right.png"],
+    sequence: [
+      "/dogs/xopi-pixel.png",
+      "/dogs/xopi-bark1.png",
+      "/dogs/xopi-pixel.png",
+    ],
+    sound: "/xopi-barking.mp3",
+  },
+  "/projects": {
+    default: "/dogs/sarki-pixel.png",
+    hover: "/dogs/sarki-happier.png",
+    idleFrames: ["/dogs/sarki-left.png", "/dogs/sarki-right.png"],
+    sequence: [
+      "/dogs/sarki-pixel.png",
+      "/dogs/sarki-bark1.png",
+      "/dogs/sarki-bark2.png",
+      "/dogs/sarki-bark1.png",
+      "/dogs/sarki-pixel.png",
+    ],
+    sound: "/dog-bark.mp3",
+  },
+};
+
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = useContext(ThemeContext);
   const location = useLocation();
-  const route = location.pathname;
+  const route = location.pathname as keyof typeof dogAnimations;
 
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   // Estado y refs generales
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   const [isAnimating, setIsAnimating] = useState(false); // ladrido o idle
   const [isHovered, setIsHovered] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
-  const [currentImage, setCurrentImage] = useState("/dogs/luki-pixel.png");
+  const [currentImage, setCurrentImage] = useState(
+    dogAnimations[route]?.default ?? dogAnimations["/"].default
+  );
 
   const animationTimerRef = useRef<number | null>(null); // para ladrido/idle
-  const idleTimerRef = useRef<number | null>(null); // solo para idle
+  const idleTimerRef = useRef<number | null>(null); // para idle
 
-  // ────────────────────────────────────────────────────────────
-  // Definición de sprites y secuencias
-  // ────────────────────────────────────────────────────────────
-  const dogAnimations: Record<
-    string,
-    { default: string; sequence: string[]; sound: string }
-  > = {
-    "/": {
-      default: "/dogs/luki-pixel.png",
-      sequence: [
-        "/dogs/luki-pixel.png",
-        "/dogs/luki-bark1.png",
-        "/dogs/luki-bark2.png",
-        "/dogs/luki-bark1.png",
-        "/dogs/luki-pixel.png",
-      ],
-      sound: "/dog-bark.mp3",
-    },
-    "/cv": {
-      default: "/dogs/xopi-pixel.png",
-      sequence: [
-        "/dogs/xopi-pixel.png",
-        "/dogs/xopi-bark1.png",
-        "/dogs/xopi-pixel.png",
-      ],
-      sound: "/xopi-barking.mp3",
-    },
-    "/projects": {
-      default: "/dogs/sarki-pixel.png",
-      sequence: [
-        "/dogs/sarki-pixel.png",
-        "/dogs/sarki-bark1.png",
-        "/dogs/sarki-bark2.png",
-        "/dogs/sarki-bark1.png",
-        "/dogs/sarki-pixel.png",
-      ],
-      sound: "/dog-bark.mp3",
-    },
-  };
-
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   // Efecto: reset al cambiar de ruta
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   useEffect(() => {
     // Limpiar timers activos
     if (animationTimerRef.current !== null) {
@@ -89,30 +108,33 @@ const Navbar: React.FC = () => {
     setIsAnimating(false);
     setIsVibrating(false);
     setCurrentImage(
-      dogAnimations[route]?.default || dogAnimations["/"].default
+      dogAnimations[route]?.default ?? dogAnimations["/"].default
     );
   }, [route]);
 
-  // ────────────────────────────────────────────────────────────
-  // Hover: luki‑happier mientras cursor encima y sin animación
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
+  // Hover: sprite «happier» mientras el cursor esté encima y
+  //         no haya otra animación en curso
+  // ──────────────────────────────────────────────────────────
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (!isAnimating && route === "/") {
-      setCurrentImage("/dogs/luki-happier.png");
+    if (!isAnimating) {
+      setCurrentImage(dogAnimations[route]?.hover ?? dogAnimations["/"].hover);
     }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (!isAnimating && route === "/") {
-      setCurrentImage("/dogs/luki-pixel.png");
+    if (!isAnimating) {
+      setCurrentImage(
+        dogAnimations[route]?.default ?? dogAnimations["/"].default
+      );
     }
   };
 
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   // Ladrido al hacer click (bloquea navegación mientras dura)
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   const handleClick = () => {
     if (isAnimating) return; // ignorar si ya hay animación en curso
 
@@ -122,7 +144,7 @@ const Navbar: React.FC = () => {
       idleTimerRef.current = null;
     }
 
-    const { sequence, sound } = dogAnimations[route] || dogAnimations["/"];
+    const { sequence, sound } = dogAnimations[route] ?? dogAnimations["/"];
     new Audio(sound).play();
 
     setIsAnimating(true);
@@ -153,24 +175,21 @@ const Navbar: React.FC = () => {
     }, 120);
   };
 
-  // ────────────────────────────────────────────────────────────
-  // Idle: Luki mira a un lado y luego al otro cada 3.5–8 s
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
+  // Idle universal (todos los perritos)
+  // ──────────────────────────────────────────────────────────
   const scheduleIdle = () => {
-    // Únicamente en la home y si no hay hover ni otras animaciones
-    if (route !== "/" || isHovered || isAnimating) {
-      return;
-    }
+    if (isHovered || isAnimating) return;
+    if (!dogAnimations[route]?.idleFrames) return; // por seguridad
     if (idleTimerRef.current !== null) return; // ya programado
 
     const delay = 3500 + Math.random() * 4500; // 3.5 – 8 s
-    idleTimerRef.current = window.setTimeout(() => {
-      startIdleAnimation();
-    }, delay);
+    idleTimerRef.current = window.setTimeout(startIdleAnimation, delay);
   };
 
   const startIdleAnimation = () => {
-    if (route !== "/" || isHovered || isAnimating) {
+    const idleFrames = dogAnimations[route]?.idleFrames;
+    if (!idleFrames || isHovered || isAnimating) {
       idleTimerRef.current = null;
       scheduleIdle();
       return;
@@ -178,19 +197,20 @@ const Navbar: React.FC = () => {
 
     setIsAnimating(true); // bloquea navegación
 
+    const [leftFrame, rightFrame] = idleFrames;
     const leftFirst = Math.random() < 0.5;
-    const first = leftFirst ? "/dogs/luki-left.png" : "/dogs/luki-right.png";
-    const second = leftFirst ? "/dogs/luki-right.png" : "/dogs/luki-left.png";
+    const first = leftFirst ? leftFrame : rightFrame;
+    const second = leftFirst ? rightFrame : leftFrame;
 
     setCurrentImage(first);
 
-    // 0.4 s después, cambia al segundo frame
+    // 0.5 s después, cambia al segundo frame
     animationTimerRef.current = window.setTimeout(() => {
       setCurrentImage(second);
 
-      // 0.4 s después, vuelve al pixel y reprograma idle
+      // 0.5 s después, vuelve al sprite por defecto y reprograma idle
       animationTimerRef.current = window.setTimeout(() => {
-        setCurrentImage("/dogs/luki-pixel.png");
+        setCurrentImage(dogAnimations[route].default);
         setIsAnimating(false);
         idleTimerRef.current = null;
         scheduleIdle();
@@ -208,43 +228,42 @@ const Navbar: React.FC = () => {
     }
   }, [isAnimating, isHovered, route]);
 
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   // Bloquea navegación mientras animamos (accesibilidad)
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   const maybeBlockNavigation = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    if (isAnimating) {
-      e.preventDefault();
-    }
+    if (isAnimating) e.preventDefault();
   };
 
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   // Theme & language toggles
-  // ────────────────────────────────────────────────────────────
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  const toggleLanguage = () => {
+  // ──────────────────────────────────────────────────────────
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+  const toggleLanguage = () =>
     i18n.changeLanguage(i18n.language === "en" ? "es" : "en");
-  };
 
+  // ──────────────────────────────────────────────────────────
+  // Efecto: restaurar imagen correcta cuando termina la animación
+  // ──────────────────────────────────────────────────────────
   useEffect(() => {
-    // Solo nos interesa actuar CUANDO la animación ha terminado
     if (!isAnimating) {
-      if (isHovered && route === "/") {
-        setCurrentImage("/dogs/luki-happier.png");
+      if (isHovered) {
+        setCurrentImage(
+          dogAnimations[route]?.hover ?? dogAnimations["/"].hover
+        );
       } else {
         setCurrentImage(
-          dogAnimations[route]?.default || dogAnimations["/"].default
+          dogAnimations[route]?.default ?? dogAnimations["/"].default
         );
       }
     }
   }, [isAnimating, isHovered, route]);
-  // ────────────────────────────────────────────────────────────
+
+  // ──────────────────────────────────────────────────────────
   // Render
-  // ────────────────────────────────────────────────────────────
+  // ──────────────────────────────────────────────────────────
   return (
     <nav className="navbar">
       <div className="navbar-content">
@@ -255,18 +274,8 @@ const Navbar: React.FC = () => {
             route === "/cv" ? "navbar-logo--xopi" : "navbar-logo--default"
           } ${isVibrating ? "navbar-logo--vibrate" : ""}`}
           onClick={handleClick}
-          onMouseEnter={() => {
-            setIsHovered(true); // ← guardamos que el cursor está encima
-            if (!isAnimating && route === "/") {
-              setCurrentImage("/dogs/luki-happier.png");
-            }
-          }}
-          onMouseLeave={() => {
-            setIsHovered(false); // ← ya no está encima
-            if (!isAnimating && route === "/") {
-              setCurrentImage("/dogs/luki-pixel.png");
-            }
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           draggable={false}
           style={{ cursor: "pointer" }}
         />

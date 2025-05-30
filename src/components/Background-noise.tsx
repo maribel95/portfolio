@@ -54,8 +54,6 @@ const Background = () => {
 
   // Colocar las imagenes de blob en posiciones aleatorias sin superposiciones
   useEffect(() => {
-    const placed: { x: number; y: number; r: number }[] = [];
-
     const container = containerRef.current;
     if (!container) return;
 

@@ -2,11 +2,14 @@
   "compilerOptions": {
     "typeRoots": ["./types", "./node_modules/@types"],
     "baseUrl": "./src",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
       "@context/*": ["context/*"]
-    }
+    },
+    "types": ["node"]
   },
   "files": [],
   "references": [

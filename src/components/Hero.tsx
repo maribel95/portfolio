@@ -42,10 +42,6 @@ const Hero: React.FC = () => {
       t("hero.quick-hobbies-description", { returnObjects: true }) as string[],
     [t, i18n.language]
   );
-  const skillsList = useMemo(() => {
-    const raw = t("hero.skills-list", { returnObjects: true });
-    return Array.isArray(raw) ? (raw as string[]) : [];
-  }, [t, i18n.language]);
 
   /* --------------------------------------------------
    * PRE‑CARGA de imágenes para evitar parpadeos

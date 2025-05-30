@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import "@styles/Footer.scss";
 import { useTranslation } from "react-i18next";
 const Footer: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <footer className="footer">
       <h2 className="footer__title">{t("footer.title")}</h2>

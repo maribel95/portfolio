@@ -122,7 +122,7 @@ export default function Projects() {
   const [cursorY, setCursorY] = useState(0);
   const [animatedY, setAnimatedY] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const previewRef = useRef<HTMLDivElement | null>(null);
+
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [imageTop, setImageTop] = useState(0);
   const imageRef = useRef<HTMLImageElement | null>(null);

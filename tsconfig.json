@@ -4,6 +4,9 @@
     "baseUrl": "./src",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
     "paths": {
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],

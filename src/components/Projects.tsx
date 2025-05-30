@@ -120,7 +120,7 @@ const projects = [
 export default function Projects() {
   const { t } = useTranslation();
   const [cursorY, setCursorY] = useState(0);
-  const [animatedY, setAnimatedY] = useState(0);
+  const [_, setAnimatedY] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);

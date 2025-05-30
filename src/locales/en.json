@@ -12,16 +12,15 @@
       "⚙️ Continuous Integration and Continuous Deployment (CI/CD)."
     ],
     "quick-hobbies-description": [
-      "🏀 All kinds of sports, especially basketball.",
-      "🥑 Nutrition and healthy eating.",
-      "📚 Reading all sorts of popular science and educational content.",
-      "💻 Developing my own projects!"
+      "🏀 I regularly practice sports, especially basketball.",
+      "🥑 I’m interested in nutrition and maintaining health through proper diet.",
+      "📚 I enjoy reading popular science to broaden my knowledge in various fields.",
+      "💻 I like developing personal projects as a way to learn and express myself."
     ],
     "quick-experience": "EXPERIENCE",
     "quick-skills": "SKILLS",
     "quick-hobbies": "HOBBIES",
     "bottom-wanna-know": "Want to know more? Check out the rest of the site :)",
-
     "skills-front": ["html", "sass", "typescript", "react", "vite"],
     "skills-back": [
       "php",
@@ -42,7 +41,6 @@
     "title": "FIND ME ON",
     "bottom": "Designed and Developed by"
   },
-
   "home": "Home",
   "about": "About",
   "projects": "Projects",
@@ -58,7 +56,7 @@
     "responsibilitiesTitle": "RESPONSIBILITIES",
     "responsibilities": [
       "Developed and implemented the backend of a web application for managing reservation center data at Grupo Piñero using Java and the Spring Boot framework.",
-      "Designed and integrated APIs through MuleSoft...",
+      "Designed and integrated APIs through MuleSoft.",
       "Managed tools and applications related to Oracle ERP.",
       "Version control using Git and branch management with Git Flow.",
       "Optimized SQL queries.",
@@ -105,5 +103,58 @@
     "languagesTitle": "LANGUAGES",
     "languages": "Spanish, Catalan and English.",
     "download": "Download CV in PDF"
+  },
+  "technologies": {
+    "Python": "Python",
+    "IA": "AI",
+    "LIME": "LIME",
+    "C": "C",
+    "Makefile": "Makefile",
+    "Shell": "Shell",
+    "Neural networks": "Neural networks",
+    "Deep learning": "Deep learning",
+    "Data analysis": "Data analysis",
+    "Jupiter Notebook": "Jupyter Notebook",
+    "R": "R",
+    "Bayesian statistics": "Bayesian statistics",
+    "Multivariable statistics": "Multivariable statistics",
+    "Data science": "Data science",
+    "Statistical models": "Statistical models",
+    "Layered programming": "Layered programming",
+    "Java": "Java",
+    "Go": "Go",
+    "Ada": "Ada",
+    "RabbitMQ": "RabbitMQ",
+    "Assembly": "Assembly",
+    "Easy 68k": "Easy 68k",
+    "AI": "AI",
+    "Video games": "Video games",
+    "HTML5": "HTML5",
+    "CSS": "CSS",
+    "JavaScript": "JavaScript",
+    "PHP": "PHP",
+    "Lex": "Lex",
+    "Data structures": "Data structures",
+    "Algorithm design": "Algorithm design",
+    "MVC": "MVC",
+    "SASS": "SASS"
+  },
+  "projectTitles": {
+    "TFG": "TFG",
+    "File system": "File system",
+    "Machine learning": "Machine learning",
+    "Data mining": "Data mining",
+    "Statistics NBA 2015": "Statistics NBA 2015",
+    "Minishell": "Minishell",
+    "Concurrent programming": "Concurrent programming",
+    "Super Tennis 68k": "Super Tennis 68k",
+    "Fishing game": "Fishing game",
+    "Goal based agent": "Goal based agent",
+    "PS-ECI emulator": "PS-ECI emulator",
+    "MineSweeper": "MineSweeper",
+    "Dashboard": "Dashboard",
+    "Compiler": "Compiler",
+    "Advanced algorithms": "Advanced algorithms",
+    "Potigames": "Potigames"
   }
 }

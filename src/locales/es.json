@@ -1,6 +1,6 @@
 {
   "hero": {
-    "greeting": "Hola!",
+    "greeting": "¡Hola!",
     "name": "MARIBEL CRESPI",
     "iam": "SOY",
     "title": "Ingeniera informática",
@@ -13,17 +13,15 @@
       "⚙️ Integración continua y despliegue continuo (CI/CD)."
     ],
     "quick-hobbies-description": [
-      "🏀 Deportes de todo tipo aunque en especial baloncesto.",
-      "🥑 Nutrición y alimentación.",
-      "📚 Leer divulgación variada.",
-      "💻 Desarrollar mis propios proyectos!"
+      "🏀 Practico deporte con regularidad, especialmente baloncesto.",
+      "🥑 Me interesa la nutrición y el cuidado de la salud a través de la alimentación.",
+      "📚 Disfruto leyendo divulgación para ampliar mis conocimientos en distintas áreas.",
+      "💻 Me gusta desarrollar proyectos propios como forma de aprendizaje y expresión."
     ],
-
     "quick-experience": "EXPERIENCIA",
     "quick-skills": "TECNOLOGIAS",
     "quick-hobbies": "PASATIEMPOS",
     "bottom-wanna-know": "¿Quieres saber más? Echa un vistazo al resto del portfolio :)",
-
     "skills-front": ["html", "sass", "typescript", "react", "vite"],
     "skills-back": [
       "php",
@@ -59,7 +57,7 @@
     "responsibilitiesTitle": "RESPONSABILIDADES",
     "responsibilities": [
       "Desarrollo e implementación del back de un aplicativo web para la gestión de datos de las centrales de reserva de Grupo Piñero. Lenguaje Java y framework Spring Boot.",
-      "Diseño e integración de APIs a través de MuleSoft...",
+      "Diseño e integración de APIs a través de MuleSoft.",
       "Manejo de herramientas y aplicaciones relacionadas con el ERP de Oracle.",
       "Control de versiones con Git y gestión de ramas con Git Flow.",
       "Optimización de consultas SQL.",
@@ -106,5 +104,58 @@
     "languagesTitle": "IDIOMAS",
     "languages": "Español, Catalán e Inglés.",
     "download": "Descargar CV en PDF"
+  },
+  "technologies": {
+    "Python": "Python",
+    "IA": "IA",
+    "LIME": "LIME",
+    "C": "C",
+    "Makefile": "Makefile",
+    "Shell": "Shell",
+    "Neural networks": "Redes neuronales",
+    "Deep learning": "Aprendizaje profundo",
+    "Data analysis": "Análisis de datos",
+    "Jupiter Notebook": "Jupyter Notebook",
+    "R": "R",
+    "Bayesian statistics": "Estadística bayesiana",
+    "Multivariable statistics": "Estadística multivariable",
+    "Data science": "Ciencia de datos",
+    "Statistical models": "Modelos estadísticos",
+    "Layered programming": "Programación por capas",
+    "Java": "Java",
+    "Go": "Go",
+    "Ada": "Ada",
+    "RabbitMQ": "RabbitMQ",
+    "Assembly": "Ensamblador",
+    "Easy 68k": "Easy 68k",
+    "AI": "IA",
+    "Video games": "Videojuegos",
+    "HTML5": "HTML5",
+    "CSS": "CSS",
+    "JavaScript": "JavaScript",
+    "PHP": "PHP",
+    "Lex": "Lex",
+    "Data structures": "Estructuras de datos",
+    "Algorithm design": "Diseño de algoritmos",
+    "MVC": "MVC",
+    "SASS": "SASS"
+  },
+  "projectTitles": {
+    "TFG": "TFG",
+    "File system": "Sistema de archivos",
+    "Machine learning": "Aprendizaje automático",
+    "Data mining": "Minería de datos",
+    "Statistics NBA 2015": "Estadísticas NBA 2015",
+    "Minishell": "Minishell",
+    "Concurrent programming": "Programación concurrente",
+    "Super Tennis 68k": "Super Tennis 68k",
+    "Fishing game": "Juego de pesca",
+    "Goal based agent": "Agente basado en objetivos",
+    "PS-ECI emulator": "Emulador PS-ECI",
+    "MineSweeper": "Buscaminas",
+    "Dashboard": "Panel de control",
+    "Compiler": "Compilador",
+    "Advanced algorithms": "Algoritmos avanzados",
+    "Potigames": "Potigames"
   }
 }

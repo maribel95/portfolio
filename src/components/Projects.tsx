@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "@styles/Projects.scss";
 import CanvasParticles from "./CanvasParticles";
 
@@ -80,7 +81,7 @@ const projects = [
   },
   {
     title: "PS-ECI emulator",
-    tech: ["Assembly", "Easy68k"],
+    tech: ["Assembly", "Easy 68k"],
     image: "/projects/ps-eci.jpeg",
     url: "https://github.com/maribel95/PS-ECI-machine-emulator",
   },
@@ -117,6 +118,7 @@ const projects = [
 ];
 
 export default function Projects() {
+  const { t } = useTranslation();
   const [cursorY, setCursorY] = useState(0);
   const [animatedY, setAnimatedY] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -133,35 +135,29 @@ export default function Projects() {
     const imageHeight = imageRef.current?.offsetHeight || 360;
     if (el) {
       const rect = el.getBoundingClientRect();
-      let offset = rect.top + el.offsetHeight / 2 - imageHeight / 2; // Centrar verticalmente la imagen (180 = mitad de altura)
-      // 👇  si es el último proyecto, aplica el desplazamiento extra
+      let offset = rect.top + el.offsetHeight / 2 - imageHeight / 2;
       if (index === projects.length - 1) {
         offset -= imageHeight * EXTRA_RATIO;
       }
-      // Limita para que no se salga del viewport
       const minTop = 100;
-      const maxTop = window.innerHeight - imageHeight - 20; // 360 = altura imagen
+      const maxTop = window.innerHeight - imageHeight - 20;
       const finalTop = Math.min(Math.max(offset, minTop), maxTop);
-
       setImageTop(finalTop);
     }
   };
+
   useEffect(() => {
     let animationFrame: number;
-
     const animate = () => {
       setAnimatedY((prevY) => {
         const delta = cursorY - prevY;
         return prevY + delta * 0.005;
       });
-
       animationFrame = requestAnimationFrame(animate);
     };
-
     animationFrame = requestAnimationFrame(animate);
-
     return () => cancelAnimationFrame(animationFrame);
-  }, []);
+  }, [cursorY]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setCursorY(e.clientY);
@@ -178,13 +174,11 @@ export default function Projects() {
       </span>
     ));
   }
+
   return (
     <section className="projects">
       <CanvasParticles />
-      <div
-        className="projects__container"
-        onMouseMove={(e) => handleMouseMove(e)}
-      >
+      <div className="projects__container" onMouseMove={handleMouseMove}>
         <div className="projects__list">
           {projects.map((project, index) => (
             <div
@@ -203,9 +197,19 @@ export default function Projects() {
                 }`}
               >
                 <span className="projects__number">{index + 1}.</span>
-                <span className="projects__name">{project.title}</span>
+                <span className="projects__name">
+                  {t(`projectTitles.${project.title}`, {
+                    defaultValue: project.title,
+                  })}
+                </span>
                 <div className="projects__tech">
-                  {splitChars(project.tech.join(" • "))}
+                  {splitChars(
+                    project.tech
+                      .map((tech) =>
+                        t(`technologies.${tech}`, { defaultValue: tech })
+                      )
+                      .join(" • ")
+                  )}
                 </div>
               </div>
 
@@ -215,9 +219,7 @@ export default function Projects() {
                   src={project.image}
                   alt=""
                   className="projects__image visible"
-                  style={{
-                    top: `${imageTop}px`,
-                  }}
+                  style={{ top: `${imageTop}px` }}
                   onLoad={() => {
                     if (activeIndex !== null) handleMouseEnter(activeIndex);
                   }}
